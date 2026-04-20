@@ -50,8 +50,6 @@ body {
   color: var(--navy);
   line-height: 1.8;
   font-size: 15px;
-  /* アンカー広告の高さ分だけ余白を確保 */
-  padding-bottom: 90px;
 }
 
 /* ── ナビ ── */
@@ -340,36 +338,55 @@ body {
 }
 .ad-banner__link:hover .ad-banner__img { opacity: 0.9; }
 
-/* ── アンカー広告（画面下部固定） ── */
+/* ── アンカー広告（右下固定） ── */
 .anchor-ad {
   position: fixed;
-  bottom: 0; left: 0; right: 0;
+  bottom: 20px;
+  right: 20px;
   z-index: 300;
-  background: rgba(255,255,255,0.97);
-  border-top: 1px solid rgba(0,0,0,0.1);
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 0;
-  height: 90px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  background: #fff;
+}
+.anchor-ad:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .anchor-ad__label {
   position: absolute;
-  top: 4px; left: 8px;
-  font-size: 0.6rem; color: #bbb;
+  top: 5px; left: 8px;
+  font-size: 0.6rem; color: #fff;
   letter-spacing: 0.1em;
+  background: rgba(0,0,0,0.45);
+  padding: 1px 6px;
+  border-radius: 3px;
+  z-index: 1;
 }
 .anchor-ad__link {
   display: block;
-  height: 100%;
+  line-height: 0;
   transition: opacity 0.5s ease;
 }
+/* 縦250pxを基準に、横は画像の縦横比に任せる */
 .anchor-ad__img {
-  height: 100%;
+  display: block;
+  height: 250px;
   width: auto;
-  max-width: 90vw;
-  object-fit: contain;
+  max-width: 220px;  /* 横長画像の暴走防止 */
+}
+
+/* スマホでは少し小さく */
+@media (max-width: 480px) {
+  .anchor-ad {
+    bottom: 12px;
+    right: 12px;
+  }
+  .anchor-ad__img {
+    height: 160px;
+    max-width: 140px;
+  }
 }
 
 /* ── フッター ── */
