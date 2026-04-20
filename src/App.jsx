@@ -4,6 +4,7 @@ import './App.css'
 import terrabalImg from './assets/terrabal.jpg'
 import terrabalImg2 from './assets/terrabal2.jpg'
 import chuoImg from './assets/chuo.png'
+import linemoImg from './assets/linemo.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -53,13 +54,22 @@ const TYPE_COLOR = {
   circle:  '#1a6ab5',
 }
 
-
+/* ── アンカー広告データ ── */
+const ADS = [
+  { img: chuoImg,   alt: '中央自動車学校', url: 'https://chuo-ds.jp' },
+  { img: linemoImg, alt: 'LINEMO',         url: 'https://linemo.jp' },
+]
 
 export default function App() {
   const [adVisible, setAdVisible] = useState(true)
   const [activeDay, setActiveDay] = useState('11/2')
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+
+  /* アンカー広告 */
+  const [adIndex, setAdIndex] = useState(0)
+  const [adFade, setAdFade]   = useState(true)
+
   const heroRef = useRef(null)
 
   useEffect(() => {
@@ -67,6 +77,18 @@ export default function App() {
     const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  /* アンカー広告：5秒ごとにフェードイン切り替え */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setAdFade(false)
+      setTimeout(() => {
+        setAdIndex(i => (i + 1) % ADS.length)
+        setAdFade(true)
+      }, 500)
+    }, 5000)
+    return () => clearInterval(timer)
   }, [])
 
   const scrollTo = (id) => {
@@ -77,16 +99,17 @@ export default function App() {
   return (
     <div className="site">
 
-{adVisible && (
-  <div className="ad-interstitial" onClick={() => setAdVisible(false)}>
-    <div className="ad-interstitial__box" onClick={e => e.stopPropagation()}>
-      <button className="ad-interstitial__close" onClick={() => setAdVisible(false)}>✕</button>
-      <a href="https://chuo-ds.jp" target="_blank" rel="noopener noreferrer">
-        <img src={chuoImg} alt="中央自動車学校" className="ad-interstitial__img" />
-      </a>
-    </div>
-  </div>
-)}
+      {/* ── インタースティシャル広告 ── */}
+      {adVisible && (
+        <div className="ad-interstitial" onClick={() => setAdVisible(false)}>
+          <div className="ad-interstitial__box" onClick={e => e.stopPropagation()}>
+            <button className="ad-interstitial__close" onClick={() => setAdVisible(false)}>✕</button>
+            <a href="https://chuo-ds.jp" target="_blank" rel="noopener noreferrer">
+              <img src={chuoImg} alt="中央自動車学校" className="ad-interstitial__img" />
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* ── ナビ ── */}
       <header className={`nav ${scrolled ? 'nav--solid' : ''}`}>
@@ -131,31 +154,23 @@ export default function App() {
         <div className="hero__bear">🐻</div>
       </section>
 
-            {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：テラバル自動車学校
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <span className="ad-banner__label">広告</span>
         <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img
-            src={terrabalImg}
-            alt="テラバル自動車学校"
-            className="ad-banner__img"
-          />
+          <img src={terrabalImg} alt="テラバル自動車学校" className="ad-banner__img" />
         </a>
       </div>
 
-                  {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：テラバル自動車学校2
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <span className="ad-banner__label">広告</span>
         <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img
-            src={terrabalImg2}
-            alt="テラバル自動車学校"
-            className="ad-banner__img"
-          />
+          <img src={terrabalImg2} alt="テラバル自動車学校" className="ad-banner__img" />
         </a>
       </div>
 
@@ -316,6 +331,20 @@ export default function App() {
         <p className="footer__title">第14回 紫熊祭実行委員会</p>
         <p className="footer__copy">© 2025 紫熊祭実行委員会 All rights reserved.</p>
       </footer>
+
+      {/* ── アンカー広告（画面下部固定・フェードイン切り替え） ── */}
+      <div className="anchor-ad">
+        <span className="anchor-ad__label">広告</span>
+        <a
+          href={ADS[adIndex].url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="anchor-ad__link"
+          style={{ opacity: adFade ? 1 : 0 }}
+        >
+          <img src={ADS[adIndex].img} alt={ADS[adIndex].alt} className="anchor-ad__img" />
+        </a>
+      </div>
 
     </div>
   )

@@ -30,9 +30,6 @@
 .ad-interstitial__img {
   display: block; width: 100%; height: auto;
 }
-@keyframes fadeIn {
-  from { opacity: 0; } to { opacity: 1; }
-}
 
 :root {
   --purple:  #6c3fc7;
@@ -53,6 +50,8 @@ body {
   color: var(--navy);
   line-height: 1.8;
   font-size: 15px;
+  /* アンカー広告の高さ分だけ余白を確保 */
+  padding-bottom: 90px;
 }
 
 /* ── ナビ ── */
@@ -336,10 +335,42 @@ body {
 .ad-banner__link { display: block; line-height: 0; }
 .ad-banner__img {
   width: 100%;
-  height: auto;        /* 画像の縦横比をそのまま維持 */
+  height: auto;
   object-fit: contain;
 }
 .ad-banner__link:hover .ad-banner__img { opacity: 0.9; }
+
+/* ── アンカー広告（画面下部固定） ── */
+.anchor-ad {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 300;
+  background: rgba(255,255,255,0.97);
+  border-top: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+  height: 90px;
+}
+.anchor-ad__label {
+  position: absolute;
+  top: 4px; left: 8px;
+  font-size: 0.6rem; color: #bbb;
+  letter-spacing: 0.1em;
+}
+.anchor-ad__link {
+  display: block;
+  height: 100%;
+  transition: opacity 0.5s ease;
+}
+.anchor-ad__img {
+  height: 100%;
+  width: auto;
+  max-width: 90vw;
+  object-fit: contain;
+}
 
 /* ── フッター ── */
 .footer {
@@ -354,6 +385,9 @@ body {
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
 }
 
 /* ── レスポンシブ ── */
