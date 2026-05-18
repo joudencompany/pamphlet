@@ -5,6 +5,11 @@ import terrabalImg from './assets/terrabal.jpg'
 import terrabalImg2 from './assets/terrabal2.jpg'
 import chuoImg from './assets/chuo.png'
 import linemoImg from './assets/linemo.png'
+import seikyou from './assets/seikyou.png'
+import conntakuto from './assets/conntakuto.png'
+import ouesu from './assets/ouesu.png'
+import onetimeforever from './assets/1time4ever.png'
+
 
 /* ── データ ── */
 const DAYS = [
@@ -155,12 +160,12 @@ export default function App() {
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          広告：テラバル自動車学校
+          広告：生協
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <span className="ad-banner__label">広告</span>
-        <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={terrabalImg} alt="テラバル自動車学校" className="ad-banner__img" />
+        <a href="https://coop.kyushu-bauc.or.jp/kumamoto-u/index.html" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={seikyou} alt="生協" className="ad-banner__img" />
         </a>
       </div>
 
@@ -208,6 +213,46 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：テラバル自動車学校
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={terrabalImg} alt="テラバル自動車学校" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：テラバル自動車学校
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={terrabalImg} alt="テラバル自動車学校" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：テラバル自動車学校
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={terrabalImg} alt="テラバル自動車学校" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：テラバル自動車学校
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={terrabalImg} alt="テラバル自動車学校" className="ad-banner__img" />
+        </a>
+      </div>
 
       {/* ── タイムテーブル ── */}
       <section className="section timetable" id="timetable">
