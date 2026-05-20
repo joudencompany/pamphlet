@@ -6,7 +6,7 @@ import terrabalImg2 from './assets/terrabal2.jpg'
 import chuoImg from './assets/chuo.png'
 import linemoImg from './assets/linemo.png'
 import seikyou from './assets/seikyou.png'
-import conntakuto from './assets/conntakuto.png'
+import conntakuto from './assets/konntakuto.png'
 import ouesu from './assets/ouesu.png'
 import onetimeforever from './assets/1time4ever.png'
 
