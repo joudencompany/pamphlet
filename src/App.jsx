@@ -67,6 +67,10 @@ const ADS = [
 
 export default function App() {
   const [adVisible, setAdVisible] = useState(false)
+  const [adVisible, setAdVisible] = useState(false)
+  const [adShown, setAdShown] = useState(false)
+  const [surveyVisible, setSurveyVisible] = useState(true)
+  const [surveyDone, setSurveyDone] = useState(false)
   const [adShown, setAdShown] = useState(false)  
   const [activeDay, setActiveDay] = useState('11/2')
   const [menuOpen, setMenuOpen] = useState(false)
@@ -77,6 +81,21 @@ export default function App() {
   const [adFade, setAdFade]   = useState(true)
 
   const heroRef = useRef(null)
+
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw5g62IiNURRo69ArGdlHFA28ktmEWEixTV5LArZkD_cFcme8yeyxDOumO_qEmNWyio/exec'
+const handleSurvey = async (type) => {
+  setSurveyVisible(false)
+  setSurveyDone(true)
+  const params = new URLSearchParams({ type })
+  try {
+    await fetch(`${SHEET_URL}?${params}`, {
+      method: 'GET',
+      mode: 'no-cors',
+    })
+  } catch (e) {
+    console.error('送信失敗', e)
+  }
+}
 
   useEffect(() => {
   document.title = '第14回 紫熊祭 | 熊本大学黒髪北キャンパス'
@@ -131,6 +150,36 @@ useEffect(() => {
 
   return (
     <div className="site">
+
+        {/* ── 来場者アンケート ── */}
+    {surveyVisible && (
+      <div className="sp-overlay">
+        <div className="sp-overlay__box">
+          <h2 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>来場者アンケート</h2>
+          <p style={{ fontSize: '0.85rem', color: '#888', marginBottom: '1.2rem' }}>
+            あなたはどちらですか？
+          </p>
+          {[
+            { label: '🎓 熊本大学の学生様', value: '熊大生' },
+            { label: '🏫 他大学の学生様',   value: '他大学生' },
+            { label: '👥 一般来場者様',     value: '外部来場者' },
+          ].map(({ label, value }) => (
+            <button
+              key={value}
+              onClick={() => handleSurvey(value)}
+              style={{
+                display: 'block', width: '100%', margin: '0.4rem 0',
+                padding: '0.7rem', borderRadius: '8px',
+                border: '1px solid #444', background: '#1a1a2e',
+                color: '#fff', cursor: 'pointer', fontSize: '0.95rem'
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
 
       {/* ── インタースティシャル広告 ── */}
       {adVisible && (

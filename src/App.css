@@ -2,6 +2,38 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── 来場者アンケート（オーバーレイ） ── */
+.sp-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+.sp-overlay__box {
+  position: relative;
+  max-width: min(420px, 90vw);
+  max-height: 90vh;
+  overflow: hidden;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 12px;
+  padding: 2rem 1.75rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.sp-overlay__close {
+  position: absolute; top: 8px; right: 8px; z-index: 1;
+  width: 32px; height: 32px;
+  background: rgba(0,0,0,0.6); color: #fff;
+  border: none; border-radius: 50%;
+  font-size: 0.85rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.sp-overlay__close:hover { background: rgba(0,0,0,0.9); }
+.sp-overlay__img {
+  display: block; width: 100%; height: auto;
+}
+
 /* ── インタースティシャル広告 ── */
 .ad-interstitial {
   position: fixed; inset: 0; z-index: 9999;
