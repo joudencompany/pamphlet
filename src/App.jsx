@@ -67,11 +67,9 @@ const ADS = [
 
 export default function App() {
   const [adVisible, setAdVisible] = useState(false)
-  const [adVisible, setAdVisible] = useState(false)
   const [adShown, setAdShown] = useState(false)
   const [surveyVisible, setSurveyVisible] = useState(true)
   const [surveyDone, setSurveyDone] = useState(false)
-  const [adShown, setAdShown] = useState(false)  
   const [activeDay, setActiveDay] = useState('11/2')
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -199,7 +197,7 @@ useEffect(() => {
           <span className="nav__logo-sigma">Σ</span> 紫熊祭
         </div>
         <nav className={`nav__links ${menuOpen ? 'open' : ''}`}>
-          {[['挨拶','greeting'],['タイムテーブル','timetable'],['出店・サークル','circles'],['アクセス','access']].map(([label, id]) => (
+          {[['挨拶','greeting'],['タイムテーブル','timetable'],['出店・サークル','circles'],['アクセス','access'],['諸注意','notice']].map(([label, id]) => (
             <button key={id} onClick={() => scrollTo(id)}>{label}</button>
           ))}
         </nav>
@@ -331,6 +329,43 @@ useEffect(() => {
           <img src={onetimeforever} alt="1TIME 4EVER" className="ad-banner__img" />
         </a>
       </div>
+
+      {/* ── 諸注意 ── */}
+      <section className="section notice" id="notice">
+        <div className="container">
+          <div className="section-label">Notice</div>
+          <h2 className="section-title">諸注意</h2>
+          <p className="notice__lead">～皆で紫熊祭を楽しむために～</p>
+
+          <ul className="notice__list">
+            <li>
+              紫熊祭の開催時間は <strong>9:00～19:30</strong> です。時間外の入場はできませんのでご注意ください。
+            </li>
+            <li>
+              会場内には電力や音響などのコード、発電機が設置されています。感電や火災等の事故につながる可能性があるため、近づかないようにしてください。
+            </li>
+            <li>
+              大学構内及びその周辺は、紙タバコ・電子タバコに限らず全域禁煙となっています。ご協力お願いします。
+            </li>
+            <li>
+              会場内の飲酒は禁止です。飲酒や酒類の持ち込みが発覚した際には、警告もしくは退場していただく場合がございます。また、飲酒された状態でのご入場もご遠慮ください。
+            </li>
+            <li>
+              総合案内が赤門の手前にございます。落とし物やその他お困りの際には、お気軽にお越しください。
+            </li>
+            <li>
+              駐車場は付近のコインパーキングにお停めいただくか、<strong>黒髪小学校の臨時駐車場（2日目：11/3のみ解放）</strong>をご利用ください。
+              <br />
+              <span className="notice__sub">
+                （1日目：11/2は、身体障がい者・高齢者の方専用に桜山中学校の臨時駐車場を開放します）
+              </span>
+            </li>
+            <li>
+              近隣の店舗や住民の方々の迷惑にならないよう、交通ルールをお守りいただくようお願いいたします。
+            </li>
+          </ul>
+        </div>
+      </section>
 
       {/* ── タイムテーブル ── */}
       <section className="section timetable" id="timetable">
