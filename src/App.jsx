@@ -305,7 +305,7 @@ useEffect(() => {
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <span className="ad-banner__label">広告</span>
-        <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+        <a href="https://www.eyecity.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
           <img src={konntakuto} alt="コンタクトアイシティ" className="ad-banner__img" />
         </a>
       </div>
@@ -315,7 +315,7 @@ useEffect(() => {
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <span className="ad-banner__label">広告</span>
-        <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+        <a href="https://www.nohara-gr.com/admin-os/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
           <img src={ouesu} alt="オーエス" className="ad-banner__img" />
         </a>
       </div>
@@ -324,7 +324,6 @@ useEffect(() => {
           広告：ワンタイムフォーエバー
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
-        <span className="ad-banner__label">広告</span>
         <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
           <img src={onetimeforever} alt="1TIME 4EVER" className="ad-banner__img" />
         </a>
