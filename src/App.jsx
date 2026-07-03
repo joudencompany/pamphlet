@@ -485,7 +485,7 @@ useEffect(() => {
         </div>
       </section>
 
-      {/* ── アクセス ── */}
+{/* ── アクセス ── */}
       <section className="section access" id="access">
         <div className="container">
           <div className="section-label">Access</div>
@@ -493,7 +493,6 @@ useEffect(() => {
           <div className="access__grid">
             <div className="access__info">
               <div className="access__item">
-                <span className="access__icon">📍</span>
                 <div>
                   <p className="access__label">会場</p>
                   <p className="access__val">熊本大学 黒髪北キャンパス</p>
@@ -501,27 +500,25 @@ useEffect(() => {
                 </div>
               </div>
               <div className="access__item">
-                <span className="access__icon">🚌</span>
                 <div>
                   <p className="access__label">バス</p>
                   <p className="access__val">市バス「熊本大学前」下車すぐ</p>
                 </div>
               </div>
               <div className="access__item">
-                <span className="access__icon">🚃</span>
                 <div>
                   <p className="access__label">電車</p>
                   <p className="access__val">市電「黒髪町」徒歩10分</p>
                 </div>
               </div>
               <div className="access__item">
-                <span className="access__icon">🅿️</span>
                 <div>
                   <p className="access__label">駐車場</p>
                   <p className="access__val">当日は駐車場のご用意がございません</p>
                   <p className="access__sub">公共交通機関をご利用ください</p>
                 </div>
               </div>
+
               <a
                 className="map-link"
                 href="https://maps.google.com/?q=熊本大学黒髪北キャンパス"
