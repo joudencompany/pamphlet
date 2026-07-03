@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import './TentInfoPage.css'
+import '../App.css'
 import tentmapImg from '../assets/tentmap.png'
 
 export default function TentInfoPage() {
