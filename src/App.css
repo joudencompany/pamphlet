@@ -256,7 +256,7 @@ body {
 .timetable { background: var(--navy); color: #fff; }
 .timetable .section-label { color: var(--yellow); }
 .timetable .section-title { color: #fff; }
-.day-tabs { display: flex; gap: 0.75rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.day-tabs { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
 .day-tab {
   padding: 0.6rem 1.75rem; background: rgba(255,255,255,0.07);
   border: 1px solid rgba(255,255,255,0.15);

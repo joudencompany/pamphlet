@@ -9,7 +9,7 @@ import seikyou from './assets/seikyou.png'
 import konntakuto from './assets/konntakuto.png'
 import ouesu from './assets/ouesu.png'
 import onetimeforever from './assets/1time4ever.png'
-
+import kurokamicampus from './assets/kurokamicampus.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -158,9 +158,9 @@ useEffect(() => {
             あなたはどちらですか？
           </p>
           {[
-            { label: '🎓 熊本大学の学生様', value: '熊大生' },
-            { label: '🏫 他大学の学生様',   value: '他大学生' },
-            { label: '👥 一般来場者様',     value: '外部来場者' },
+            { label: ' 熊本大学の学生様', value: '熊大生' },
+            { label: ' 他大学の学生様',   value: '他大学生' },
+            { label: ' 一般来場者様',     value: '外部来場者' },
           ].map(({ label, value }) => (
             <button
               key={value}
@@ -197,7 +197,7 @@ useEffect(() => {
           <span className="nav__logo-sigma">Σ</span> 紫熊祭
         </div>
         <nav className={`nav__links ${menuOpen ? 'open' : ''}`}>
-          {[['挨拶','greeting'],['タイムテーブル','timetable'],['出店・サークル','circles'],['アクセス','access'],['諸注意','notice']].map(([label, id]) => (
+          {[['挨拶','greeting'],['諸注意','notice'],['タイムテーブル','timetable'],['出店・サークル','circles'],['アクセス','access'],].map(([label, id]) => (
             <button key={id} onClick={() => scrollTo(id)}>{label}</button>
           ))}
         </nav>
@@ -263,7 +263,7 @@ useEffect(() => {
           <div className="greeting__card">
             <div className="greeting__avatar">委員長</div>
             <div className="greeting__body">
-              <p className="greeting__name">委員長　荒巻 遥平</p>
+              <p className="greeting__name">委員長 荒巻 遥平</p>
               <p>
                 この度は第十四回紫熊祭公式サイトをご覧いただき、誠にありがとうございます。
                 紫熊祭は、学生のみならず、地域の皆様にも愛される、熊本大学最大の祭典です。
@@ -321,7 +321,7 @@ useEffect(() => {
       </div>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          広告：ワンタイムフォーエバー
+          ワンタイムフォーエバー
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
@@ -365,6 +365,16 @@ useEffect(() => {
           </ul>
         </div>
       </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：黒髪キャンパス
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label"></span>
+        <a href="https://www.kumamoto-u.ac.jp/campusjouhou" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={kurokamicampus} alt="黒髪キャンパス" className="ad-banner__img" />
+        </a>
+      </div>
 
       {/* ── タイムテーブル ── */}
       <section className="section timetable" id="timetable">
