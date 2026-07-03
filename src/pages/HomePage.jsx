@@ -1,5 +1,6 @@
 // src/pages/HomePage.jsx
 import { useEffect, useState, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import '../App.css'
 
 import terrabalImg from '../assets/terrabal.jpg'
