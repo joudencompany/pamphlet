@@ -315,7 +315,7 @@ body {
 }
 .circles__map-img {
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   height: auto;
   border-radius: 12px;
   border: 1px solid rgba(108,63,199,0.1);
