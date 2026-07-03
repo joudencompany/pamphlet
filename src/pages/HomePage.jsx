@@ -72,8 +72,12 @@ const ADS = [
 export default function HomePage() {
   const [adVisible, setAdVisible] = useState(false)
   const [adShown, setAdShown] = useState(false)
-  const [surveyVisible, setSurveyVisible] = useState(true)
-  const [surveyDone, setSurveyDone] = useState(false)
+  const [surveyVisible, setSurveyVisible] = useState(
+    () => sessionStorage.getItem('surveyDone') !== 'true'
+  )
+  const [surveyDone, setSurveyDone] = useState(
+    () => sessionStorage.getItem('surveyDone') === 'true'
+  )
   const [activeDay, setActiveDay] = useState('11/2')
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -88,6 +92,7 @@ export default function HomePage() {
 const handleSurvey = async (type) => {
   setSurveyVisible(false)
   setSurveyDone(true)
+  sessionStorage.setItem('surveyDone', 'true')
   const params = new URLSearchParams({ type })
   try {
     await fetch(`${SHEET_URL}?${params}`, {
