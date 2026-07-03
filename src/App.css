@@ -320,8 +320,9 @@ body {
   margin-bottom: 2rem;
 }
 .circles__map-img {
-  max-width: 100%;
   width: 100%;
+  max-width: 480px;
+  height: auto;
   border-radius: 12px;
   border: 1px solid rgba(108,63,199,0.1);
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
