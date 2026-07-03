@@ -237,12 +237,6 @@ body {
 }
 .greeting__name { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.75rem; color: var(--purple); }
 .greeting__body p { color: #444; margin-bottom: 0.75rem; font-size: 0.9rem; }
-.greeting__sub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.greeting__sub-card {
-  display: flex; align-items: center; gap: 1rem;
-  padding: 1rem 1.25rem; background: var(--cream);
-  border-radius: 8px; border: 1px solid rgba(108,63,199,0.15);
-}
 .greeting__sub-avatar {
   width: 48px; height: 48px; border-radius: 50%;
   background: #e8dff8; color: var(--purple);
@@ -576,7 +570,6 @@ body {
   }
   .hamburger { display: flex; }
   .greeting__card { flex-direction: column; }
-  .greeting__sub-grid { grid-template-columns: 1fr; }
   .access__grid { grid-template-columns: 1fr; }
   .access__map { height: 260px; }
 }
