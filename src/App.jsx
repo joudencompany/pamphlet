@@ -10,6 +10,11 @@ import konntakuto from './assets/konntakuto.png'
 import ouesu from './assets/ouesu.png'
 import onetimeforever from './assets/1time4ever.png'
 import kurokamicampus from './assets/kurokamicampus.png'
+import KMB from './assets/KMB.png'
+import kyouseisika from './assets/kyouseisika.png'
+import shuukatusei from './assets/shuukatusei.png'
+import TKU1 from './assets/TKU1.png'
+import TKU2 from './assets/TKU2.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -367,12 +372,62 @@ useEffect(() => {
       </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          広告：黒髪キャンパス
+          黒髪キャンパス
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <span className="ad-banner__label"></span>
         <a href="https://www.kumamoto-u.ac.jp/campusjouhou" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
           <img src={kurokamicampus} alt="黒髪キャンパス" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：KMB
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label"></span>
+        <a href="https://www.kmbiologics.com/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={KMB} alt="KMB" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：熊本駅矯正歯科クリニック
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label"></span>
+        <a href="https://www.kumamoto-ekimae-kc.com/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={kyouseisika} alt="熊本駅矯正歯科クリニック" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：就活生
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label"></span>
+        <a href="https://www.tiktok.com/@kumamoto_recruit" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={shuukatusei} alt="就活生" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：TKU1
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label"></span>
+        <a href="https://www.tku.co.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={TKU1} alt="TKU1" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：TKU2
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label"></span>
+        <a href="https://www.tku.co.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={TKU2} alt="TKU2" className="ad-banner__img" />
         </a>
       </div>
 
