@@ -15,6 +15,7 @@ import kyouseisika from './assets/kyouseisika.png'
 import shuukatusei from './assets/shuukatusei.png'
 import TKU1 from './assets/TKU1.png'
 import TKU2 from './assets/TKU2.png'
+import tentmapImg from './assets/tentmap.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -46,15 +47,6 @@ const TIMETABLE = {
     { time: '16:30', name: '閉会式', stage: 'メインステージ', type: 'special' },
   ],
 }
-
-const CIRCLES = [
-  { name: '軽音楽部', genre: '音楽', desc: '学生バンドによる迫力のライブパフォーマンス！' },
-  { name: 'ダンス部', genre: 'ダンス', desc: 'ヒップホップからK-POPまで多彩なジャンルで魅せる' },
-  { name: '写真部', genre: '文化', desc: '日頃の活動で撮り溜めた作品を一挙展示' },
-  { name: '演劇サークル', genre: '演劇', desc: '脚本から舞台まで全て手作りの本格公演' },
-  { name: 'フードサークル', genre: 'グルメ', desc: '試行錯誤を重ねた自慢の一品を販売中！' },
-  { name: 'ボードゲーム部', genre: 'ゲーム', desc: '参加型企画で来場者と一緒に楽しめます' },
-]
 
 const TYPE_COLOR = {
   special: '#6c3fc7',
@@ -189,7 +181,7 @@ useEffect(() => {
         <div className="ad-interstitial" onClick={() => { setAdVisible(false); setAdShown(true) }}>
           <div className="ad-interstitial__box" onClick={e => e.stopPropagation()}>
             <button className="ad-interstitial__close" onClick={() => { setAdVisible(false); setAdShown(true) }}>✕</button>
-            <a href="https://chuo-ds.jp" target="_blank" rel="noopener noreferrer">
+            <a href="https://chuo-ds.com/" target="_blank" rel="noopener noreferrer">
               <img src={chuoImg} alt="中央自動車学校" className="ad-interstitial__img" />
             </a>
           </div>
@@ -475,16 +467,20 @@ useEffect(() => {
       {/* ── 出店・サークル ── */}
       <section className="section circles" id="circles">
         <div className="container">
-          <div className="section-label">Circles & Stalls</div>
-          <h2 className="section-title">出店・サークル紹介</h2>
-          <div className="circles__grid">
-            {CIRCLES.map((c, i) => (
-              <div className="circle-card" key={i}>
-                <div className="circle-card__genre">{c.genre}</div>
-                <h3 className="circle-card__name">{c.name}</h3>
-                <p className="circle-card__desc">{c.desc}</p>
-              </div>
-            ))}
+          <div className="section-label">Tent Booths</div>
+          <h2 className="section-title">出店・サークル</h2>
+          <p className="circles__subtitle">テント企画</p>
+          <div className="circles__map">
+            <img
+              src={tentmapImg}
+              alt="テントマップ A・B"
+              className="circles__map-img"
+            />
+          </div>
+          <div className="circles__cta">
+            <a href="/tent-info" className="circles__btn">
+              詳しくはこちら →
+            </a>
           </div>
         </div>
       </section>

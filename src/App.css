@@ -306,23 +306,46 @@ body {
 
 /* ── サークル ── */
 .circles { background: var(--cream); }
-.circles__grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+.circles__subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--purple);
+  margin-top: -1.5rem;
+  margin-bottom: 2rem;
 }
-.circle-card {
-  background: #fff; border-radius: 8px; padding: 1.5rem;
+.circles__map {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.circles__map-img {
+  max-width: 100%;
+  width: 100%;
+  border-radius: 12px;
   border: 1px solid rgba(108,63,199,0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
-.circle-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(108,63,199,0.12); }
-.circle-card__genre {
-  display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em;
-  padding: 2px 10px; border-radius: 20px;
-  background: #e8dff8; color: var(--purple);
-  margin-bottom: 0.75rem;
+.circles__cta {
+  display: flex;
+  justify-content: center;
 }
-.circle-card__name { font-family: var(--font-deco); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
-.circle-card__desc { font-size: 0.85rem; color: #666; line-height: 1.7; }
+.circles__btn {
+  display: inline-block;
+  padding: 0.8rem 2.2rem;
+  border-radius: 999px;
+  background: var(--purple);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: background 0.2s, transform 0.15s;
+}
+.circles__btn:hover {
+  background: #5530a8;
+  transform: translateY(-2px);
+}
 
 /* ── アクセス ── */
 .access { background: #fff; }
@@ -489,10 +512,6 @@ body {
   .hamburger { display: flex; }
   .greeting__card { flex-direction: column; }
   .greeting__sub-grid { grid-template-columns: 1fr; }
-  .circles__grid { grid-template-columns: 1fr 1fr; }
   .access__grid { grid-template-columns: 1fr; }
   .access__map { height: 260px; }
-}
-@media (max-width: 480px) {
-  .circles__grid { grid-template-columns: 1fr; }
 }
