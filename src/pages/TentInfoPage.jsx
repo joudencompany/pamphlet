@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../App.css'
 import tentmapImg from '../assets/tentmap.png'
-import temptentImg from '../assets/temptent.png'
+import temptentImg from '../assetstent/temptent.png'
 
 /* ── テント出店データ ── */
 const TENTS = [
