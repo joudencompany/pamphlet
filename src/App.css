@@ -217,7 +217,10 @@ body {
 .section-title {
   font-family: var(--font-deco);
   font-size: clamp(1.6rem, 4vw, 2.5rem);
-  font-weight: 700; margin-bottom: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: var(--navy);
+  opacity: 1;
 }
 
 /* ── 挨拶 ── */
