@@ -17,7 +17,8 @@ import kyouseisika from '../assets/kyouseisika.png'
 import shuukatusei from '../assets/shuukatusei.png'
 import TKU1 from '../assets/TKU1.png'
 import TKU2 from '../assets/TKU2.png'
-import tentmapImg from '../assets/tentmap.png'
+import tentmapImg from '../assetstent/tentmap.png'
+import tentmapImg2 from '../assetstent2/tentmap2.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -511,8 +512,9 @@ useEffect(() => {
       <section className="section circles" id="circles">
         <div className="container">
           <div className="section-label">Tent Booths</div>
-          <h2 className="section-title">出店・サークル</h2>
-          <p className="circles__subtitle">テント企画</p>
+          <h2 className="section-title">出店・サークル</h2
+          >
+          <p className="circles__subtitle">テント企画A・B</p>
           <div className="circles__map">
             <img
               src={tentmapImg}
@@ -522,6 +524,20 @@ useEffect(() => {
           </div>
           <div className="circles__cta">
             <Link to="/tent-info" className="circles__btn">
+              詳しくはこちら →
+            </Link>
+          </div>
+
+                    <p className="circles__subtitle">テント企画C・D</p>
+          <div className="circles__map">
+            <img
+              src={tentmapImg2}
+              alt="テントマップ C・D"
+              className="circles__map-img"
+            />
+          </div>
+          <div className="circles__cta">
+            <Link to="/tent-info2" className="circles__btn">
               詳しくはこちら →
             </Link>
           </div>
