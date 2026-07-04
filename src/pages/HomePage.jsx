@@ -528,7 +528,7 @@ useEffect(() => {
             </Link>
           </div>
 
-                    <p className="circles__subtitle">テント企画C・D</p>
+          <p className="circles__subtitle">テント企画C・D</p>
           <div className="circles__map">
             <img
               src={tentmapImg2}
