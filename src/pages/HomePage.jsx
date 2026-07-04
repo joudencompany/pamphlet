@@ -19,6 +19,8 @@ import TKU1 from '../assets/TKU1.png'
 import TKU2 from '../assets/TKU2.png'
 import tentmapImg from '../assetstent/tentmap.png'
 import tentmapImg2 from '../assetstent2/tentmap2.png'
+import Dokusho from '../assets/dokusho.png'
+import Aikasu from '../assets/aikasu.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -543,8 +545,28 @@ useEffect(() => {
           </div>
         </div>
       </section>
+            
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：読書
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://archives.kumamoto-u.ac.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={Dokusho} alt="読書" className="ad-banner__img" />
+        </a>
+      </div>
 
-{/* ── アクセス ── */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：AIKASU
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://aikasu.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={Aikasu} alt="AIKASU" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ── アクセス ── */}
       <section className="section access" id="access">
         <div className="container">
           <div className="section-label">Access</div>

@@ -308,7 +308,7 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--purple);
-  margin-top: -1.5rem;
+  margin-top: 0;
   margin-bottom: 2rem;
 }
 .circles__map {
@@ -327,6 +327,7 @@ body {
 .circles__cta {
   display: flex;
   justify-content: center;
+  margin: 1.5rem 0 3.5rem;
 }
 .circles__btn {
   display: inline-block;
@@ -346,13 +347,18 @@ body {
 }
 
 /* ── アクセス ── */
-.access { background: #fff; }
-.access__grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2.5rem; align-items: start; }
+.access { background: #fff; text-align: left; }
+.access__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2.5rem;
+  align-items: start;
+  text-align: left;
+}
 .access__item {
-  display: flex; gap: 1rem; align-items: flex-start;
+  text-align: left;
   margin-bottom: 1.5rem;
 }
-.access__icon { font-size: 1.25rem; flex-shrink: 0; }
 .access__label { font-size: 0.75rem; color: var(--purple); font-weight: 700; letter-spacing: 0.1em; }
 .access__val { font-weight: 700; font-size: 0.95rem; }
 .access__sub { font-size: 0.8rem; color: #888; }
@@ -563,6 +569,9 @@ body {
 
 /* ── レスポンシブ ── */
 @media (max-width: 768px) {
+  .circles__cta {
+    margin: 1.5rem 0 4rem;
+  }
   .nav__links { display: none; }
   .nav__links.open {
     display: flex; flex-direction: column; gap: 0;
