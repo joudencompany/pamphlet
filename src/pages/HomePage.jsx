@@ -21,6 +21,8 @@ import tentmapImg from '../assetstent/tentmap.png'
 import tentmapImg2 from '../assetstent2/tentmap2.png'
 import Dokusho from '../assets/dokusho.png'
 import Aikasu from '../assets/aikasu.png'
+import okunaimapImg from '../assetsokunai/okunaimap.png'
+import okunaimapImg2 from '../assetsokunai2/okunaimap2.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -565,6 +567,42 @@ useEffect(() => {
           <img src={Aikasu} alt="AIKASU" className="ad-banner__img" />
         </a>
       </div>
+
+      {/* ── 出店・サークル ── */}
+      <section className="section circles" id="circles">
+        <div className="container">
+          <div className="section-label">Tent Booths</div>
+          <h2 className="section-title">出店・サークル</h2
+          >
+          <p className="circles__subtitle">屋内企画学生会館</p>
+          <div className="circles__map">
+            <img
+              src={okunaimapImg}
+              alt="屋内企画学生会館マップ"
+              className="circles__map-img"
+            />
+          </div>
+          <div className="circles__cta">
+            <Link to="/okunai-info" className="circles__btn">
+              詳しくはこちら →
+            </Link>
+          </div>
+
+          <p className="circles__subtitle">屋内企画全学教育棟</p>
+          <div className="circles__map">
+            <img
+              src={okunaimapImg2}
+              alt="屋内企画全学教育棟マップ"
+              className="circles__map-img"
+            />
+          </div>
+          <div className="circles__cta">
+            <Link to="/okunai-info2" className="circles__btn">
+              詳しくはこちら →
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ── アクセス ── */}
       <section className="section access" id="access">

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../App.css'
-import tentmapImg from '../assetstent2/tentmap2.png'
-import temptentImg from '../assetstent2/temptent2.png'
+import tentmapImg2 from '../assetstent2/tentmap2.png'
+import temptentImg2 from '../assetstent2/temptent2.png'
 
 /* ── テント出店データ ── */
 const TENTS = [
@@ -25,7 +25,7 @@ const TENTS = [
   { no: 46, name: 'Cut in', item: 'あみじゃが・トルネードポテト', desc: '' },
 ]
 
-export default function TentInfoPage() {
+export default function TentInfoPage2() {
   return (
     <div className="site">
       <header className="nav nav--solid">
@@ -41,8 +41,8 @@ export default function TentInfoPage() {
 
           <div className="circles__map">
             <img
-              src={tentmapImg}
-              alt="テントマップ A・B"
+              src={tentmapImg2}
+              alt="テントマップ C・D"
               className="circles__map-img"
             />
           </div>
@@ -57,7 +57,7 @@ export default function TentInfoPage() {
                   <p className="tent-item__desc">{t.desc}</p>
                 </div>
                 <div className="tent-item__photo">
-                  <img src={temptentImg} alt={t.name} />
+                  <img src={temptentImg2} alt={t.name} />
                 </div>
               </div>
             ))}
