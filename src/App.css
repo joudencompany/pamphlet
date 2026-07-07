@@ -250,6 +250,31 @@ body {
 .greeting__sub-name { font-weight: 700; font-size: 0.95rem; }
 
 /* ── タイムテーブル ── */
+.tt-columns {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.tt-column {
+  flex: 1 1 240px;
+  min-width: 220px;
+}
+
+.tt-column__header {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--stage-c);
+  border-bottom: 2px solid var(--stage-c);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.tt-time__end {
+  color: #888;
+  font-size: 0.85em;
+}
 .timetable { background: var(--navy); color: #fff; }
 .timetable .section-label { color: var(--yellow); }
 .timetable .section-title { color: #fff; }
@@ -270,11 +295,6 @@ body {
 .day-tab__date { font-weight: 700; margin-right: 4px; }
 .day-tab__dow { font-size: 0.8rem; }
 
-.tt-list { display: flex; flex-direction: column; gap: 0; position: relative; }
-.tt-list::before {
-  content: ''; position: absolute; left: 66px; top: 0; bottom: 0;
-  width: 1px; background: rgba(255,255,255,0.1);
-}
 .tt-row {
   display: flex; align-items: center; gap: 1rem;
   padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -291,15 +311,6 @@ body {
 }
 .tt-content { flex: 1; display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
 .tt-name { font-weight: 700; font-size: 0.95rem; }
-.tt-stage {
-  font-size: 0.75rem; color: rgba(255,255,255,0.45);
-  background: rgba(255,255,255,0.07); padding: 2px 8px; border-radius: 20px;
-}
-.tt-legend {
-  display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;
-}
-.legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: rgba(255,255,255,0.5); }
-.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
 /* ── サークル ── */
 .circles { background: var(--cream); }
@@ -577,11 +588,21 @@ body {
     display: flex; flex-direction: column; gap: 0;
     position: fixed; top: var(--nav-h); left: 0; right: 0;
     background: rgba(26,27,58,0.98); padding: 1rem 1.5rem 1.5rem;
-  .tent-item__photo { width: 64px; height: 64px; }
-  .tent-item__name { font-size: 0.9rem; }
   }
   .hamburger { display: flex; }
   .greeting__card { flex-direction: column; }
   .access__grid { grid-template-columns: 1fr; }
   .access__map { height: 260px; }
+  .tent-item__photo { width: 64px; height: 64px; }
+  .tent-item__name { font-size: 0.9rem; }
+
+  /* タイムテーブル：列表示→縦積み */
+  .tt-columns {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+  .tt-column {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
 }

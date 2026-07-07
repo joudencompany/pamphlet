@@ -37,34 +37,47 @@ const DAYS = [
 
 const TIMETABLE = {
   '11/2': [
-    { time: '10:00', name: '開会式・委員長挨拶', stage: 'メインステージ', type: 'special' },
-    { time: '11:00', name: 'バンド演奏①', stage: '野外ステージ', type: 'music' },
-    { time: '13:00', name: 'ダンスパフォーマンス', stage: 'メインステージ', type: 'dance' },
-    { time: '15:00', name: 'お笑いライブ', stage: '屋内ステージ', type: 'comedy' },
-    { time: '17:00', name: 'ゲストアーティスト登場', stage: 'メインステージ', type: 'special' },
+    { time: '9:40',  endTime: '10:40', name: 'オープニング', stage: 'メインステージ' },
+    { time: '11:00', endTime: '12:30', name: '熊本大学 ピアノの会（大学会堂）', stage: 'メインステージ' },
+    { time: '12:50', endTime: '13:20', name: '医学部 アンサンブル部', stage: 'メインステージ' },
+    { time: '13:40', endTime: '14:30', name: 'MPB', stage: 'メインステージ' },
+    { time: '14:50', endTime: '15:10', name: 'フォークダンス部', stage: 'メインステージ' },
+    { time: '15:30', endTime: '16:30', name: '杉本琢弥 アーティストライブ トークショー', stage: 'メインステージ' },
+    { time: '16:50', endTime: '18:10', name: 'アコースティック ギター愛好会', stage: 'メインステージ' },
+    { time: '18:30', endTime: '19:30', name: '熊大コレクション2025', stage: 'メインステージ' },
+
+    { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
+    { time: '13:00', endTime: '15:00', name: 'Higo-Pella', stage: 'サブステージ' },
+    { time: '15:30', endTime: '17:30', name: 'Higo-Pella', stage: 'サブステージ' },
+    { time: '18:00', endTime: '19:30', name: 'キャンドルナイト', stage: 'サブステージ' },
+
+    { time: '10:30', endTime: '15:30', name: 'キャンドル作り', stage: 'こども広場' },
+    { time: '10:30', endTime: '16:00', name: '縁日', stage: 'こども広場' },
   ],
   '11/3': [
-    { time: '10:00', name: 'サークル発表', stage: '屋内ステージ', type: 'circle' },
-    { time: '12:00', name: 'バンド演奏②', stage: '野外ステージ', type: 'music' },
-    { time: '14:00', name: 'ミスコン・ミスターコン', stage: 'メインステージ', type: 'special' },
-    { time: '16:00', name: 'ダンスバトル', stage: 'メインステージ', type: 'dance' },
-    { time: '18:00', name: 'ナイトライブ', stage: '野外ステージ', type: 'music' },
+    { time: '10:00', name: 'サークル発表', stage: '屋内ステージ' },
+    { time: '12:00', name: 'バンド演奏②', stage: '野外ステージ' },
+    { time: '14:00', name: 'ミスコン・ミスターコン', stage: 'メインステージ' },
+    { time: '16:00', name: 'ダンスバトル', stage: 'メインステージ' },
+    { time: '18:00', name: 'ナイトライブ', stage: '野外ステージ' },
   ],
   '11/4': [
-    { time: '10:00', name: '文化系サークル展示', stage: '学生会館', type: 'circle' },
-    { time: '11:30', name: 'バンド演奏③', stage: '野外ステージ', type: 'music' },
-    { time: '13:30', name: 'ボードゲーム大会', stage: '屋内ステージ', type: 'comedy' },
-    { time: '15:30', name: 'クロージングセレモニー', stage: 'メインステージ', type: 'special' },
-    { time: '16:30', name: '閉会式', stage: 'メインステージ', type: 'special' },
+    { time: '10:00', name: '文化系サークル展示', stage: '学生会館' },
+    { time: '11:30', name: 'バンド演奏③', stage: '野外ステージ' },
+    { time: '13:30', name: 'ボードゲーム大会', stage: '屋内ステージ' },
+    { time: '15:30', name: 'クロージングセレモニー', stage: 'メインステージ' },
+    { time: '16:30', name: '閉会式', stage: 'メインステージ' },
   ],
 }
 
-const TYPE_COLOR = {
-  special: '#6c3fc7',
-  music:   '#e03c3c',
-  dance:   '#e07c00',
-  comedy:  '#2a8c4a',
-  circle:  '#1a6ab5',
+/* ── ステージごとの色分け ── */
+const STAGE_COLOR = {
+  'メインステージ': '#6c3fc7',
+  'サブステージ':   '#e07c00',
+  'こども広場':     '#2a8c4a',
+  '屋内ステージ':   '#1a6ab5',
+  '野外ステージ':   '#e03c3c',
+  '学生会館':       '#1a6ab5',
 }
 
 /* ── アンカー広告データ ── */
@@ -475,46 +488,58 @@ useEffect(() => {
         </a>
       </div>
 
-      {/* ── タイムテーブル ── */}
-      <section className="section timetable" id="timetable">
-        <div className="container">
-          <div className="section-label">Timetable</div>
-          <h2 className="section-title">タイムテーブル</h2>
-          <div className="day-tabs">
-            {DAYS.map(d => (
-              <button
-                key={d.label}
-                className={`day-tab ${activeDay === d.label ? 'active' : ''}`}
-                style={{ '--day-c': d.color }}
-                onClick={() => setActiveDay(d.label)}
-              >
-                <span className="day-tab__date">{d.label}</span>
-                <span className="day-tab__dow" style={{ color: d.color }}>（{d.day}）</span>
-              </button>
-            ))}
+{/* ── タイムテーブル ── */}
+<section className="section timetable" id="timetable">
+  <div className="container">
+    <div className="section-label">Timetable</div>
+    <h2 className="section-title">タイムテーブル</h2>
+    <div className="day-tabs">
+      {DAYS.map(d => (
+        <button
+          key={d.label}
+          className={`day-tab ${activeDay === d.label ? 'active' : ''}`}
+          style={{ '--day-c': d.color }}
+          onClick={() => setActiveDay(d.label)}
+        >
+          <span className="day-tab__date">{d.label}</span>
+          <span className="day-tab__dow" style={{ color: d.color }}>（{d.day}）</span>
+        </button>
+      ))}
+    </div>
+
+    <div className="tt-columns">
+      {Object.entries(
+        TIMETABLE[activeDay].reduce((acc, ev) => {
+          (acc[ev.stage] ||= []).push(ev)
+          return acc
+        }, {})
+      ).map(([stage, events]) => (
+        <div className="tt-column" key={stage}>
+          <div
+            className="tt-column__header"
+            style={{ '--stage-c': STAGE_COLOR[stage] || '#888' }}
+          >
+            {stage}
           </div>
-          <div className="tt-list">
-            {TIMETABLE[activeDay].map((ev, i) => (
+          <div className="tt-column__list">
+            {events.map((ev, i) => (
               <div className="tt-row" key={i}>
-                <div className="tt-time">{ev.time}</div>
-                <div className="tt-dot" style={{ background: TYPE_COLOR[ev.type] }} />
+                <div className="tt-time">
+                  {ev.time}
+                  {ev.endTime && <span className="tt-time__end"> – {ev.endTime}</span>}
+                </div>
+                <div className="tt-dot" style={{ background: STAGE_COLOR[stage] || '#888' }} />
                 <div className="tt-content">
                   <span className="tt-name">{ev.name}</span>
-                  <span className="tt-stage">{ev.stage}</span>
                 </div>
               </div>
             ))}
           </div>
-          <div className="tt-legend">
-            {Object.entries(TYPE_COLOR).map(([k, c]) => (
-              <span key={k} className="legend-item">
-                <span className="legend-dot" style={{ background: c }} />
-                {{ special:'特別企画', music:'音楽', dance:'ダンス', comedy:'お笑い', circle:'サークル' }[k]}
-              </span>
-            ))}
-          </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：pokeka
