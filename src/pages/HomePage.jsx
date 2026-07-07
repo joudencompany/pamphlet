@@ -55,18 +55,40 @@ const TIMETABLE = {
     { time: '10:30', endTime: '16:00', name: '縁日', stage: 'こども広場' },
   ],
   '11/3': [
-    { time: '10:00', name: 'サークル発表', stage: '屋内ステージ' },
-    { time: '12:00', name: 'バンド演奏②', stage: '野外ステージ' },
-    { time: '14:00', name: 'ミスコン・ミスターコン', stage: 'メインステージ' },
-    { time: '16:00', name: 'ダンスバトル', stage: 'メインステージ' },
-    { time: '18:00', name: 'ナイトライブ', stage: '野外ステージ' },
+    { time: '9:10',  endTime: '9:50',  name: '書道部', stage: 'メインステージ' },
+    { time: '10:00', endTime: '10:30', name: '邦楽部', stage: 'メインステージ' },
+    { time: '11:00', endTime: '11:40', name: 'ミスコン', stage: 'メインステージ' },
+    { time: '12:00', endTime: '12:30', name: '消防企画', stage: 'メインステージ' },
+    { time: '12:40', endTime: '13:20', name: '応援団 チアリーディング部', stage: 'メインステージ' },
+    { time: '13:30', endTime: '14:20', name: 'Higo-Pella', stage: 'メインステージ' },
+    { time: '14:40', endTime: '15:30', name: 'ロック研究会', stage: 'メインステージ' },
+    { time: '16:00', endTime: '17:00', name: '歌うま', stage: 'メインステージ' },
+    { time: '17:10', endTime: '17:40', name: 'プレメリア', stage: 'メインステージ' },
+    { time: '17:40', endTime: '19:30', name: 'DAP', stage: 'メインステージ' },
+
+    { time: '9:30',  endTime: '12:45', name: 'Higo-Pella', stage: 'サブステージ' },
+    { time: '14:30', endTime: '15:00', name: '音屋', stage: 'サブステージ' },
+    { time: '16:00', endTime: '16:45', name: '岡田朱梨。アーティストライブ', stage: 'サブステージ' },
+    { time: '17:00', endTime: '19:30', name: 'アコースティック ギター愛好会', stage: 'サブステージ' },
+
+    { time: '10:00', endTime: '16:00', name: '縁日', stage: 'こども広場＋α' },
+    { time: '10:30', endTime: '15:30', name: '熊大ちいかわ アニマルズ', stage: 'こども広場＋α' },
+    { time: '13:30', endTime: '14:30', name: '紫熊祭お笑いステージ2025（新体育館）', stage: 'こども広場＋α' },
+    { time: '17:00', endTime: '19:30', name: '第十一回 夜の筋肉祭り（武夫原グラウンド）', stage: 'こども広場＋α' },
   ],
   '11/4': [
-    { time: '10:00', name: '文化系サークル展示', stage: '学生会館' },
-    { time: '11:30', name: 'バンド演奏③', stage: '野外ステージ' },
-    { time: '13:30', name: 'ボードゲーム大会', stage: '屋内ステージ' },
-    { time: '15:30', name: 'クロージングセレモニー', stage: 'メインステージ' },
-    { time: '16:30', name: '閉会式', stage: 'メインステージ' },
+    { time: '9:40',  endTime: '9:55',  name: '肥後真狗舞', stage: 'メインステージ' },
+    { time: '10:30', endTime: '11:30', name: 'ミスターコン', stage: 'メインステージ' },
+    { time: '11:50', endTime: '13:40', name: 'Cullet', stage: 'メインステージ' },
+    { time: '14:00', endTime: '15:20', name: 'フォークソング研究会', stage: 'メインステージ' },
+    { time: '15:40', endTime: '16:30', name: 'モダンジャズ研究会', stage: 'メインステージ' },
+    { time: '17:00', endTime: '17:30', name: 'berry meet アーティストライブ', stage: 'メインステージ' },
+    { time: '18:00', endTime: '19:30', name: 'フィナーレ', stage: 'メインステージ' },
+
+    { time: '11:00', endTime: '14:45', name: 'Higo-Pella', stage: 'サブステージ' },
+    { time: '15:00', endTime: '18:00', name: 'アコースティック ギター愛好会', stage: 'サブステージ' },
+
+    { time: '10:00', endTime: '16:00', name: '縁日', stage: 'こども広場' },
   ],
 }
 
@@ -75,10 +97,28 @@ const STAGE_COLOR = {
   'メインステージ': '#6c3fc7',
   'サブステージ':   '#e07c00',
   'こども広場':     '#2a8c4a',
-  '屋内ステージ':   '#1a6ab5',
-  '野外ステージ':   '#e03c3c',
-  '学生会館':       '#1a6ab5',
+  'こども広場＋α':  '#2a8c4a',
 }
+
+/* ── タイムライン表示の定数・ヘルパー ── */
+const DAY_START_MIN = 9 * 60   // 9時始まり
+const DAY_END_MIN   = 20 * 60  // 20時終わり
+const HOUR_HEIGHT   = 70       // 1時間あたりの高さ(px)
+
+function parseTimeToMinutes(t) {
+  const [h, m] = t.split(':').map(Number)
+  return h * 60 + m
+}
+
+function timeToOffset(t) {
+  return ((parseTimeToMinutes(t) - DAY_START_MIN) / 60) * HOUR_HEIGHT
+}
+
+const TOTAL_HEIGHT = ((DAY_END_MIN - DAY_START_MIN) / 60) * HOUR_HEIGHT
+const HOUR_MARKS = Array.from(
+  { length: (DAY_END_MIN - DAY_START_MIN) / 60 + 1 },
+  (_, i) => DAY_START_MIN / 60 + i
+)
 
 /* ── アンカー広告データ ── */
 const ADS = [
@@ -386,7 +426,7 @@ useEffect(() => {
           ワンタイムフォーエバー
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
-        <a href="https://terrabal.co.jp" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+        <a href="" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
           <img src={onetimeforever} alt="1TIME 4EVER" className="ad-banner__img" />
         </a>
       </div>
@@ -488,58 +528,92 @@ useEffect(() => {
         </a>
       </div>
 
-{/* ── タイムテーブル ── */}
-<section className="section timetable" id="timetable">
-  <div className="container">
-    <div className="section-label">Timetable</div>
-    <h2 className="section-title">タイムテーブル</h2>
-    <div className="day-tabs">
-      {DAYS.map(d => (
-        <button
-          key={d.label}
-          className={`day-tab ${activeDay === d.label ? 'active' : ''}`}
-          style={{ '--day-c': d.color }}
-          onClick={() => setActiveDay(d.label)}
-        >
-          <span className="day-tab__date">{d.label}</span>
-          <span className="day-tab__dow" style={{ color: d.color }}>（{d.day}）</span>
-        </button>
-      ))}
-    </div>
-
-    <div className="tt-columns">
-      {Object.entries(
-        TIMETABLE[activeDay].reduce((acc, ev) => {
-          (acc[ev.stage] ||= []).push(ev)
-          return acc
-        }, {})
-      ).map(([stage, events]) => (
-        <div className="tt-column" key={stage}>
-          <div
-            className="tt-column__header"
-            style={{ '--stage-c': STAGE_COLOR[stage] || '#888' }}
-          >
-            {stage}
-          </div>
-          <div className="tt-column__list">
-            {events.map((ev, i) => (
-              <div className="tt-row" key={i}>
-                <div className="tt-time">
-                  {ev.time}
-                  {ev.endTime && <span className="tt-time__end"> – {ev.endTime}</span>}
-                </div>
-                <div className="tt-dot" style={{ background: STAGE_COLOR[stage] || '#888' }} />
-                <div className="tt-content">
-                  <span className="tt-name">{ev.name}</span>
-                </div>
-              </div>
+      {/* ── タイムテーブル ── */}
+      <section className="section timetable" id="timetable">
+        <div className="container">
+          <div className="section-label">Timetable</div>
+          <h2 className="section-title">タイムテーブル</h2>
+          <div className="day-tabs">
+            {DAYS.map(d => (
+              <button
+                key={d.label}
+                className={`day-tab ${activeDay === d.label ? 'active' : ''}`}
+                style={{ '--day-c': d.color }}
+                onClick={() => setActiveDay(d.label)}
+              >
+                <span className="day-tab__date">{d.label}</span>
+                <span className="day-tab__dow" style={{ color: d.color }}>（{d.day}）</span>
+              </button>
             ))}
           </div>
+
+          <div className="tt-timeline-scroll">
+            <div className="tt-timeline">
+              {/* 時刻軸 */}
+              <div className="tt-timeline__axis" style={{ height: TOTAL_HEIGHT }}>
+                {HOUR_MARKS.map(h => (
+                  <div
+                    key={h}
+                    className="tt-timeline__hour"
+                    style={{ top: (h - DAY_START_MIN / 60) * HOUR_HEIGHT }}
+                  >
+                    {h}時
+                  </div>
+                ))}
+              </div>
+
+              {/* ステージ列 */}
+              <div className="tt-timeline__columns">
+                {Object.entries(
+                  TIMETABLE[activeDay].reduce((acc, ev) => {
+                    (acc[ev.stage] ||= []).push(ev)
+                    return acc
+                  }, {})
+                ).map(([stage, events]) => (
+                  <div className="tt-timeline__column" key={stage}>
+                    <div
+                      className="tt-timeline__column-header"
+                      style={{ '--stage-c': STAGE_COLOR[stage] || '#888' }}
+                    >
+                      {stage}
+                    </div>
+                    <div className="tt-timeline__column-body" style={{ height: TOTAL_HEIGHT }}>
+                      {HOUR_MARKS.map(h => (
+                        <div
+                          key={h}
+                          className="tt-timeline__gridline"
+                          style={{ top: (h - DAY_START_MIN / 60) * HOUR_HEIGHT }}
+                        />
+                      ))}
+                      {events.map((ev, i) => {
+                        const top = timeToOffset(ev.time)
+                        const bottom = ev.endTime ? timeToOffset(ev.endTime) : top + 40
+                        return (
+                          <div
+                            key={i}
+                            className="tt-block"
+                            style={{
+                              top,
+                              height: Math.max(bottom - top, 32),
+                              '--stage-c': STAGE_COLOR[stage] || '#888',
+                            }}
+                          >
+                            <span className="tt-block__time tt-block__time--start">{ev.time}</span>
+                            <span className="tt-block__name">{ev.name}</span>
+                            {ev.endTime && (
+                              <span className="tt-block__time tt-block__time--end">{ev.endTime}</span>
+                            )}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：pokeka
@@ -701,7 +775,7 @@ useEffect(() => {
                 </div>
               </div>
 
-              <a
+              
                 className="map-link"
                 href="https://maps.google.com/?q=熊本大学黒髪北キャンパス"
                 target="_blank"
@@ -732,7 +806,7 @@ useEffect(() => {
       {/* ── アンカー広告（画面下部固定・フェードイン切り替え） ── */}
       <div className="anchor-ad">
         <span className="anchor-ad__label">広告</span>
-        <a
+        
           href={ADS[adIndex].url}
           target="_blank"
           rel="noopener noreferrer"
