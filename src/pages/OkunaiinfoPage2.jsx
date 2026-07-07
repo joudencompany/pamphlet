@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import '../App.css'
-import okunaimapImg2 from '../assetsokunai2/okunaimap2.png'
+import okunaimapImg2_1 from '../assetsokunai2/okunaimap2-1.png'
+import okunaimapImg2_2 from '../assetsokunai2/okunaimap2-2.png'
+import okunaimapImg2_3 from '../assetsokunai2/okunaimap2-3.png'
 import tempokunaiImg2 from '../assetsokunai2/tempokunai2.png'
 
 /* ── 屋内企画出店データ ── */
@@ -47,7 +49,21 @@ export default function OkunaiInfoPage2() {
 
           <div className="circles__map">
             <img
-              src={okunaimapImg2}
+              src={okunaimapImg2_1}
+              alt="屋内企画全学教育棟マップ"
+              className="circles__map-img"
+            />
+          </div>
+                    <div className="circles__map">
+            <img
+              src={okunaimapImg2_2}
+              alt="屋内企画全学教育棟マップ"
+              className="circles__map-img"
+            />
+          </div>
+                    <div className="circles__map">
+            <img
+              src={okunaimapImg2_3}
               alt="屋内企画全学教育棟マップ"
               className="circles__map-img"
             />

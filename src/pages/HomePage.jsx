@@ -22,7 +22,9 @@ import tentmapImg2 from '../assetstent2/tentmap2.png'
 import Dokusho from '../assets/dokusho.png'
 import Aikasu from '../assets/aikasu.png'
 import okunaimapImg from '../assetsokunai/okunaimap.png'
-import okunaimapImg2 from '../assetsokunai2/okunaimap2.png'
+import okunaimapImg2_1 from '../assetsokunai2/okunaimap2-1.png'
+import okunaimapImg2_2 from '../assetsokunai2/okunaimap2-2.png'
+import okunaimapImg2_3 from '../assetsokunai2/okunaimap2-3.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -591,7 +593,21 @@ useEffect(() => {
           <p className="circles__subtitle">屋内企画ー全学教育棟ー</p>
           <div className="circles__map">
             <img
-              src={okunaimapImg2}
+              src={okunaimapImg2_1}
+              alt="屋内企画全学教育棟マップ"
+              className="circles__map-img"
+            />
+          </div>
+                    <div className="circles__map">
+            <img
+              src={okunaimapImg2_2}
+              alt="屋内企画全学教育棟マップ"
+              className="circles__map-img"
+            />
+          </div>
+                    <div className="circles__map">
+            <img
+              src={okunaimapImg2_3}
               alt="屋内企画全学教育棟マップ"
               className="circles__map-img"
             />
