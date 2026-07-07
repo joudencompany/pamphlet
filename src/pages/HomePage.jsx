@@ -571,10 +571,10 @@ useEffect(() => {
       {/* ── 出店・サークル ── */}
       <section className="section circles" id="circles">
         <div className="container">
-          <div className="section-label">Tent Booths</div>
+          <div className="section-label">Okunai Booths</div>
           <h2 className="section-title">出店・サークル</h2
           >
-          <p className="circles__subtitle">屋内企画学生会館</p>
+          <p className="circles__subtitle">屋内企画ー学生会館ー</p>
           <div className="circles__map">
             <img
               src={okunaimapImg}
@@ -588,7 +588,7 @@ useEffect(() => {
             </Link>
           </div>
 
-          <p className="circles__subtitle">屋内企画全学教育棟</p>
+          <p className="circles__subtitle">屋内企画ー全学教育棟ー</p>
           <div className="circles__map">
             <img
               src={okunaimapImg2}

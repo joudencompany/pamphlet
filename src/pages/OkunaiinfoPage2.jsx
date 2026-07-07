@@ -42,8 +42,8 @@ export default function OkunaiInfoPage2() {
 
       <section className="section" style={{ paddingTop: '6rem' }}>
         <div className="container">
-          <div className="section-label">Tent Booths</div>
-          <h2 className="section-title">屋内企画全学教育棟</h2>
+          <div className="section-label">Okunai Booths</div>
+          <h2 className="section-title">屋内企画ー全学教育棟ー</h2>
 
           <div className="circles__map">
             <img
