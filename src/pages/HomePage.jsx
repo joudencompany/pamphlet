@@ -25,6 +25,8 @@ import okunaimapImg from '../assetsokunai/okunaimap.png'
 import okunaimapImg2_1 from '../assetsokunai2/okunaimap2-1.png'
 import okunaimapImg2_2 from '../assetsokunai2/okunaimap2-2.png'
 import okunaimapImg2_3 from '../assetsokunai2/okunaimap2-3.png'
+import gokase from '../assets/gokase.png'
+import pokeka from '../assets/pokeka.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -513,6 +515,26 @@ useEffect(() => {
           </div>
         </div>
       </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：pokeka
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://www.pokemon-card.com/ex/svm/index.html" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={pokeka} alt="pokeka" className="ad-banner__img" />
+        </a>
+      </div>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：五ヶ瀬
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://gokase.icomt.jp/kijiya/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={gokase} alt="五ヶ瀬" className="ad-banner__img" />
+        </a>
+      </div>
 
       {/* ── 出店・サークル ── */}
       <section className="section circles" id="circles">
