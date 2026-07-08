@@ -586,11 +586,18 @@ body {
 }
 
 .tt-thumb {
-  width: 145px;
+  width: 160px;
   height: auto;
   border-radius: 6px;
   margin-top: 8px;
   display: block;
+}
+
+.tt-thumb-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 /* ── レスポンシブ ── */
