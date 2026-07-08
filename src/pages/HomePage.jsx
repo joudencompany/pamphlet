@@ -27,6 +27,7 @@ import okunaimapImg2_2 from '../assetsokunai2/okunaimap2-2.png'
 import okunaimapImg2_3 from '../assetsokunai2/okunaimap2-3.png'
 import gokase from '../assets/gokase.png'
 import pokeka from '../assets/pokeka.png'
+import kumakore from '../assets/kumakore.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -44,8 +45,7 @@ const TIMETABLE = {
     { time: '14:50', endTime: '15:10', name: 'フォークダンス部', stage: 'メインステージ' },
     { time: '15:30', endTime: '16:30', name: '杉本琢弥 アーティストライブ トークショー', stage: 'メインステージ' },
     { time: '16:50', endTime: '18:10', name: 'アコースティック ギター愛好会', stage: 'メインステージ' },
-    { time: '18:30', endTime: '19:30', name: '熊大コレクション2025', stage: 'メインステージ' },
-
+    { time: '18:30', endTime: '19:30', name: '熊大コレクション2025', img: kumakore, stage: 'メインステージ' },
     { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
     { time: '13:00', endTime: '15:00', name: 'Higo-Pella', stage: 'サブステージ' },
     { time: '15:30', endTime: '17:30', name: 'Higo-Pella', stage: 'サブステージ' },
@@ -549,9 +549,12 @@ useEffect(() => {
                   {ev.endTime && <span className="tt-time__end"> – {ev.endTime}</span>}
                 </div>
                 <div className="tt-dot" style={{ background: STAGE_COLOR[stage] || '#888' }} />
-                <div className="tt-content">
-                  <span className="tt-name">{ev.name}</span>
-                </div>
+                  <div className="tt-content">
+                    <span className="tt-name">{ev.name}</span>
+                    {ev.img && (
+                      <img src={ev.img} alt={ev.name} className="tt-thumb" />
+                    )}
+                  </div>
               </div>
             ))}
           </div>

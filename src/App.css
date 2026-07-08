@@ -578,6 +578,40 @@ body {
   display: block;
 }
 
+.tt-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.tt-thumb {
+  width: 64px;
+  height: auto;
+  border-radius: 6px;
+  margin-top: 6px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .tt-content {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tt-content .tt-name {
+    flex: 1;
+    text-align: left;
+  }
+
+  .tt-thumb {
+    margin-top: 0;
+    width: 40px;
+  }
+}
+
 /* ── レスポンシブ ── */
 @media (max-width: 768px) {
   .circles__cta {
