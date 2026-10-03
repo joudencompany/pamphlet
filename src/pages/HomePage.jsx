@@ -46,8 +46,11 @@ const TIMETABLE = {
     { time: '14:50', endTime: '15:10', name: 'フォークダンス部', stage: 'メインステージ' },
     { time: '15:30', endTime: '16:30', name: '杉本琢弥 アーティストライブ トークショー', stage: 'メインステージ' },
     { time: '16:50', endTime: '18:10', name: 'アコースティック ギター愛好会', stage: 'メインステージ' },
-    { time: '18:30', endTime: '19:30', name: '熊大コレクション2025', imgs: [kumakore, kumakore2], stage: 'メインステージ' },
-    { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
+    { time: '18:30', endTime: '19:30', name: '熊大コレクション2025',
+      stage: 'メインステージ',
+      place: 'メインステージ（武夫原）',   // 省略するとステージ名が入ります
+      comment: 'ここに紹介文',            // 省略すると「詳細は準備中です。」と表示されます
+      imgs: [kumakore, kumakore2] },     // 写真があるイベントだけ    { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
     { time: '13:00', endTime: '15:00', name: 'Higo-Pella', stage: 'サブステージ' },
     { time: '15:30', endTime: '17:30', name: 'Higo-Pella', stage: 'サブステージ' },
     { time: '18:00', endTime: '19:30', name: 'キャンドルナイト', stage: 'サブステージ' },

@@ -644,3 +644,49 @@ body {
     min-width: 0;
   }
 }
+
+/* ── タイムテーブル：イベントリンク ── */
+.tt-link {
+  background: none; border: none; padding: 0; cursor: pointer;
+  font: inherit; font-weight: 700; font-size: 0.95rem;
+  color: #fff; text-align: left;
+  text-decoration: underline; text-decoration-color: rgba(255,255,255,0.35);
+  text-underline-offset: 4px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+.tt-link:hover, .tt-link.is-open {
+  color: var(--yellow); text-decoration-color: var(--yellow);
+}
+
+/* ── タイムテーブル：吹き出し ── */
+.tt-bubble {
+  position: absolute; z-index: 250;
+  background: #fff; color: var(--navy);
+  border-radius: 12px; border-top: 4px solid var(--stage-c, var(--purple));
+  padding: 1rem 1.1rem 1.1rem;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  animation: fadeIn 0.2s ease;
+}
+.tt-bubble::before {
+  content: ''; position: absolute; top: -11px; left: var(--arrow-x);
+  width: 16px; height: 16px; background: var(--stage-c, var(--purple));
+  transform: translateX(-50%) rotate(45deg);
+  border-radius: 3px; z-index: -1;
+}
+.tt-bubble__close {
+  position: absolute; top: 6px; right: 8px;
+  background: none; border: none; cursor: pointer;
+  font-size: 0.9rem; color: #999; padding: 4px;
+}
+.tt-bubble__close:hover { color: var(--navy); }
+.tt-bubble__title {
+  font-family: var(--font-deco); font-size: 1.05rem; font-weight: 700;
+  margin: 0 1.5rem 0.6rem 0; line-height: 1.4;
+}
+.tt-bubble__list { margin-bottom: 0.7rem; }
+.tt-bubble__list > div { display: flex; gap: 0.75rem; font-size: 0.85rem; padding: 0.15rem 0; }
+.tt-bubble__list dt { flex-shrink: 0; width: 4.5em; color: var(--purple); font-weight: 700; }
+.tt-bubble__list dd { margin: 0; }
+.tt-bubble__photos { display: flex; flex-direction: column; gap: 6px; margin-bottom: 0.7rem; }
+.tt-bubble__photos img { width: 100%; height: auto; border-radius: 6px; display: block; }
+.tt-bubble__comment { font-size: 0.85rem; color: #555; line-height: 1.7; }
