@@ -157,7 +157,7 @@ const handleSurvey = async (type) => {
 useEffect(() => {
   if (adShown) return
 
-  const sectionIds = ['greeting', 'timetable', 'circles', 'access']
+  const sectionIds = ['greeting', 'timetable', 'circles-tent', 'access']
   const AD_TRIGGER = 2 // 何セクション通過したら表示するか
 
   const observer = new IntersectionObserver(() => {
@@ -249,7 +249,7 @@ useEffect(() => {
           <span className="nav__logo-sigma">Σ</span> 紫熊祭
         </div>
         <nav className={`nav__links ${menuOpen ? 'open' : ''}`}>
-          {[['挨拶','greeting'],['諸注意','notice'],['タイムテーブル','timetable'],['出店・サークル','circles'],['アクセス','access'],].map(([label, id]) => (
+          {[['挨拶','greeting'],['諸注意','notice'],['タイムテーブル','timetable'],['出店・サークル（テント）','circles-tent'],['出店・サークル（屋内）','circles-okunai'],['アクセス','access'],].map(([label, id]) => (
             <button key={id} onClick={() => scrollTo(id)}>{label}</button>
           ))}
         </nav>
@@ -590,7 +590,7 @@ useEffect(() => {
       </div>
 
       {/* ── 出店・サークル ── */}
-      <section className="section circles" id="circles">
+      <section className="section circles" id="circles-tent">
         <div className="container">
           <div className="section-label">Tent Booths</div>
           <h2 className="section-title">出店・サークル</h2
@@ -646,7 +646,7 @@ useEffect(() => {
       </div>
 
       {/* ── 出店・サークル ── */}
-      <section className="section circles" id="circles">
+      <section className="section circles" id="circles-okunai">
         <div className="container">
           <div className="section-label">Okunai Booths</div>
           <h2 className="section-title">出店・サークル</h2
