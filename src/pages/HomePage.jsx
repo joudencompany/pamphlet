@@ -124,6 +124,7 @@ export default function HomePage() {
   const [activeDay, setActiveDay] = useState('11/2')
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
 
   /* アンカー広告 */
   const [adIndex, setAdIndex] = useState(0)
@@ -192,6 +193,39 @@ useEffect(() => {
     }, 5000)
     return () => clearInterval(timer)
   }, [])
+
+  /* タイムテーブル吹き出し：外側クリック・Esc・リサイズ・日付切替で閉じる */
+  useEffect(() => { setBubble(null) }, [activeDay])
+  useEffect(() => {
+    if (!bubble) return
+    const close = () => setBubble(null)
+    const onPointerDown = (e) => {
+      if (!e.target.closest('.tt-bubble, .tt-link')) close()
+    }
+    const onKey = (e) => { if (e.key === 'Escape') close() }
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKey)
+    window.addEventListener('resize', close)
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKey)
+      window.removeEventListener('resize', close)
+    }
+  }, [bubble])
+
+  const openBubble = (e, ev, stage, key) => {
+    if (bubble?.key === key) { setBubble(null); return }
+    const r = e.currentTarget.getBoundingClientRect()
+    const width = Math.min(320, window.innerWidth - 24)
+    const center = r.left + r.width / 2
+    const left = Math.max(12, Math.min(center - width / 2, window.innerWidth - width - 12))
+    const arrowX = Math.max(24, Math.min(center - left, width - 24))
+    setBubble({
+      key, ev, stage, width, arrowX,
+      left: left + window.scrollX,
+      top: r.bottom + window.scrollY + 12,
+    })
+  }
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -551,14 +585,14 @@ useEffect(() => {
                 </div>
                 <div className="tt-dot" style={{ background: STAGE_COLOR[stage] || '#888' }} />
                 <div className="tt-content">
-                  <span className="tt-name">{ev.name}</span>
-                  {ev.imgs && (
-                    <div className="tt-thumb-group">
-                      {ev.imgs.map((src, idx) => (
-                        <img key={idx} src={src} alt={ev.name} className="tt-thumb" />
-                      ))}
-                    </div>
-                  )}
+                  <button
+                    type="button"
+                    className={`tt-link ${bubble?.key === `${activeDay}-${stage}-${i}` ? 'is-open' : ''}`}
+                    aria-expanded={bubble?.key === `${activeDay}-${stage}-${i}`}
+                    onClick={(e) => openBubble(e, ev, stage, `${activeDay}-${stage}-${i}`)}
+                  >
+                    {ev.name}
+                  </button>
                 </div>
               </div>
             ))}
@@ -756,6 +790,43 @@ useEffect(() => {
         <p className="footer__title">第14回 紫熊祭実行委員会</p>
         <p className="footer__copy">© 2025 紫熊祭実行委員会 All rights reserved.</p>
       </footer>
+
+      {/* ── タイムテーブル吹き出し ── */}
+      {bubble && (
+        <div
+          className="tt-bubble"
+          role="dialog"
+          aria-label={bubble.ev.name}
+          style={{
+            top: bubble.top,
+            left: bubble.left,
+            width: bubble.width,
+            '--arrow-x': `${bubble.arrowX}px`,
+            '--stage-c': STAGE_COLOR[bubble.stage] || '#888',
+          }}
+        >
+          <button className="tt-bubble__close" onClick={() => setBubble(null)} aria-label="閉じる">✕</button>
+          <h3 className="tt-bubble__title">{bubble.ev.name}</h3>
+          <dl className="tt-bubble__list">
+            <div>
+              <dt>開催時間</dt>
+              <dd>{bubble.ev.time}{bubble.ev.endTime && ` – ${bubble.ev.endTime}`}</dd>
+            </div>
+            <div>
+              <dt>場所</dt>
+              <dd>{bubble.ev.place || bubble.stage}</dd>
+            </div>
+          </dl>
+          {bubble.ev.imgs && (
+            <div className="tt-bubble__photos">
+              {bubble.ev.imgs.map((src, idx) => (
+                <img key={idx} src={src} alt={bubble.ev.name} />
+              ))}
+            </div>
+          )}
+          <p className="tt-bubble__comment">{bubble.ev.comment || '詳細は準備中です。'}</p>
+        </div>
+      )}
 
       {/* ── アンカー広告（画面下部固定・フェードイン切り替え） ── */}
       <div className="anchor-ad">
