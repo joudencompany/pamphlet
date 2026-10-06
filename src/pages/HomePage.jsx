@@ -6,7 +6,6 @@ import '../App.css'
 import terrabalImg from '../assets/terrabal.jpg'
 import terrabalImg2 from '../assets/terrabal2.jpg'
 import chuoImg from '../assets/chuo.png'
-import linemoImg from '../assets/linemo.png'
 import seikyou from '../assets/seikyou.png'
 import konntakuto from '../assets/konntakuto.png'
 import ouesu from '../assets/ouesu.png'
@@ -50,7 +49,9 @@ const TIMETABLE = {
       stage: 'メインステージ',
       place: 'メインステージ（武夫原）',   // 省略するとステージ名が入ります
       comment: 'ここに紹介文',            // 省略すると「詳細は準備中です。」と表示されます
-      imgs: [kumakore, kumakore2] },     // 写真があるイベントだけ    { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
+      imgs: [kumakore, kumakore2] },     // 写真があるイベントだけ
+
+    { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
     { time: '13:00', endTime: '15:00', name: 'Higo-Pella', stage: 'サブステージ' },
     { time: '15:30', endTime: '17:30', name: 'Higo-Pella', stage: 'サブステージ' },
     { time: '18:00', endTime: '19:30', name: 'キャンドルナイト', stage: 'サブステージ' },
@@ -104,11 +105,8 @@ const STAGE_COLOR = {
   'こども広場＋α':  '#2a8c4a',
 }
 
-/* ── アンカー広告データ ── */
-const ADS = [
-  { img: chuoImg,   alt: '中央自動車学校', url: 'https://chuo-ds.com/' },
-  { img: linemoImg, alt: 'LINEMO',         url: 'https://linemo.jp' },
-]
+/* ── アンカー広告データ（中央自動車学校のみ） ── */
+const ANCHOR_AD = { img: chuoImg, alt: '中央自動車学校', url: 'https://chuo-ds.com/' }
 
 
 
@@ -128,10 +126,6 @@ export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
-
-  /* アンカー広告 */
-  const [adIndex, setAdIndex] = useState(0)
-  const [adFade, setAdFade]   = useState(true)
 
   const heroRef = useRef(null)
 
@@ -185,32 +179,20 @@ useEffect(() => {
   return () => observer.disconnect()
 }, [adShown])
 
-  /* アンカー広告：5秒ごとにフェードイン切り替え */
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setAdFade(false)
-      setTimeout(() => {
-        setAdIndex(i => (i + 1) % ADS.length)
-        setAdFade(true)
-      }, 500)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [])
-
   /* タイムテーブル吹き出し：外側クリック・Esc・リサイズ・日付切替で閉じる */
   useEffect(() => { setBubble(null) }, [activeDay])
 useEffect(() => {
   if (!bubble) return
   const close = () => setBubble(null)
-  const onClick = (e) => {                         // ← onPointerDown から名前変更
+  const onClick = (e) => {
     if (!e.target.closest('.tt-bubble, .tt-link')) close()
   }
   const onKey = (e) => { if (e.key === 'Escape') close() }
-  document.addEventListener('click', onClick)      // ← 'pointerdown' を 'click' に
+  document.addEventListener('click', onClick)
   document.addEventListener('keydown', onKey)
   window.addEventListener('resize', close)
   return () => {
-    document.removeEventListener('click', onClick) // ← ここも 'click' に
+    document.removeEventListener('click', onClick)
     document.removeEventListener('keydown', onKey)
     window.removeEventListener('resize', close)
   }
@@ -831,17 +813,16 @@ useEffect(() => {
         </div>
       )}
 
-      {/* ── アンカー広告（画面下部固定・フェードイン切り替え） ── */}
+      {/* ── アンカー広告（画面右下固定） ── */}
       <div className="anchor-ad">
         <span className="anchor-ad__label">広告</span>
         <a
-          href={ADS[adIndex].url}
+          href={ANCHOR_AD.url}
           target="_blank"
           rel="noopener noreferrer"
           className="anchor-ad__link"
-          style={{ opacity: adFade ? 1 : 0 }}
         >
-          <img src={ADS[adIndex].img} alt={ADS[adIndex].alt} className="anchor-ad__img" />
+          <img src={ANCHOR_AD.img} alt={ANCHOR_AD.alt} className="anchor-ad__img" />
         </a>
       </div>
 
