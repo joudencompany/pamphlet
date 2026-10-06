@@ -303,14 +303,6 @@ useEffect(() => {
 
       {/* ── ヒーロー ── */}
       <section className="hero" id="hero" ref={heroRef}>
-        <div className="hero__clocks">
-          {[...Array(7)].map((_, i) => (
-            <div key={i} className={`clock clock--${i}`}>
-              <div className="clock__hand clock__hand--hour" style={{ '--r': `${30 + i * 47}deg` }} />
-              <div className="clock__hand clock__hand--min"  style={{ '--r': `${80 + i * 73}deg` }} />
-            </div>
-          ))}
-        </div>
         <div className="hero__inner">
           <p className="hero__kaicho">第14回</p>
           <h1 className="hero__title">紫熊祭</h1>
@@ -326,7 +318,6 @@ useEffect(() => {
             スケジュールを見る →
           </button>
         </div>
-        <div className="hero__bear">🐻</div>
       </section>
 
 
