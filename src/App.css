@@ -76,9 +76,6 @@ body {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 1.5rem; height: var(--nav-h);
-  transition: background 0.3s, box-shadow 0.3s;
-}
-.nav--solid {
   background: rgba(26,27,58,0.96);
   backdrop-filter: blur(8px);
   box-shadow: 0 2px 12px rgba(0,0,0,0.3);

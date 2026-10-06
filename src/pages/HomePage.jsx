@@ -124,7 +124,6 @@ export default function HomePage() {
   )
   const [activeDay, setActiveDay] = useState('11/2')
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
   const [greetOpen, setGreetOpen] = useState({ chair: false, vice: false }) // 挨拶の折りたたみ
 
@@ -148,9 +147,6 @@ const handleSurvey = async (type) => {
 
   useEffect(() => {
   document.title = '第14回 紫熊祭 | 熊本大学黒髪北キャンパス'
-  const onScroll = () => setScrolled(window.scrollY > 60)
-  window.addEventListener('scroll', onScroll)
-  return () => window.removeEventListener('scroll', onScroll)
 }, [])
 
 useEffect(() => {
@@ -287,7 +283,7 @@ useEffect(() => {
       )}
 
       {/* ── ナビ ── */}
-      <header className={`nav ${scrolled ? 'nav--solid' : ''}`}>
+      <header className="nav">
         <div className="nav__logo" onClick={() => scrollTo('hero')}>
           <span className="nav__logo-sigma">Σ</span> 紫熊祭
         </div>
