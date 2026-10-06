@@ -28,6 +28,7 @@ import gokase from '../assets/gokase.png'
 import pokeka from '../assets/pokeka.png'
 import kumakore from '../assets/kumakore.png'
 import kumakore2 from '../assets/kumakore2.png'
+import stamp from '../assets/stamp.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -37,64 +38,61 @@ const DAYS = [
 ]
 
 const TIMETABLE = {
-  '11/2': [
-    { time: '9:40',  endTime: '10:40', name: 'オープニング', stage: 'メインステージ' },
-    { time: '11:00', endTime: '12:30', name: '熊本大学 ピアノの会（大学会堂）', stage: 'メインステージ' },
-    { time: '12:50', endTime: '13:20', name: '医学部 アンサンブル部', stage: 'メインステージ' },
-    { time: '13:40', endTime: '14:30', name: 'MPB', stage: 'メインステージ' },
-    { time: '14:50', endTime: '15:10', name: 'フォークダンス部', stage: 'メインステージ' },
-    { time: '15:30', endTime: '16:30', name: '杉本琢弥 アーティストライブ トークショー', stage: 'メインステージ' },
-    { time: '16:50', endTime: '18:10', name: 'アコースティック ギター愛好会', stage: 'メインステージ' },
-    { time: '18:30', endTime: '19:30', name: '熊大コレクション2026',
+  '11/2': [ // 1日目
+    { time: '10:00', endTime: '11:00', name: 'オープニング', stage: 'メインステージ' },
+    { time: '11:15', endTime: '12:30', name: '熊大コンテスト', stage: 'メインステージ' },
+    { time: '13:00', endTime: '13:15', name: '大学応援団リーダー', stage: 'メインステージ' },
+    { time: '13:15', endTime: '13:30', name: '応援団チアリーディング部', stage: 'メインステージ' },
+    { time: '13:30', endTime: '13:45', name: '真狗舞～九州がっ', stage: 'メインステージ' }, // TODO: 名称が途切れているため正式名称を要確認
+    { time: '14:15', endTime: '15:15', name: '熊本大学医学部軽音楽部MPB', stage: 'メインステージ' },
+    { time: '15:45', endTime: '16:45', name: 'アコースティック愛好会', stage: 'メインステージ' },
+    { time: '17:00', endTime: '18:00', name: 'DAP', stage: 'メインステージ' },
+
+    { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
+    { time: '12:30', endTime: '13:15', name: 'シグマグランプリ', stage: 'サブステージ' },
+    { time: '13:45', endTime: '16:45', name: 'Higo-Pella', stage: 'サブステージ' },
+
+    { time: '10:30', endTime: '15:30', name: 'キャンドル作り', stage: 'こども広場' },
+    { time: '10:30', endTime: '16:00', name: '縁日', stage: 'こども広場' },
+  ],
+  '11/3': [ // 2日目
+    { time: '10:00', endTime: '10:15', name: '邦楽部', stage: 'メインステージ' },
+    { time: '10:30', endTime: '11:00', name: '書道部', stage: 'メインステージ' },
+    { time: '11:15', endTime: '11:45', name: '熊本大学体育会フォークダンス部', stage: 'メインステージ' },
+    { time: '11:45', endTime: '13:00', name: '歌うま', stage: 'メインステージ' },
+    { time: '13:30', endTime: '14:30', name: 'ロック研究会', stage: 'メインステージ' },
+    { time: '15:00', endTime: '16:00', name: 'Higo-Pella', stage: 'メインステージ' },
+    { time: '16:15', endTime: '16:45', name: 'フィル軽音部', stage: 'メインステージ' },
+    { time: '16:45', endTime: '18:00', name: '熊大コレクション',
       stage: 'メインステージ',
       place: 'メインステージ（武夫原）',   // 省略するとステージ名が入ります
       comment: 'ここに紹介文',            // 省略すると「詳細は準備中です。」と表示されます
       imgs: [kumakore, kumakore2] },     // 写真があるイベントだけ
 
-    { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
-    { time: '13:00', endTime: '15:00', name: 'Higo-Pella', stage: 'サブステージ' },
-    { time: '15:30', endTime: '17:30', name: 'Higo-Pella', stage: 'サブステージ' },
-    { time: '18:00', endTime: '19:30', name: 'キャンドルナイト', stage: 'サブステージ' },
+    { time: '11:00', endTime: '14:00', name: 'Higo-Pella', stage: 'サブステージ' },
+    { time: '15:00', endTime: '18:00', name: 'アコースティック愛好会', stage: 'サブステージ' },
 
-    { time: '10:30', endTime: '15:30', name: 'キャンドル作り', stage: 'こども広場' },
-    { time: '10:30', endTime: '16:00', name: '縁日', stage: 'こども広場' },
+    { time: '10:00', endTime: '16:00', name: '縁日', stage: 'こども広場＋α' },
+    { time: '10:30', endTime: '15:30', name: '熊大ちいかわ アニマルズ', stage: 'こども広場＋α' },
+    { time: '13:30', endTime: '14:30', name: '紫熊祭お笑いステージ2026（新体育館）', stage: 'こども広場＋α' },
+    { time: '17:00', endTime: '19:30', name: '第十一回 夜の筋肉祭り（武夫原グラウンド）', stage: 'こども広場＋α' },
   ],
-'11/3': [
-  { time: '9:10',  endTime: '9:50',  name: '書道部', stage: 'メインステージ' },
-  { time: '10:00', endTime: '10:30', name: '邦楽部', stage: 'メインステージ' },
-  { time: '11:00', endTime: '11:40', name: 'ミスコン', stage: 'メインステージ' },
-  { time: '12:00', endTime: '12:30', name: '消防企画', stage: 'メインステージ' },
-  { time: '12:40', endTime: '13:20', name: '応援団 チアリーディング部', stage: 'メインステージ' },
-  { time: '13:30', endTime: '14:20', name: 'Higo-Pella', stage: 'メインステージ' },
-  { time: '14:40', endTime: '15:30', name: 'ロック研究会', stage: 'メインステージ' },
-  { time: '16:00', endTime: '17:00', name: '歌うま', stage: 'メインステージ' },
-  { time: '17:10', endTime: '17:40', name: 'プレメリア', stage: 'メインステージ' },
-  { time: '17:40', endTime: '19:30', name: 'DAP', stage: 'メインステージ' },
+  '11/4': [ // 3日目
+    { time: '10:00', endTime: '11:00', name: 'フォークソング研究会', stage: 'メインステージ' },
+    { time: '11:15', endTime: '12:15', name: '熊大コンテスト', stage: 'メインステージ' },
+    { time: '12:45', endTime: '13:45', name: 'Cullet', stage: 'メインステージ' },
+    { time: '14:15', endTime: '14:45', name: '医学部アンサンブル', stage: 'メインステージ' },
+    { time: '15:15', endTime: '16:15', name: '上瀧研究室', stage: 'メインステージ' },
+    { time: '16:45', endTime: '17:45', name: 'モダンジャズ研究会', stage: 'メインステージ' },
+    { time: '17:45', endTime: '19:30', name: 'フィナーレ', stage: 'メインステージ' },
 
-  { time: '9:30',  endTime: '12:45', name: 'Higo-Pella', stage: 'サブステージ' },
-  { time: '14:30', endTime: '15:00', name: '音屋', stage: 'サブステージ' },
-  { time: '16:00', endTime: '16:45', name: '岡田朱梨。アーティストライブ', stage: 'サブステージ' },
-  { time: '17:00', endTime: '19:30', name: 'アコースティック ギター愛好会', stage: 'サブステージ' },
+    { time: '10:00', endTime: '13:00', name: 'Higo-Pella', stage: 'サブステージ' },
+    { time: '13:30', endTime: '16:30', name: 'アコースティック愛好会', stage: 'サブステージ' },
+    { time: '16:30', endTime: '17:00', name: 'キャンドルナイト準備', stage: 'サブステージ' },
+    { time: '17:00', endTime: '18:00', name: 'キャンドルナイト', stage: 'サブステージ' },
 
-  { time: '10:00', endTime: '16:00', name: '縁日', stage: 'こども広場＋α' },
-  { time: '10:30', endTime: '15:30', name: '熊大ちいかわ アニマルズ', stage: 'こども広場＋α' },
-  { time: '13:30', endTime: '14:30', name: '紫熊祭お笑いステージ2026（新体育館）', stage: 'こども広場＋α' },
-  { time: '17:00', endTime: '19:30', name: '第十一回 夜の筋肉祭り（武夫原グラウンド）', stage: 'こども広場＋α' },
-],
-'11/4': [
-  { time: '9:40',  endTime: '9:55',  name: '肥後真狗舞', stage: 'メインステージ' },
-  { time: '10:30', endTime: '11:30', name: 'ミスターコン', stage: 'メインステージ' },
-  { time: '11:50', endTime: '13:40', name: 'Cullet', stage: 'メインステージ' },
-  { time: '14:00', endTime: '15:20', name: 'フォークソング研究会', stage: 'メインステージ' },
-  { time: '15:40', endTime: '16:30', name: 'モダンジャズ研究会', stage: 'メインステージ' },
-  { time: '17:00', endTime: '17:30', name: 'berry meet アーティストライブ', stage: 'メインステージ' },
-  { time: '18:00', endTime: '19:30', name: 'フィナーレ', stage: 'メインステージ' },
-
-  { time: '11:00', endTime: '14:45', name: 'Higo-Pella', stage: 'サブステージ' },
-  { time: '15:00', endTime: '18:00', name: 'アコースティック ギター愛好会', stage: 'サブステージ' },
-
-  { time: '10:00', endTime: '16:00', name: '縁日', stage: 'こども広場' },
-],
+    { time: '10:00', endTime: '16:00', name: '縁日', stage: 'こども広場' },
+  ],
 }
 
 /* ── ステージごとの色分け ── */
@@ -750,6 +748,15 @@ useEffect(() => {
           </div>
         </div>
       </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          スタンプラリー
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <a href="" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={stamp} alt="stamp" className="ad-banner__img" />
+        </a>
+      </div>
 
       {/* ── アクセス ── */}
       <section className="section access" id="access">
