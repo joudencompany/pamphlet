@@ -45,7 +45,7 @@ const TIMETABLE = {
     { time: '11:15', endTime: '12:30', name: '熊大コンテスト', stage: 'メインステージ' },
     { time: '13:00', endTime: '13:15', name: '大学応援団リーダー', stage: 'メインステージ' },
     { time: '13:15', endTime: '13:30', name: '応援団チアリーディング部', stage: 'メインステージ' },
-    { time: '13:30', endTime: '13:45', name: '真狗舞～九州がっ', stage: 'メインステージ' }, // TODO: 名称が途切れているため正式名称を要確認
+    { time: '13:30', endTime: '13:45', name: '肥後真狗舞', stage: 'メインステージ' }, 
     { time: '14:15', endTime: '15:15', name: '熊本大学医学部軽音楽部MPB', stage: 'メインステージ' },
     { time: '15:45', endTime: '16:45', name: 'アコースティック愛好会', stage: 'メインステージ' },
     { time: '17:00', endTime: '18:00', name: 'DAP', stage: 'メインステージ' },
