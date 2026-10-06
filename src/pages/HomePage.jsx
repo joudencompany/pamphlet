@@ -30,6 +30,7 @@ import kumakore from '../assets/kumakore.png'
 import kumakore2 from '../assets/kumakore2.png'
 import stamp from '../assets/stamp.png'
 import kinnniku from '../assets/kinnniku.png'
+import owarai from '../assets/owarai.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -57,7 +58,7 @@ const TIMETABLE = {
       time: '15:00',
       endTime: '17:40',
       name: '第12回 夜の筋肉祭り',
-      stage: 'こども広場＋α',
+      stage: 'その他の場所',
       place: '武夫原グラウンド',
       comment: 'みせろ 筋肉漢の底力！！',
       imgs: [kinnniku],
@@ -95,6 +96,16 @@ const TIMETABLE = {
     { time: '13:30', endTime: '16:30', name: 'アコースティック愛好会', stage: 'サブステージ' },
     { time: '16:30', endTime: '17:00', name: 'キャンドルナイト準備', stage: 'サブステージ' },
     { time: '17:00', endTime: '18:00', name: 'キャンドルナイト', stage: 'サブステージ' },
+
+        {
+      time: '14:00',
+      endTime: '15:40',
+      name: 'お笑いステージ2026',
+      stage: 'その他の場所',
+      place: '新体育館',
+      comment: '今年の紫熊祭に、サンシャイン池崎とぱーてぃーちゃんが登場！じゃんけん大会や質問コーナーに加え、サインや写真撮影が景品として当たる抽選会も開催します。最高に盛り上がる爆笑ステージをお見逃しなく！',
+      imgs: [owarai],
+    },
   ],
 }
 
@@ -102,8 +113,7 @@ const TIMETABLE = {
 const STAGE_COLOR = {
   'メインステージ': '#6c3fc7',
   'サブステージ':   '#e07c00',
-  'こども広場':     '#2a8c4a',
-  'こども広場＋α':  '#2a8c4a',
+  'その他の場所':  '#2a8c4a',
 }
 
 /* ── アンカー広告データ（中央自動車学校のみ） ── */
