@@ -126,6 +126,7 @@ export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
+  const [greetOpen, setGreetOpen] = useState({ chair: false, vice: false }) // 挨拶の折りたたみ
 
   const heroRef = useRef(null)
 
@@ -210,6 +211,15 @@ useEffect(() => {
       left: left + window.scrollX,
       top: r.bottom + window.scrollY + 12,
     })
+  }
+
+  const toggleGreet = (key) => {
+    const willClose = greetOpen[key]
+    setGreetOpen(o => ({ ...o, [key]: !o[key] }))
+    // 閉じるときはカードの先頭へ戻す（長文を読んだ後に位置を見失わないように）
+    if (willClose) {
+      document.getElementById(`greet-card-${key}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }
 
   const scrollTo = (id) => {
@@ -331,13 +341,15 @@ useEffect(() => {
         <div className="container">
           <div className="section-label">Greeting</div>
           <h2 className="section-title">委員長挨拶</h2>
-          <div className="greeting__card">
+          <div className="greeting__card" id="greet-card-chair">
             <div className="greeting__avatar">委員長</div>
             <div className="greeting__body">
               <p className="greeting__name">委員長 荒巻 遥平</p>
               <p>
                 この度は第十四回紫熊祭公式パンフレットをご覧いただき、誠にありがとうございます。紫熊祭は、学生のみならず、地域の皆様にも愛される、熊本大学最大の祭典です。
               </p>
+              <div className={`greeting__more ${greetOpen.chair ? 'open' : ''}`} id="greet-chair">
+              <div>
               <p>
                 昨年に続き、本年も無事に開催の運びとなりましたことを、心より喜ばしく思います。これもひとえに、日頃より本学を支えてくださる教職員や学生の皆様、OB・OGの皆様、そして地域住民や企業の皆様の、温かいご理解とご協力の賜物でございます。紫熊祭実行委員一同、深く感謝申し上げます。
               </p>
@@ -356,16 +368,29 @@ useEffect(() => {
               <p>
                 最高の紫熊祭を、どうぞお楽しみください！
               </p>
+              </div>
+              </div>
+              <button
+                type="button"
+                className="greeting__toggle"
+                aria-expanded={greetOpen.chair}
+                aria-controls="greet-chair"
+                onClick={() => toggleGreet('chair')}
+              >
+                {greetOpen.chair ? '閉じる ▲' : '続きを読む ▼'}
+              </button>
             </div>
           </div>
 
-          <div className="greeting__card">
+          <div className="greeting__card" id="greet-card-vice">
             <div className="greeting__avatar">副委員長</div>
             <div className="greeting__body">
               <p className="greeting__name">副委員長 福嶋 楓・西田 周平</p>
               <p>
                 この度は紫熊祭に足をお運びいただき、誠にありがとうございます。実行委員一同、感謝と、皆様と共に紫熊祭を開催できることに喜びを感じております。
               </p>
+              <div className={`greeting__more ${greetOpen.vice ? 'open' : ''}`} id="greet-vice">
+              <div>
               <p>
                 昨年度の第十三回紫熊祭は、テーマ「13anquet［banquet］」のもと、会場が一丸となって「宴会」のように大いに盛り上がり、お祭りの名にふさわしい紫熊祭となりました。
               </p>
@@ -387,6 +412,17 @@ useEffect(() => {
               <p>
                 本日が皆様にとって素敵な日になりますように、実行委員一同心からお祈り申し上げます。
               </p>
+              </div>
+              </div>
+              <button
+                type="button"
+                className="greeting__toggle"
+                aria-expanded={greetOpen.vice}
+                aria-controls="greet-vice"
+                onClick={() => toggleGreet('vice')}
+              >
+                {greetOpen.vice ? '閉じる ▲' : '続きを読む ▼'}
+              </button>
             </div>
           </div>
         </div>

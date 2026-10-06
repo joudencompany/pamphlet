@@ -706,3 +706,31 @@ body {
   color: #5530a8;
   transform: translateX(-3px);
 }
+
+/* ── 挨拶の折りたたみ ── */
+.greeting__more {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+.greeting__more.open { grid-template-rows: 1fr; }
+.greeting__more > div { overflow: hidden; }
+
+.greeting__toggle {
+  display: inline-block;
+  margin-top: 0.25rem;
+  padding: 0.45rem 1.4rem;
+  background: none;
+  border: 1.5px solid var(--purple);
+  border-radius: 999px;
+  color: var(--purple);
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.greeting__toggle:hover { background: var(--purple); color: #fff; }
+
+/* 固定ナビに隠れないように */
+.greeting__card { scroll-margin-top: calc(var(--nav-h) + 12px); }
