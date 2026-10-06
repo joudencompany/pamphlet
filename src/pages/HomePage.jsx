@@ -29,16 +29,17 @@ import pokeka from '../assets/pokeka.png'
 import kumakore from '../assets/kumakore.png'
 import kumakore2 from '../assets/kumakore2.png'
 import stamp from '../assets/stamp.png'
+import kinnniku from '../assets/kinnniku.png'
 
 /* ── データ ── */
 const DAYS = [
-  { label: '11/2', day: '日', color: '#e03c3c' },
-  { label: '11/3', day: '月', color: '#e03c3c' },
-  { label: '11/4', day: '火', color: '#2a8c4a' },
+  { label: '11/1', day: '日', color: '#e03c3c' },
+  { label: '11/2', day: '月', color: '#2a8c4a' },
+  { label: '11/3', day: '火・祝', color: '#e03c3c' },
 ]
 
 const TIMETABLE = {
-  '11/2': [ // 1日目
+  '11/1': [ // 1日目
     { time: '10:00', endTime: '11:00', name: 'オープニング', stage: 'メインステージ' },
     { time: '11:15', endTime: '12:30', name: '熊大コンテスト', stage: 'メインステージ' },
     { time: '13:00', endTime: '13:15', name: '大学応援団リーダー', stage: 'メインステージ' },
@@ -52,10 +53,18 @@ const TIMETABLE = {
     { time: '12:30', endTime: '13:15', name: 'シグマグランプリ', stage: 'サブステージ' },
     { time: '13:45', endTime: '16:45', name: 'Higo-Pella', stage: 'サブステージ' },
 
-    { time: '10:30', endTime: '15:30', name: 'キャンドル作り', stage: 'こども広場' },
-    { time: '10:30', endTime: '16:00', name: '縁日', stage: 'こども広場' },
+    {
+      time: '15:00',
+      endTime: '17:40',
+      name: '第12回 夜の筋肉祭り',
+      stage: 'こども広場＋α',
+      place: '武夫原グラウンド',
+      comment: 'みせろ 筋肉漢の底力！！',
+      imgs: [kinnniku],
+    },
   ],
-  '11/3': [ // 2日目
+
+  '11/2': [ // 2日目
     { time: '10:00', endTime: '10:15', name: '邦楽部', stage: 'メインステージ' },
     { time: '10:30', endTime: '11:00', name: '書道部', stage: 'メインステージ' },
     { time: '11:15', endTime: '11:45', name: '熊本大学体育会フォークダンス部', stage: 'メインステージ' },
@@ -65,19 +74,15 @@ const TIMETABLE = {
     { time: '16:15', endTime: '16:45', name: 'フィル軽音部', stage: 'メインステージ' },
     { time: '16:45', endTime: '18:00', name: '熊大コレクション',
       stage: 'メインステージ',
-      place: 'メインステージ（武夫原）',   // 省略するとステージ名が入ります
+      place: 'メインステージ',            // 省略するとステージ名が入ります
       comment: 'ここに紹介文',            // 省略すると「詳細は準備中です。」と表示されます
       imgs: [kumakore, kumakore2] },     // 写真があるイベントだけ
 
     { time: '11:00', endTime: '14:00', name: 'Higo-Pella', stage: 'サブステージ' },
     { time: '15:00', endTime: '18:00', name: 'アコースティック愛好会', stage: 'サブステージ' },
 
-    { time: '10:00', endTime: '16:00', name: '縁日', stage: 'こども広場＋α' },
-    { time: '10:30', endTime: '15:30', name: '熊大ちいかわ アニマルズ', stage: 'こども広場＋α' },
-    { time: '13:30', endTime: '14:30', name: '紫熊祭お笑いステージ2026（新体育館）', stage: 'こども広場＋α' },
-    { time: '17:00', endTime: '19:30', name: '第十一回 夜の筋肉祭り（武夫原グラウンド）', stage: 'こども広場＋α' },
   ],
-  '11/4': [ // 3日目
+  '11/3': [ // 3日目
     { time: '10:00', endTime: '11:00', name: 'フォークソング研究会', stage: 'メインステージ' },
     { time: '11:15', endTime: '12:15', name: '熊大コンテスト', stage: 'メインステージ' },
     { time: '12:45', endTime: '13:45', name: 'Cullet', stage: 'メインステージ' },
@@ -90,8 +95,6 @@ const TIMETABLE = {
     { time: '13:30', endTime: '16:30', name: 'アコースティック愛好会', stage: 'サブステージ' },
     { time: '16:30', endTime: '17:00', name: 'キャンドルナイト準備', stage: 'サブステージ' },
     { time: '17:00', endTime: '18:00', name: 'キャンドルナイト', stage: 'サブステージ' },
-
-    { time: '10:00', endTime: '16:00', name: '縁日', stage: 'こども広場' },
   ],
 }
 
@@ -120,7 +123,7 @@ export default function HomePage() {
   const [surveyDone, setSurveyDone] = useState(
     () => sessionStorage.getItem('surveyDone') === 'true'
   )
-  const [activeDay, setActiveDay] = useState('11/2')
+  const [activeDay, setActiveDay] = useState('11/1')
   const [menuOpen, setMenuOpen] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
   const [greetOpen, setGreetOpen] = useState({ chair: false, vice: false }) // 挨拶の折りたたみ
@@ -303,9 +306,9 @@ useEffect(() => {
           <p className="hero__en">SIGMA FES</p>
           <div className="hero__theme">1TIME 4EVER</div>
           <div className="hero__dates">
-            <span>11.2<small>日</small></span>
+            <span>11.1<small>日</small></span>
             <span className="hero__dates-sep">—</span>
-            <span>11.4<small>火</small></span>
+            <span>11.3<small>火・祝</small></span>
           </div>
           <p className="hero__place">熊本大学 黒髪北キャンパス</p>
           <button className="hero__cta" onClick={() => scrollTo('timetable')}>
@@ -490,10 +493,10 @@ useEffect(() => {
               総合案内が赤門の手前にございます。落とし物やその他お困りの際には、お気軽にお越しください。
             </li>
             <li>
-              駐車場は付近のコインパーキングにお停めいただくか、<strong>黒髪小学校の臨時駐車場（2日目：11/3のみ解放）</strong>をご利用ください。
+              駐車場は付近のコインパーキングにお停めいただくか、<strong>黒髪小学校の臨時駐車場（2日目：11/2のみ解放）</strong>をご利用ください。
               <br />
               <span className="notice__sub">
-                （1日目：11/2は、身体障がい者・高齢者の方専用に桜山中学校の臨時駐車場を開放します）
+                （1日目：11/1は、身体障がい者・高齢者の方専用に桜山中学校の臨時駐車場を開放します）
               </span>
             </li>
             <li>
@@ -678,7 +681,7 @@ useEffect(() => {
           </div>
         </div>
       </section>
-            
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：読書
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
