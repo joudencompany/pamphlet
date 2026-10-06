@@ -25,7 +25,7 @@ const TENTS = [
   { no: 18, name: '160318029', item: 'アパレル', desc: '学生が経営する服好き学生を増やすためのアパレル。ファッション性の高い服を扱い、ファッションに興味がない人・興味持ち始めた人が新しい趣味として洋服を好きになれるアパレルショップ。' },
   { no: 19, name: '映画研究部', item: 'フランクフルト・焼き鳥', desc: 'フランクフルトや焼き鳥を販売します！ガッツリ食べたい方も小腹を満たしたい方もぜひお越しください！' },
   { no: 20, name: '熊本大学放送部', item: 'はしまき', desc: '堂々復活！放送部のはしまきです。二年前に大好評を博したはしまきを今年もお届け！ぜひ、お召し上がりください♪' },
-  { no: 21, name: 'マンドリンクラブ', item: 'フライドポテト', desc: '第14回紫熊祭でフライドポテトを販売します！ぜひ来てください！！' },
+  { no: 21, name: 'マンドリンクラブ', item: 'フライドポテト', desc: '第15回紫熊祭でフライドポテトを販売します！ぜひ来てください！！' },
   { no: 22, name: 'match', item: '冷やしフルーツ', desc: 'バスケ、バレーサークルのmatchです！今年は冷やしフルーツを出店します！焼きそば、たこ焼き食べたあとのデザートにいかがですか？' },
   { no: 23, name: 'CHAPS', item: '揚げたこ焼き', desc: 'CHAPSのみんなが作った、揚げたこ焼きの熱々サクサクが楽しめます！' },
   { no: 24, name: 'アコースティックギター愛好会', item: '揚げパン', desc: '「アコ愛」は昔懐かしの揚げパンを販売します！揚げたてサクサク、中はふっわふわのアコ愛揚げパンをご賞味あれ！' },
@@ -85,8 +85,8 @@ export default function TentInfoPage() {
 
       <footer className="footer">
         <div className="footer__sigma">Σ</div>
-        <p className="footer__title">第14回 紫熊祭実行委員会</p>
-        <p className="footer__copy">© 2025 紫熊祭実行委員会 All rights reserved.</p>
+        <p className="footer__title">第15回 紫熊祭実行委員会</p>
+        <p className="footer__copy">© 2026 紫熊祭実行委員会 All rights reserved.</p>
       </footer>
     </div>
   )

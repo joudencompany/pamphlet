@@ -82,8 +82,8 @@ export default function OkunaiInfoPage() {
 
       <footer className="footer">
         <div className="footer__sigma">Σ</div>
-        <p className="footer__title">第14回 紫熊祭実行委員会</p>
-        <p className="footer__copy">© 2025 紫熊祭実行委員会 All rights reserved.</p>
+        <p className="footer__title">第15回 紫熊祭実行委員会</p>
+        <p className="footer__copy">© 2026 紫熊祭実行委員会 All rights reserved.</p>
       </footer>
     </div>
   )
