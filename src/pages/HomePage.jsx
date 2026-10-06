@@ -38,6 +38,7 @@ import rockLive from '../assets/rock_live.png'
 import higoPella from '../assets/higo_pella.png'
 import shodou from '../assets/shodou.png'
 import hougaku from '../assets/hougaku.png'
+import hero from '../assets/hero.jpg'
 
 /* ── データ ── */
 const DAYS = [
@@ -376,22 +377,12 @@ useEffect(() => {
       </header>
 
       {/* ── ヒーロー ── */}
-      <section className="hero" id="hero" ref={heroRef}>
-        <div className="hero__inner">
-          <p className="hero__kaicho">第15回</p>
-          <h1 className="hero__title">紫熊祭</h1>
-          <p className="hero__en">SIGMA FES</p>
-          <div className="hero__theme">1TIME 4EVER</div>
-          <div className="hero__dates">
-            <span>11.1<small>日</small></span>
-            <span className="hero__dates-sep">—</span>
-            <span>11.3<small>火・祝</small></span>
-          </div>
-          <p className="hero__place">熊本大学 黒髪北キャンパス</p>
-          <button className="hero__cta" onClick={() => scrollTo('timetable')}>
-            スケジュールを見る →
-          </button>
-        </div>
+      <section className="hero-image" id="hero" ref={heroRef}>
+      <div className="ad-banner">
+        <a href="" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={hero} alt="hero" className="ad-banner__img" />
+        </a>
+      </div>
       </section>
 
 
