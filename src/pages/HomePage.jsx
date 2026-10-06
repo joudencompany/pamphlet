@@ -199,22 +199,22 @@ useEffect(() => {
 
   /* タイムテーブル吹き出し：外側クリック・Esc・リサイズ・日付切替で閉じる */
   useEffect(() => { setBubble(null) }, [activeDay])
-  useEffect(() => {
-    if (!bubble) return
-    const close = () => setBubble(null)
-    const onPointerDown = (e) => {
-      if (!e.target.closest('.tt-bubble, .tt-link')) close()
-    }
-    const onKey = (e) => { if (e.key === 'Escape') close() }
-    document.addEventListener('pointerdown', onPointerDown)
-    document.addEventListener('keydown', onKey)
-    window.addEventListener('resize', close)
-    return () => {
-      document.removeEventListener('pointerdown', onPointerDown)
-      document.removeEventListener('keydown', onKey)
-      window.removeEventListener('resize', close)
-    }
-  }, [bubble])
+useEffect(() => {
+  if (!bubble) return
+  const close = () => setBubble(null)
+  const onClick = (e) => {                         // ← onPointerDown から名前変更
+    if (!e.target.closest('.tt-bubble, .tt-link')) close()
+  }
+  const onKey = (e) => { if (e.key === 'Escape') close() }
+  document.addEventListener('click', onClick)      // ← 'pointerdown' を 'click' に
+  document.addEventListener('keydown', onKey)
+  window.addEventListener('resize', close)
+  return () => {
+    document.removeEventListener('click', onClick) // ← ここも 'click' に
+    document.removeEventListener('keydown', onKey)
+    window.removeEventListener('resize', close)
+  }
+}, [bubble])
 
   const openBubble = (e, ev, stage, key) => {
     if (bubble?.key === key) { setBubble(null); return }
