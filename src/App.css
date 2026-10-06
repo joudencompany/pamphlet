@@ -692,7 +692,8 @@ body {
 .tt-bubble__comment { font-size: 0.85rem; color: #555; line-height: 1.7; }
 
 .back-link {
-  display: inline-block;
+  display: block;
+  width: fit-content;
   margin-bottom: 1.5rem;
   padding: 0.4rem 0;
   color: var(--purple);
