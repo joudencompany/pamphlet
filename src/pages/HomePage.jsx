@@ -31,8 +31,8 @@ import kumakore2 from '../assets/kumakore2.png'
 import stamp from '../assets/stamp.png'
 import kinnniku from '../assets/kinnniku.png'
 import owarai from '../assets/owarai.png'
-import acoLive from '../assets/acoLive.png'
-import philLive from '../assets/philLive.png'
+import acoLive from '../assets/aco_Live.png'
+import philLive from '../assets/phil_Live.png'
 
 /* ── データ ── */
 const DAYS = [
