@@ -189,25 +189,39 @@ useEffect(() => {
     if (!e.target.closest('.tt-bubble, .tt-link')) close()
   }
   const onKey = (e) => { if (e.key === 'Escape') close() }
+  // スマホはアドレスバーの出入りで高さだけ変わるので、幅が変わった時（回転など）だけ閉じる
+  const w = window.innerWidth
+  const onResize = () => { if (window.innerWidth !== w) close() }
   document.addEventListener('click', onClick)
   document.addEventListener('keydown', onKey)
-  window.addEventListener('resize', close)
+  window.addEventListener('resize', onResize)
+
+  // シート表示中は背面のスクロールを止める
+  const prevOverflow = document.body.style.overflow
+  if (bubble.mode === 'sheet') document.body.style.overflow = 'hidden'
+
   return () => {
     document.removeEventListener('click', onClick)
     document.removeEventListener('keydown', onKey)
-    window.removeEventListener('resize', close)
+    window.removeEventListener('resize', onResize)
+    document.body.style.overflow = prevOverflow
   }
 }, [bubble])
 
   const openBubble = (e, ev, stage, key) => {
     if (bubble?.key === key) { setBubble(null); return }
+    // スマホ幅：画面下から出るシート（位置計算なし・画面外に出ない）
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      setBubble({ key, ev, stage, mode: 'sheet' })
+      return
+    }
     const r = e.currentTarget.getBoundingClientRect()
     const width = Math.min(320, window.innerWidth - 24)
     const center = r.left + r.width / 2
     const left = Math.max(12, Math.min(center - width / 2, window.innerWidth - width - 12))
     const arrowX = Math.max(24, Math.min(center - left, width - 24))
     setBubble({
-      key, ev, stage, width, arrowX,
+      key, ev, stage, width, arrowX, mode: 'pop',
       left: left + window.scrollX,
       top: r.bottom + window.scrollY + 12,
     })
@@ -813,18 +827,25 @@ useEffect(() => {
       </footer>
 
       {/* ── タイムテーブル吹き出し ── */}
+      {bubble && bubble.mode === 'sheet' && (
+        <div className="tt-backdrop" onClick={() => setBubble(null)} />
+      )}
       {bubble && (
         <div
-          className="tt-bubble"
+          className={`tt-bubble ${bubble.mode === 'sheet' ? 'tt-bubble--sheet' : ''}`}
           role="dialog"
           aria-label={bubble.ev.name}
-          style={{
-            top: bubble.top,
-            left: bubble.left,
-            width: bubble.width,
-            '--arrow-x': `${bubble.arrowX}px`,
-            '--stage-c': STAGE_COLOR[bubble.stage] || '#888',
-          }}
+          style={
+            bubble.mode === 'sheet'
+              ? { '--stage-c': STAGE_COLOR[bubble.stage] || '#888' }
+              : {
+                  top: bubble.top,
+                  left: bubble.left,
+                  width: bubble.width,
+                  '--arrow-x': `${bubble.arrowX}px`,
+                  '--stage-c': STAGE_COLOR[bubble.stage] || '#888',
+                }
+          }
         >
           <button className="tt-bubble__close" onClick={() => setBubble(null)} aria-label="閉じる">✕</button>
           <h3 className="tt-bubble__title">{bubble.ev.name}</h3>

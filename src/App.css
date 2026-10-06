@@ -734,3 +734,40 @@ body {
 
 /* 固定ナビに隠れないように */
 .greeting__card { scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+/* ── スマホ：ボトムシート ── */
+.tt-backdrop {
+  position: fixed; inset: 0; z-index: 390;
+  background: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.2s ease;
+}
+.tt-bubble--sheet {
+  position: fixed; z-index: 400;
+  left: 0; right: 0; bottom: 0; top: auto;
+  width: auto;
+  max-height: 75vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: 18px 18px 0 0;
+  padding: 1.4rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  animation: sheetUp 0.25s ease;
+}
+.tt-bubble--sheet::before { display: none; } /* 吹き出しの三角を消す */
+.tt-bubble--sheet .tt-bubble__close {
+  top: 8px; right: 10px;
+  width: 44px; height: 44px; font-size: 1.1rem;
+}
+.tt-bubble--sheet .tt-bubble__title { font-size: 1.15rem; margin-right: 2.5rem; }
+.tt-bubble--sheet .tt-bubble__list > div,
+.tt-bubble--sheet .tt-bubble__comment { font-size: 0.95rem; }
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* イベント名のタップしやすさ */
+.tt-link {
+  padding: 6px 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
