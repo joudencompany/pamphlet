@@ -754,9 +754,19 @@ body {
 }
 .tt-bubble--sheet::before { display: none; } /* 吹き出しの三角を消す */
 .tt-bubble--sheet .tt-bubble__close {
-  top: 8px; right: 10px;
-  width: 44px; height: 44px; font-size: 1.1rem;
+  top: 10px; right: 12px;
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+  background: #f0ede8;          /* 薄い丸い背景で押す場所を見やすく */
+  border-radius: 50%;
+  color: var(--navy);
+  font-size: 1.5rem; line-height: 1;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
+.tt-bubble--sheet .tt-bubble__close:active { background: #e3ded5; }
+.tt-bubble--sheet .tt-bubble__title { margin-right: 3.5rem; } /* ✕と重ならないように */
 .tt-bubble--sheet .tt-bubble__title { font-size: 1.15rem; margin-right: 2.5rem; }
 .tt-bubble--sheet .tt-bubble__list > div,
 .tt-bubble--sheet .tt-bubble__comment { font-size: 0.95rem; }
