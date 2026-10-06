@@ -31,6 +31,8 @@ import kumakore2 from '../assets/kumakore2.png'
 import stamp from '../assets/stamp.png'
 import kinnniku from '../assets/kinnniku.png'
 import owarai from '../assets/owarai.png'
+import acoLive from '../assets/acoLive.png'
+import philLive from '../assets/philLive.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -45,7 +47,7 @@ const TIMETABLE = {
     { time: '11:15', endTime: '12:30', name: '熊大コンテスト', stage: 'メインステージ' },
     { time: '13:00', endTime: '13:15', name: '大学応援団リーダー', stage: 'メインステージ' },
     { time: '13:15', endTime: '13:30', name: '応援団チアリーディング部', stage: 'メインステージ' },
-    { time: '13:30', endTime: '13:45', name: '肥後真狗舞', stage: 'メインステージ' }, 
+    { time: '13:30', endTime: '13:45', name: '肥後真狗舞', stage: 'メインステージ' },
     { time: '14:15', endTime: '15:15', name: '熊本大学医学部軽音楽部MPB', stage: 'メインステージ' },
     { time: '15:45', endTime: '16:45', name: 'アコースティック愛好会', stage: 'メインステージ' },
     { time: '17:00', endTime: '18:00', name: 'DAP', stage: 'メインステージ' },
@@ -72,17 +74,37 @@ const TIMETABLE = {
     { time: '11:45', endTime: '13:00', name: '歌うま', stage: 'メインステージ' },
     { time: '13:30', endTime: '14:30', name: 'ロック研究会', stage: 'メインステージ' },
     { time: '15:00', endTime: '16:00', name: 'Higo-Pella', stage: 'メインステージ' },
-    { time: '16:15', endTime: '16:45', name: 'フィル軽音部', stage: 'メインステージ' },
-    { time: '16:45', endTime: '18:00', name: '熊大コレクション',
+    {
+      time: '16:15',
+      endTime: '16:45',
+      name: '熊大フィル軽音部58th',
       stage: 'メインステージ',
-      place: 'メインステージ',            // 省略するとステージ名が入ります
-      comment: 'ここに紹介文',            // 省略すると「詳細は準備中です。」と表示されます
-      imgs: [kumakore, kumakore2] },     // 写真があるイベントだけ
+      place: 'メインステージ',
+      comment: '熊大フィル軽音部です！フィルを引退したOBによるバンド演奏を行います。お楽しみに！',
+      imgs: [philLive],
+    },
+    {
+      time: '16:45',
+      endTime: '18:00',
+      name: '熊大コレクション',
+      stage: 'メインステージ',
+      place: 'メインステージ',
+      comment: 'ここに紹介文',
+      imgs: [kumakore, kumakore2],
+    },
 
     { time: '11:00', endTime: '14:00', name: 'Higo-Pella', stage: 'サブステージ' },
-    { time: '15:00', endTime: '18:00', name: 'アコースティック愛好会', stage: 'サブステージ' },
-
+    {
+      time: '15:00',
+      endTime: '18:00',
+      name: 'アコ愛紫熊祭Live!!',
+      stage: 'サブステージ',
+      place: 'サブステージ',
+      comment: '計10バンド出演します！夕方の雰囲気にぴったりなトリとなってます！ぜひ、ご来場ください！',
+      imgs: [acoLive],
+    },
   ],
+
   '11/3': [ // 3日目
     { time: '10:00', endTime: '11:00', name: 'フォークソング研究会', stage: 'メインステージ' },
     { time: '11:15', endTime: '12:15', name: '熊大コンテスト', stage: 'メインステージ' },
@@ -97,7 +119,7 @@ const TIMETABLE = {
     { time: '16:30', endTime: '17:00', name: 'キャンドルナイト準備', stage: 'サブステージ' },
     { time: '17:00', endTime: '18:00', name: 'キャンドルナイト', stage: 'サブステージ' },
 
-        {
+    {
       time: '14:00',
       endTime: '15:40',
       name: 'お笑いステージ2026',
