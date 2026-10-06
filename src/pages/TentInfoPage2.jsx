@@ -3,26 +3,52 @@ import '../App.css'
 import tentmapImg2 from '../assetstent2/tentmap2.png'
 import temptentImg2 from '../assetstent2/temptent2.png'
 
-/* ── テント出店データ ── */
+/* ── テント写真の自動読み込み ──
+   src/assetstent2/ に tent_13.png〜tent_38.png を配置。
+   写真がない番号は temptent2.png を表示します。
+*/
+const tentPhotoModules = import.meta.glob(
+  '../assetstent2/tent_*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}',
+  { eager: true, import: 'default' }
+)
+
+const TENT_PHOTOS = Object.fromEntries(
+  Object.entries(tentPhotoModules).flatMap(([path, url]) => {
+    const match = path.match(/tent_(\d+)\./i)
+    return match ? [[Number(match[1]), url]] : []
+  })
+)
+
+const getTentPhoto = (no) => TENT_PHOTOS[no] ?? temptentImg2
+
+/* ── テント出店データ（マップ②：No.13〜38） ── */
 const TENTS = [
-  { no: 29, name: 'La.goal', item: '唐揚げ屋', desc: 'La.goalです。紫熊祭では美味しい唐揚げを販売します！！ぜひ足を運んでください。' },
-  { no: 30, name: 'バレーボール愛好会', item: 'たこ焼き・パフェ', desc: 'バレーボール愛好会です！漱石像の前でたこ焼きとパフェを販売します！待ってるぴょん！！' },
-  { no: 31, name: '半田研究室', item: '軽食', desc: 'いつもは教育について真面目に学んでいますが、今日は笑顔全開！みんなで仲良く出店しています！ぜひお立ち寄りくださいね！' },
-  { no: 32, name: '熊本大学・熊本県立大学 ダイビング部', item: 'たこ焼き屋', desc: '私たちダイビング部は代々受け継がれてきた絶品たこ焼きを販売します！生地の調合からこだわったたこ焼きをぜひご賞味ください！' },
-  { no: 33, name: '医学部ソフトテニス部', item: 'ポテト', desc: '医学部ソフトテニス部です！揚げたてのトルネードポテトとドリンクを提供します。4種の味が楽しめるのでぜひお越しください！' },
-  { no: 34, name: '焼き芋愛好会', item: '焼き芋', desc: '焼き芋愛好会です。おいしい焼き芋をご用意してお待ちしています。売り上げの一部を熊本大学の研究活動支援のため寄付します。' },
-  { no: 35, name: '吹奏楽部', item: '熊吹クレープ', desc: 'デザートにもおかずにもぴったりなクレープをフルーツやチョコなど5種類販売しています！' },
-  { no: 36, name: 'wellness', item: 'ウェルカレー', desc: 'こんにちは wellnessです！好評につき今年もウェルカレーを販売して紫熊祭を盛り上げます！ぜひ食べに来てね！💪🔥' },
-  { no: 37, name: '卓球部', item: 'クレープ屋', desc: '今年の卓球部はクレープとドリンクを販売します。最高のスイーツを提供しますので、たくさんのご来店お待ちしております！！' },
-  { no: 38, name: '邦楽部', item: '団子・わらび餅', desc: '邦楽部では箏・三絃・尺八を演奏しています。今年の紫熊祭ではお団子とわらび餅を販売します。ぜひお越し下さい！' },
-  { no: 39, name: '夢プロジェクト', item: 'はしまき・フランクフルト・ポップコーン（塩orキャラメル）', desc: '片手でも持ちやすい！！味は濃いめ！！場所は五高記念館前あたり！！是非是非お待ちしております！！' },
-  { no: 40, name: '保健学科バドミントンサークル', item: 'ワッフル＆クロッフル', desc: '私たちは見た目も味も大満足のワッフル＆クロッフルを販売します！1枚1枚部員が心を込めて焼き立てをご提供します♡お待ちしています！' },
-  { no: 41, name: 'MatchPoint', item: '中華料理屋', desc: '中華鍋パフォーマンスで魅せる本格炒飯！おかずにはサクッとジューシー唐揚げ、デザートにはあまーいゴマ団子もご用意してます！' },
-  { no: 42, name: '幹事会', item: '揚げパン', desc: '今年の幹事会は揚げパン屋さんに変身♡甘くてふわふわ、なつかしの味で心ほぐれるひとときを♪' },
-  { no: 43, name: '蘇逢会', item: '焼きそば・ポテト', desc: '' },
-  { no: 44, name: '準硬式野球部', item: '焼き鳥・ワッフル', desc: '準硬式野球部が焼き鳥とワッフルを販売中！！待ってます！！！！' },
-  { no: 45, name: '書道部', item: 'ホットサンド', desc: '書道部です！美味しいホットサンドを売ります！！是非皆さん食べにきてください！' },
-  { no: 46, name: 'Cut in', item: 'あみじゃが・トルネードポテト', desc: '' },
+  { no: 13, name: '法学部実行委員会', item: 'ジャンボフランク', desc: 'ふっといフランクフルト 食べにき・て・ね♡' },
+  { no: 14, name: 'フォークダンス部', item: 'ケサディーヤ', desc: 'こんにちは！熊本大学フォークダンス部です。野外ステージではダンス、テント企画ではケサディーヤを販売します。ぜひお越しください！' },
+  { no: 15, name: 'Smash', item: 'チーズハットグなど', desc: 'Smashです！今年はチーズハットグと揚げマシュマロとドリンクを販売します！絶品です！' },
+  { no: 16, name: 'バレーボール愛好会OB', item: '油そば・アフォガート', desc: '私たち、バレーボール愛好会OBのB4とM1で油そばとアフォガートを出店します。至高の一品をご賞味あれ。' },
+  { no: 17, name: 'ダイビング部（幹部）', item: 'おでん', desc: 'こんにちは！私たちは熊大・県大ダイビング部の幹部です！皆さまの心も身体も温めるおでんをご用意しておりますのでぜひ来てくださいね！部員全員で作るダイビング部のたこ焼きもぜひよろしくお願いします！' },
+  { no: 18, name: 'キャンパスミュージアム推進機構 teamCOCORO', item: '五高レトロ喫茶', desc: 'こんにちは！キャンパスミュージアム推進機構学生アンバサダーのteamCOCOROです！私達はメロンクリームソーダを販売します。ぜひお越しください！' },
+  { no: 19, name: '生協組織部', item: 'クロッフル', desc: '生協組織部です！今年もクロッフルを発売します！数量限定の味もあるのでぜひ足を運んでください！' },
+  { no: 20, name: '熊大医学部軟式テニス部', item: 'トルネードポテト・フルーツソーダ', desc: '私たちは医学部ソフトテニス部です。トルネードポテトとフルーツソーダを販売します。いろいろな味を用意するので楽しみにしてください。' },
+  { no: 21, name: 'Cut-in', item: 'もちもちひとくちドーナツなど', desc: 'Cut-inです！今年はもちもちひとくちドーナツを販売します！ぜひ食べに来てください♪' },
+  { no: 22, name: '麻雀部', item: '唐揚げ', desc: '熊大麻雀部は紫熊祭で唐揚げを販売いたします！麻雀も打てますのでぜひともお立ち寄り下さい！！！' },
+  { no: 23, name: '日韓交流サークル KOGUMA', item: '韓国人が作る本場の韓国屋台', desc: '私たちは伝統的な韓国料理を作ります！韓国人留学生たちが作る本場の味を楽しみに来てください！' },
+  { no: 24, name: 'wellness', item: 'カレー', desc: 'こんにちは！バドミントンサークルのwellnessです！美味しいカレーなので是非食べに来てください！' },
+  { no: 25, name: 'CHAPS', item: '揚げダコ・ゼリードリンク', desc: '人の揚げ足、ウチの揚げダコ！絶品明太マヨと限定ゼリードリンクを揃え、皆様のご来店をお待ちしております。' },
+  { no: 26, name: 'アコースティックギター愛好会', item: '揚げパン・揚げパンサンド', desc: '私たち”アコ愛”は揚げパンと揚げパンサンドを販売します！揚げたてのサクふわ食感をご賞味あれ！' },
+  { no: 27, name: '準硬式野球部', item: 'ホットドッグ＆ワッフル', desc: '準硬式野球部です！みんなで楽しく野球やってます！今年はホットドッグとワッフルを売ります。みんな来てね♡' },
+  { no: 28, name: 'BizCo', item: 'BizCoの唐揚げ', desc: '学生団体BizCoが紫熊祭にて初出店！例年大行列のあの唐揚げをBizCoが受け継ぎます。' },
+  { no: 29, name: 'SIRKU', item: 'ホットク', desc: '本場の味を再現！韓国留学生と試作を重ねた絶品ホットク。もっちり食感は小腹がすいた時にぴったりです！' },
+  { no: 30, name: '国際交流サークル C3', item: 'ポップコーン', desc: '熊本大学の公認国際交流サークルです！留学生と日本人学生がいろんなイベントを通して交流をしています！' },
+  { no: 31, name: '卓球部', item: 'ミニパフェ', desc: '卓球部の特製ミニパフェ！可愛い見た目と美味しさで、あなたのお腹に美味しさをスマッシュ！' },
+  { no: 32, name: '教育学部 英語科（英魂）', item: '英魂特製団子', desc: '教育学部英語科(英魂)です！個性的で料理の腕が立つメンバーが揃っているので、たくさんのご来店お待ちしております！' },
+  { no: 33, name: '医学部保健学科バドミントンサークル', item: 'クロッフル', desc: '保健学科バドミントンサークルは、クロッフルを販売します！心を込めてご提供します！ぜひお越しください！' },
+  { no: 34, name: '熊本大学放送部', item: '餃子の皮ピザ', desc: '放送部は大会に向け読みの練習や映像制作を行い、イベントの司会も務めています。' },
+  { no: 35, name: '志法会', item: '焼き鳥', desc: '熊本大学法学部公認サークルの志法会です。焼き鳥屋さんやります！ぜひお越しください！' },
+  { no: 36, name: 'バレーボール愛好会', item: 'たこ焼き・アイスクッキーサンド', desc: 'バレー愛好会です！今年はたこ焼きとアイスクッキーサンドを販売します！待ってるぴょん！！' },
+  { no: 37, name: 'D-SEVEN', item: '高菜栗ご飯', desc: 'こんにちはD-SEVENです！私たちは高菜栗ご飯の販売を行います！とてもおいしいのでぜひ来てください！' },
+  { no: 38, name: 'ダイビング部', item: 'ダイビング部伝統たこ焼き', desc: '39年の歴史を誇るダイビング部伝統の味！海のプロが焼き上げる、外カリ中トロ本気のたこ焼きを食らえ！' },
 ]
 
 export default function TentInfoPage2() {
@@ -44,7 +70,7 @@ export default function TentInfoPage2() {
           <div className="circles__map">
             <img
               src={tentmapImg2}
-              alt="テントマップ C・D"
+              alt="テントマップ②：No.13〜38"
               className="circles__map-img"
             />
           </div>
@@ -55,11 +81,18 @@ export default function TentInfoPage2() {
                 <div className="tent-item__info">
                   <span className="tent-item__no">No.{t.no}</span>
                   <h3 className="tent-item__name">{t.name}</h3>
-                  <p className="tent-item__food">{t.item}</p>
+                  {t.item && (
+                    <p className="tent-item__food">{t.item}</p>
+                  )}
                   <p className="tent-item__desc">{t.desc}</p>
                 </div>
+
                 <div className="tent-item__photo">
-                  <img src={temptentImg2} alt={t.name} />
+                  <img
+                    src={getTentPhoto(t.no)}
+                    alt={t.name}
+                    loading="lazy"
+                  />
                 </div>
               </div>
             ))}
@@ -76,7 +109,9 @@ export default function TentInfoPage2() {
       <footer className="footer">
         <div className="footer__sigma">Σ</div>
         <p className="footer__title">第15回 紫熊祭実行委員会</p>
-        <p className="footer__copy">© 2026 紫熊祭実行委員会 All rights reserved.</p>
+        <p className="footer__copy">
+          © 2026 紫熊祭実行委員会 All rights reserved.
+        </p>
       </footer>
     </div>
   )
