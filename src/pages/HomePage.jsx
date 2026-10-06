@@ -9,8 +9,8 @@ import chuoImg from '../assets/chuo.png'
 import seikyou from '../assets/seikyou.png'
 import konntakuto from '../assets/konntakuto.png'
 import ouesu from '../assets/ouesu.png'
-import onetimeforever from '../assets/1time4ever.png'
-import kurokamicampus from '../assets/kurokamicampus.png'
+import thema from '../assets/thema.jpg'
+import campusmap from '../assets/campusmap.jpg'
 import KMB from '../assets/KMB.png'
 import kyouseisika from '../assets/kyouseisika.png'
 import shuukatusei from '../assets/shuukatusei.png'
@@ -529,11 +529,11 @@ useEffect(() => {
       </div>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          ワンタイムフォーエバー
+          テーマ
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <a href="" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={onetimeforever} alt="1TIME 4EVER" className="ad-banner__img" />
+          <img src={thema} alt="テーマ" className="ad-banner__img" />
         </a>
       </div>
 
@@ -580,7 +580,7 @@ useEffect(() => {
       <div className="ad-banner">
         <span className="ad-banner__label"></span>
         <a href="https://www.kumamoto-u.ac.jp/campusjouhou" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={kurokamicampus} alt="黒髪キャンパス" className="ad-banner__img" />
+          <img src={campusmap} alt="黒髪キャンパス" className="ad-banner__img" />
         </a>
       </div>
 
