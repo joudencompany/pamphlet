@@ -690,3 +690,18 @@ body {
 .tt-bubble__photos { display: flex; flex-direction: column; gap: 6px; margin-bottom: 0.7rem; }
 .tt-bubble__photos img { width: 100%; height: auto; border-radius: 6px; display: block; }
 .tt-bubble__comment { font-size: 0.85rem; color: #555; line-height: 1.7; }
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.4rem 0;
+  color: var(--purple);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s, transform 0.15s;
+}
+.back-link:hover {
+  color: #5530a8;
+  transform: translateX(-3px);
+}
