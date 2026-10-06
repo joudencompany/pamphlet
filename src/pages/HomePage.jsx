@@ -36,6 +36,8 @@ import philLive from '../assets/phil_Live.png'
 import folkDance from '../assets/folk_dance.png'
 import rockLive from '../assets/rock_live.png'
 import higoPella from '../assets/higo_pella.png'
+import shodou from '../assets/shodou.png'
+import hougaku from '../assets/hougaku.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -71,8 +73,24 @@ const TIMETABLE = {
   ],
 
   '11/2': [ // 2日目
-    { time: '10:00', endTime: '10:15', name: '邦楽部', stage: 'メインステージ' },
-    { time: '10:30', endTime: '11:00', name: '書道部', stage: 'メインステージ' },
+    {
+      time: '10:00',
+      endTime: '10:15',
+      name: '邦楽演奏',
+      stage: 'メインステージ',
+      place: 'メインステージ',
+      comment: '初心者多数の元気な邦楽部です！当日は三味線箏尺八で「月の旋律」「ルパン三世のテーマ」を演奏します。',
+      imgs: [hougaku],
+    },
+    {
+      time: '10:30',
+      endTime: '11:00',
+      name: '書道パフォーマンス',
+      stage: 'メインステージ',
+      place: 'メインステージ',
+      comment: '音楽に合わせた迫力の書道パフォーマンスをお届けします！文字に込めた部員の熱い想いをご覧ください。',
+      imgs: [shodou],
+    },
     {
       time: '11:15',
       endTime: '11:45',
