@@ -33,6 +33,9 @@ import kinnniku from '../assets/kinnniku.png'
 import owarai from '../assets/owarai.png'
 import acoLive from '../assets/aco_Live.png'
 import philLive from '../assets/phil_Live.png'
+import folkDance from '../assets/folk_dance.png'
+import rockLive from '../assets/rock_live.png'
+import higoPella from '../assets/higo_pella.png'
 
 /* ── データ ── */
 const DAYS = [
