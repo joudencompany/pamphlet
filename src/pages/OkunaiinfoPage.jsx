@@ -43,6 +43,8 @@ export default function OkunaiInfoPage() {
 
       <section className="section" style={{ paddingTop: '6rem' }}>
         <div className="container">
+          <Link to="/" className="back-link">← 戻る</Link>
+          
           <div className="section-label">Okunai Booths</div>
           <h2 className="section-title">屋内企画ー学生会館ー</h2>
 

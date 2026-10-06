@@ -46,6 +46,8 @@ export default function TentInfoPage() {
 
       <section className="section" style={{ paddingTop: '6rem' }}>
         <div className="container">
+          <Link to="/" className="back-link">← 戻る</Link>
+          
           <div className="section-label">Tent Booths</div>
           <h2 className="section-title">テント企画</h2>
 
