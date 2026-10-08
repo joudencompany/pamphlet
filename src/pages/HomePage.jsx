@@ -384,7 +384,7 @@ useEffect(() => {
           <p className="hero__kaicho">第15回</p>
           <h1 className="hero__title">紫熊祭</h1>
           <p className="hero__en">SIGMA FES</p>
-          <div className="hero__theme">1TIME 4EVER</div>
+          <div className="hero__theme">Xceed The Vision</div>
           <div className="hero__dates">
             <span>11.1<small>日</small></span>
             <span className="hero__dates-sep">—</span>
