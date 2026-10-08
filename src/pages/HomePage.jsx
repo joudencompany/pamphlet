@@ -135,7 +135,7 @@ const TIMETABLE = {
       name: '熊大コレクション',
       stage: 'メインステージ',
       place: 'メインステージ',
-      comment: 'ここに紹介文',
+      comment: '個性あふれる熊大生がランウェイを彩る、一日限りのファッションショー！',
       imgs: [kumakore, kumakore2],
     },
 
@@ -149,8 +149,8 @@ const TIMETABLE = {
       comment: '計10バンド出演します！夕方の雰囲気にぴったりなトリとなってます！ぜひ、ご来場ください！',
       imgs: [acoLive],
     },
-  ],
 
+  ],
   '11/3': [ // 3日目
     { time: '10:00', endTime: '11:00', name: 'フォークソング研究会', stage: 'メインステージ' },
     { time: '11:15', endTime: '12:15', name: '熊大コンテスト', stage: 'メインステージ' },
@@ -179,9 +179,11 @@ const TIMETABLE = {
 
 /* ── ステージごとの色分け ── */
 const STAGE_COLOR = {
+  'その他の場所': '#2a8c4a',
   'メインステージ': '#6c3fc7',
   'サブステージ':   '#e07c00',
-  'その他の場所':  '#2a8c4a',
+  'こども広場':     '#2a8c4a',
+  'こども広場＋α':  '#2a8c4a',
 }
 
 /* ── アンカー広告データ（中央自動車学校のみ） ── */
@@ -367,7 +369,7 @@ useEffect(() => {
           <span className="nav__logo-sigma">Σ</span> 紫熊祭
         </div>
         <nav className={`nav__links ${menuOpen ? 'open' : ''}`}>
-          {[['挨拶','greeting'],['諸注意','notice'],['タイムテーブル','timetable'],['出店・サークル（テント）','circles-tent'],['出店・サークル（屋内）','circles-okunai'],['スタンプラリー','stamp'],['アクセス','access'],].map(([label, id]) => (
+          {[['挨拶','greeting'],['諸注意','notice'],['タイムテーブル','timetable'],['出店・サークル（テント）','circles-tent'],['出店・サークル（屋内）','circles-okunai'],['アクセス','access'],].map(([label, id]) => (
             <button key={id} onClick={() => scrollTo(id)}>{label}</button>
           ))}
         </nav>
@@ -377,12 +379,22 @@ useEffect(() => {
       </header>
 
       {/* ── ヒーロー ── */}
-      <section className="hero-image" id="hero" ref={heroRef}>
-      <div className="ad-banner">
-        <a href="" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={hero} alt="hero" className="ad-banner__img" />
-        </a>
-      </div>
+      <section className="hero" id="hero" ref={heroRef}>
+        <div className="hero__inner">
+          <p className="hero__kaicho">第15回</p>
+          <h1 className="hero__title">紫熊祭</h1>
+          <p className="hero__en">SIGMA FES</p>
+          <div className="hero__theme">1TIME 4EVER</div>
+          <div className="hero__dates">
+            <span>11.1<small>日</small></span>
+            <span className="hero__dates-sep">—</span>
+            <span>11.3<small>火・祝</small></span>
+          </div>
+          <p className="hero__place">熊本大学 黒髪北キャンパス</p>
+          <button className="hero__cta" onClick={() => scrollTo('timetable')}>
+            スケジュールを見る →
+          </button>
+        </div>
       </section>
 
 
@@ -529,11 +541,11 @@ useEffect(() => {
       </div>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          テーマ
+          ワンタイムフォーエバー
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <a href="" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={thema} alt="テーマ" className="ad-banner__img" />
+          <img src={thema} alt="1TIME 4EVER" className="ad-banner__img" />
         </a>
       </div>
 
@@ -823,13 +835,11 @@ useEffect(() => {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           スタンプラリー
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="section stamp" id="stamp">
       <div className="ad-banner">
         <a href="" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
           <img src={stamp} alt="stamp" className="ad-banner__img" />
         </a>
       </div>
-      </section>
 
       {/* ── アクセス ── */}
       <section className="section access" id="access">
