@@ -197,12 +197,13 @@ const ANCHOR_AD = { img: chuoImg, alt: '中央自動車学校', url: 'https://ch
 export default function HomePage() {
   const [adVisible, setAdVisible] = useState(false)
   const [adShown, setAdShown] = useState(false)
-  const [surveyVisible, setSurveyVisible] = useState(
-    () => sessionStorage.getItem('surveyDone') !== 'true'
-  )
-  const [surveyDone, setSurveyDone] = useState(
-    () => sessionStorage.getItem('surveyDone') === 'true'
-  )
+  const [surveyTriggered, setSurveyTriggered] = useState(false)
+  const [surveyOpen, setSurveyOpen] = useState(false)
+  const [surveyDone, setSurveyDone] = useState(() => sessionStorage.getItem('surveyDone2') === 'true')
+  const [surveyType, setSurveyType] = useState(null)
+  const [surveyRating, setSurveyRating] = useState(0)
+  const [surveyComment, setSurveyComment] = useState('')
+  const [surveySent, setSurveySent] = useState(false)
   const [activeDay, setActiveDay] = useState('11/1')
   const [menuOpen, setMenuOpen] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
@@ -210,20 +211,61 @@ export default function HomePage() {
 
   const heroRef = useRef(null)
 
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw5g62IiNURRo69ArGdlHFA28ktmEWEixTV5LArZkD_cFcme8yeyxDOumO_qEmNWyio/exec'
-const handleSurvey = async (type) => {
-  setSurveyVisible(false)
+  // ── アンカー広告ドラッグ ──
+  const [adPos, setAdPos] = useState({ right: 20, bottom: 20 })
+  const [adClosed, setAdClosed] = useState(false)
+  const [isDraggingAd, setIsDraggingAd] = useState(false)
+  const adDragRef = useRef(null)
+  const hasDraggedRef = useRef(false)
+
+  const onAdPointerDown = (e) => {
+    e.preventDefault()
+    hasDraggedRef.current = false
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY
+    adDragRef.current = { startX: clientX, startY: clientY, startRight: adPos.right, startBottom: adPos.bottom }
+    setIsDraggingAd(true)
+  }
+
+  useEffect(() => {
+    if (!isDraggingAd) return
+    const onMove = (e) => {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY
+      const dx = clientX - adDragRef.current.startX
+      const dy = clientY - adDragRef.current.startY
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasDraggedRef.current = true
+      setAdPos({
+        right: Math.max(0, adDragRef.current.startRight - dx),
+        bottom: Math.max(0, adDragRef.current.startBottom - dy),
+      })
+    }
+    const onUp = () => setIsDraggingAd(false)
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
+    window.addEventListener('touchmove', onMove, { passive: false })
+    window.addEventListener('touchend', onUp)
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseup', onUp)
+      window.removeEventListener('touchmove', onMove)
+      window.removeEventListener('touchend', onUp)
+    }
+  }, [isDraggingAd])
+
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwtIeLx5X3U_pjhTT0VL_vPQ_Radn4argjWXeVfWtQy845vXB9CHQwBL1zh4hYGAwXp/exec'
+const handleSurvey = async () => {
+  if (!surveyType) return
+  setSurveySent(true)
   setSurveyDone(true)
-  sessionStorage.setItem('surveyDone', 'true')
-  const params = new URLSearchParams({ type })
+  sessionStorage.setItem('surveyDone2', 'true')
+  const params = new URLSearchParams({ type: surveyType, rating: surveyRating, comment: surveyComment })
   try {
-    await fetch(`${SHEET_URL}?${params}`, {
-      method: 'GET',
-      mode: 'no-cors',
-    })
+    await fetch(`${SHEET_URL}?${params}`, { method: 'GET', mode: 'no-cors' })
   } catch (e) {
     console.error('送信失敗', e)
   }
+  setTimeout(() => setSurveyOpen(false), 2500)
 }
 
   useEffect(() => {
@@ -256,6 +298,15 @@ useEffect(() => {
 
   return () => observer.disconnect()
 }, [adShown])
+
+useEffect(() => {
+  if (surveyDone || surveyTriggered) return
+  const onScroll = () => {
+    if (window.scrollY > 400) setSurveyTriggered(true)
+  }
+  window.addEventListener('scroll', onScroll, { passive: true })
+  return () => window.removeEventListener('scroll', onScroll)
+}, [surveyDone, surveyTriggered])
 
   /* タイムテーブル吹き出し：外側クリック・Esc・リサイズ・日付切替で閉じる */
   useEffect(() => { setBubble(null) }, [activeDay])
@@ -321,35 +372,44 @@ useEffect(() => {
   return (
     <div className="site">
 
-        {/* ── 来場者アンケート ── */}
-    {surveyVisible && (
-      <div className="sp-overlay">
-        <div className="sp-overlay__box">
-          <h2 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>来場者アンケート</h2>
-          <p style={{ fontSize: '0.85rem', color: '#888', marginBottom: '1.2rem' }}>
-            あなたはどちらですか？
-          </p>
-          {[
-            { label: ' 熊本大学の学生様', value: '熊大生' },
-            { label: ' 他大学の学生様',   value: '他大学生' },
-            { label: ' 一般来場者様',     value: '外部来場者' },
-          ].map(({ label, value }) => (
-            <button
-              key={value}
-              onClick={() => handleSurvey(value)}
-              style={{
-                display: 'block', width: '100%', margin: '0.4rem 0',
-                padding: '0.7rem', borderRadius: '8px',
-                border: '1px solid #444', background: '#1a1a2e',
-                color: '#fff', cursor: 'pointer', fontSize: '0.95rem'
-              }}
-            >
-              {label}
-            </button>
-          ))}
+        {/* ── アンケート吹き出し ── */}
+      {surveyTriggered && !surveyDone && (
+        <div className={`survey-bubble ${surveyOpen ? 'is-open' : ''}`}>
+          <button className="survey-bubble__tab" onClick={() => setSurveyOpen(v => !v)}>
+            アンケートにご協力ください {surveyOpen ? '▲' : '▼'}
+          </button>
+          {surveyOpen && (
+            <div className="survey-bubble__panel">
+              {surveySent ? (
+                <p className="survey-bubble__thanks">ご回答ありがとうございます！</p>
+              ) : (
+                <>
+                  <p className="survey-bubble__label">あなたは？</p>
+                  <div className="survey-type">
+                    {['熊大生', '他大学生', '外部来場者'].map(v => (
+                      <button key={v} className={`survey-type__btn ${surveyType === v ? 'active' : ''}`} onClick={() => setSurveyType(v)}>{v}</button>
+                    ))}
+                  </div>
+                  <p className="survey-bubble__label">満足度</p>
+                  <div className="survey-rating">
+                    {[1, 2, 3, 4, 5].map(n => (
+                      <button key={n} className={`survey-rating__star ${n <= surveyRating ? 'active' : ''}`} onClick={() => setSurveyRating(n)}>★</button>
+                    ))}
+                  </div>
+                  <p className="survey-bubble__label">感想（任意）</p>
+                  <textarea
+                    className="survey-textarea"
+                    placeholder="ご自由にどうぞ"
+                    value={surveyComment}
+                    onChange={e => setSurveyComment(e.target.value)}
+                  />
+                  <button className="survey-submit" onClick={handleSurvey} disabled={!surveyType}>送信する</button>
+                </>
+              )}
+            </div>
+          )}
         </div>
-      </div>
-    )}
+      )}
 
       {/* ── インタースティシャル広告 ── */}
       {adVisible && (
@@ -947,18 +1007,33 @@ useEffect(() => {
         </div>
       )}
 
-      {/* ── アンカー広告（画面右下固定） ── */}
-      <div className="anchor-ad">
-        <span className="anchor-ad__label">広告</span>
-        <a
-          href={ANCHOR_AD.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="anchor-ad__link"
+      {/* ── アンカー広告（ドラッグ可能・閉じる） ── */}
+      {!adClosed && (
+        <div
+          className={`anchor-ad ${isDraggingAd ? 'is-dragging' : ''}`}
+          style={{ right: adPos.right, bottom: adPos.bottom }}
+          onMouseDown={onAdPointerDown}
+          onTouchStart={onAdPointerDown}
         >
-          <img src={ANCHOR_AD.img} alt={ANCHOR_AD.alt} className="anchor-ad__img" />
-        </a>
-      </div>
+          <button
+            className="anchor-ad__close"
+            onClick={e => { e.stopPropagation(); setAdClosed(true) }}
+            onMouseDown={e => e.stopPropagation()}
+            aria-label="閉じる"
+          >✕</button>
+          <span className="anchor-ad__label">広告</span>
+          <a
+            href={ANCHOR_AD.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="anchor-ad__link"
+            onClick={e => hasDraggedRef.current && e.preventDefault()}
+            draggable={false}
+          >
+            <img src={ANCHOR_AD.img} alt={ANCHOR_AD.alt} className="anchor-ad__img" draggable={false} />
+          </a>
+        </div>
+      )}
 
     </div>
   )

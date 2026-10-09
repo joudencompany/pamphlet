@@ -2,24 +2,119 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── 来場者アンケート（オーバーレイ） ── */
-.sp-overlay {
-  position: fixed; inset: 0; z-index: 9999;
-  background: rgba(0, 0, 0, 0.75);
-  display: flex; align-items: center; justify-content: center;
-  animation: fadeIn 0.3s ease;
+/* ── アンケート吹き出し ── */
+.survey-bubble {
+  position: fixed;
+  top: calc(var(--nav-h) + 12px);
+  right: 16px;
+  z-index: 280;
 }
-.sp-overlay__box {
-  position: relative;
-  max-width: min(420px, 90vw);
-  max-height: 90vh;
-  overflow: hidden;
-  background: var(--navy);
+.survey-bubble.is-open {
+  z-index: 310;
+}
+.survey-bubble__tab {
+  background: var(--purple);
   color: #fff;
-  border-radius: 12px;
-  padding: 2rem 1.75rem;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(108,63,199,0.45);
+  white-space: nowrap;
+  transition: background 0.2s;
 }
+.survey-bubble__tab:hover { background: #5530a8; }
+.survey-bubble__panel {
+  margin-top: 8px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem 1.2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  width: 280px;
+  max-width: calc(100vw - 32px);
+  animation: fadeIn 0.2s ease;
+}
+.survey-bubble__label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin: 0.7rem 0 0.35rem;
+}
+.survey-bubble__label:first-child { margin-top: 0; }
+.survey-bubble__thanks {
+  text-align: center;
+  font-weight: 700;
+  color: var(--purple);
+  padding: 0.75rem 0;
+  font-size: 0.95rem;
+}
+.survey-type {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.survey-type__btn {
+  padding: 0.32rem 0.75rem;
+  border: 1.5px solid var(--purple);
+  border-radius: 999px;
+  background: none;
+  color: var(--purple);
+  font-family: var(--font-main);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.survey-type__btn.active,
+.survey-type__btn:hover { background: var(--purple); color: #fff; }
+.survey-rating {
+  display: flex;
+  gap: 0.2rem;
+}
+.survey-rating__star {
+  background: none;
+  border: none;
+  font-size: 1.55rem;
+  color: #ddd;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.12s;
+}
+.survey-rating__star.active,
+.survey-rating__star:hover { color: var(--yellow); }
+.survey-textarea {
+  width: 100%;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font-family: var(--font-main);
+  font-size: 0.83rem;
+  resize: vertical;
+  min-height: 68px;
+  box-sizing: border-box;
+  color: var(--navy);
+}
+.survey-textarea:focus { outline: none; border-color: var(--purple); }
+.survey-submit {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.6rem;
+  background: var(--purple);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.survey-submit:hover { background: #5530a8; }
+.survey-submit:disabled { background: #ccc; cursor: not-allowed; }
 
 /* ── インタースティシャル広告 ── */
 .ad-interstitial {
@@ -58,17 +153,22 @@
   --red:     #e03c3c;
   --font-main: 'Zen Maru Gothic', sans-serif;
   --font-deco: 'Kaisei Decol', serif;
-  --max-w: 1080px;
+  --max-w: 580px;
   --nav-h: 60px;
 }
 
 html { scroll-behavior: smooth; }
+.site {
+  max-width: 720px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
 body {
   font-family: var(--font-main);
   background: var(--cream);
   color: var(--navy);
   line-height: 1.8;
-  font-size: 15px;
+  font-size: 9px;
 }
 
 /* ── ナビ ── */
@@ -501,7 +601,7 @@ body {
 }
 .ad-banner__link:hover .ad-banner__img { opacity: 0.9; }
 
-/* ── アンカー広告（右下固定） ── */
+/* ── アンカー広告（右下固定・ドラッグ可能） ── */
 .anchor-ad {
   position: fixed;
   bottom: 20px;
@@ -511,12 +611,35 @@ body {
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0,0,0,0.25);
   background: #fff;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition: box-shadow 0.2s ease;
 }
 .anchor-ad:hover {
-  transform: translateY(-3px);
   box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.anchor-ad.is-dragging {
+  cursor: grabbing;
+  opacity: 0.92;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  transition: none;
+}
+.anchor-ad__close {
+  position: absolute;
+  top: 5px; right: 6px;
+  z-index: 2;
+  width: 22px; height: 22px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.anchor-ad__close:hover { background: rgba(0,0,0,0.85); }
 .anchor-ad__label {
   position: absolute;
   top: 5px; left: 8px;
@@ -658,6 +781,20 @@ body {
 }
 
 /* ── レスポンシブ ── */
+/* 広い画面：アンカー広告を大きく */
+@media (min-width: 1100px) {
+  .anchor-ad__img {
+    height: 320px;
+    max-width: 280px;
+  }
+}
+@media (min-width: 1400px) {
+  .anchor-ad__img {
+    height: 400px;
+    max-width: 360px;
+  }
+}
+
 /* スマホでは少し小さく */
 @media (max-width: 480px) {
   .anchor-ad {
@@ -671,6 +808,8 @@ body {
 }
 
 @media (max-width: 768px) {
+  body { font-size: 15px; }
+  .site { max-width: 100%; }
   .circles__cta {
     margin: 1.5rem 0 4rem;
   }
