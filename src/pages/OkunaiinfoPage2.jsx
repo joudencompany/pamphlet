@@ -7,7 +7,7 @@ import tempokunaiImg from '../assetsokunai/tempokunai.png'
 
 /* ── 番号付き画像を自動読み込み ── */
 const okunaiPhotoModules = import.meta.glob(
-  '../assetsokunai/*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}',
+  '../assetsokunai2/*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}',
   { eager: true, import: 'default' }
 )
 
