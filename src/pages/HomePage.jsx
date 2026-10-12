@@ -62,6 +62,7 @@ import jazzDay3Img from '../assets/jazz-day3.png'
 import candleDay3Img from '../assets/candle-day3.png'
 import finaleDay3Img from '../assets/finale-day3.png'
 import benngosi from '../assets/benngosi.png'
+import AdvertisementSection from '../components/AdvertisementSection'
 
 /* ── データ ── */
 const DAYS = [
@@ -1170,6 +1171,10 @@ useEffect(() => {
           <img src={stamp} alt="stamp" className="ad-banner__img" />
         </a>
       </div>
+
+{/* ── ご協賛広告一覧 ── */}
+<AdvertisementSection />
+
 {/* ── アクセス ── */}
 <section className="section access" id="access">
   <div className="container">
