@@ -185,7 +185,7 @@ const TIMETABLE = {
     stage: 'その他の場所',
     place: '武夫原グラウンド',
     comment: '熊大生8名が腕相撲・ボディビル・綱引き・ローション相撲・障害物競争の5種目で競い合う競技イベントです。筋力と技を競い、総合得点で優勝者を決定します！',
-    imgs: [kinnniku, muscleFestivalImg],
+    imgs: [kinnniku],
   },
 ],
 
