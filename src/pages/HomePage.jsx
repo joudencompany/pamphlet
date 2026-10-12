@@ -50,6 +50,7 @@ import rockDay2Img from '../assets/rock-day2.png'
 import acoDay2Img from '../assets/aco-day2.png'
 import philDay2Img from '../assets/phil-day2.png'
 import kumakoreDay2Img from '../assets/kumakore-day2.png'
+import introDonImg from '../assets/intro-don.png'
 
 /* ── データ ── */
 const DAYS = [
