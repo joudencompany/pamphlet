@@ -417,97 +417,113 @@ useEffect(() => {
         </a>
       </div>
 
-      {/* ── 委員長挨拶 ── */}
-      <section className="section greeting" id="greeting">
-        <div className="container">
-          <div className="section-label">Greeting</div>
-          <h2 className="section-title">委員長挨拶</h2>
-          <div className="greeting__card" id="greet-card-chair">
-            <div className="greeting__avatar">委員長</div>
-            <div className="greeting__body">
-              <p className="greeting__name">委員長 荒巻 遥平</p>
-              <p>
-                この度は第十五回紫熊祭公式パンフレットをご覧いただき、誠にありがとうございます。紫熊祭は、学生のみならず、地域の皆様にも愛される、熊本大学最大の祭典です。
-              </p>
-              <div className={`greeting__more ${greetOpen.chair ? 'open' : ''}`} id="greet-chair">
-              <div>
-              <p>
-                昨年に続き、本年も無事に開催の運びとなりましたことを、心より喜ばしく思います。これもひとえに、日頃より本学を支えてくださる教職員や学生の皆様、OB・OGの皆様、そして地域住民や企業の皆様の、温かいご理解とご協力の賜物でございます。紫熊祭実行委員一同、深く感謝申し上げます。
-              </p>
-              <p>
-                第十五回を迎える「紫熊祭」の名には、熊本大学のシンボルカラーである「紫」と「総和」を表す数学記号であるΣの意味が込められています。
-              </p>
-              <p>
-                本年度の紫熊祭のテーマは<strong>「1TIME 4EVER」</strong>です！「1TIME（=One Time）」は、一度きりの特別な瞬間を。「4EVER（=Forever）」は、永遠の思い出となるような体験をそれぞれ意味しています。このテーマを掲げ、第十五回紫熊祭が、皆様の記憶に永遠に刻まれる史上最高の盛り上がりとなることを目指しております。
-              </p>
-              <p>
-                開催に至るまでには多くの困難もございましたが、約400名の実行委員が一丸となって準備に邁進してまいりました。来場者様に一つでも多くの思い出や感動を与えられるよう、私たち実行委員をはじめ各部活動・サークルの企画者様による野外ステージでのハイクオリティなパフォーマンスや、テント・屋内での出店や展示物の数々、そして皆様に参加していただく各種企画といった、数多くの催し物をご用意しております！
-              </p>
-              <p>
-                3日間これらを心ゆくまでお楽しみいただき、皆様と共に、感動あふれる紫熊祭を創り上げられましたら幸いです。皆様の笑顔が、私たちの何よりの喜びです。この3日間が、皆様にとって特別な思い出となることをお約束いたします。
-              </p>
-              <p>
-                最高の紫熊祭を、どうぞお楽しみください！
-              </p>
-              </div>
-              </div>
-              <button
-                type="button"
-                className="greeting__toggle"
-                aria-expanded={greetOpen.chair}
-                aria-controls="greet-chair"
-                onClick={() => toggleGreet('chair')}
-              >
-                {greetOpen.chair ? '閉じる ▲' : '続きを読む ▼'}
-              </button>
-            </div>
-          </div>
+{/* ── 委員長挨拶 ── */}
+<section className="section greeting" id="greeting">
+  <div className="container">
+    <div className="section-label">Greeting</div>
+    <h2 className="section-title">委員長挨拶</h2>
 
-          <div className="greeting__card" id="greet-card-vice">
-            <div className="greeting__avatar">副委員長</div>
-            <div className="greeting__body">
-              <p className="greeting__name">副委員長 福嶋 楓・西田 周平</p>
-              <p>
-                この度は紫熊祭に足をお運びいただき、誠にありがとうございます。実行委員一同、感謝と、皆様と共に紫熊祭を開催できることに喜びを感じております。
-              </p>
-              <div className={`greeting__more ${greetOpen.vice ? 'open' : ''}`} id="greet-vice">
-              <div>
-              <p>
-                昨年度の第十四回紫熊祭は、テーマ「13anquet［banquet］」のもと、会場が一丸となって「宴会」のように大いに盛り上がり、お祭りの名にふさわしい紫熊祭となりました。
-              </p>
-              <p>
-                本年度、第十五回紫熊祭のテーマは<strong>「1TIME 4EVER」</strong>です！「一度きりの瞬間が永遠になる」というコンセプトのもとに、紫熊祭での思い出が、今後も皆様の記憶の中に残り続けるような、昨年度以上に熱く盛り上がる紫熊祭を開催いたします！
-              </p>
-              <p>
-                本年度の紫熊祭も、来場者の皆様に楽しんでいただけますよう、様々な企画をご用意しています。テント企画では、各部活動・サークルの方々が試行錯誤して作り上げたグルメやドリンクを販売しています。昨年度と比べ、今年度参加される部活動・サークル団体数も増え、どれも見逃せないものばかりです。
-              </p>
-              <p>
-                野外ステージでは、各部活動・サークルの方々による、バンド演奏やダンス・歌の披露といった素敵なパフォーマンスに加え、紫熊祭実行委員会による、盛り上がること間違いなしの企画の数々を実施してまいります。さらに今年度も、豪華ゲストの方々が、会場をより一層沸かせに紫熊祭に来てくださりました！
-              </p>
-              <p>
-                また全学教育棟や学生会館内でも、ボードゲームやお化け屋敷などの来場者様が実際に参加可能な企画や、文化系サークルの作品の展示など各部活動・サークルの皆さんや実行委員による、様々な企画をご用意しております。ぜひ足をお運びください！
-              </p>
-              <p>
-                最後になりますが、第十五回紫熊祭を開催するにあたってご尽力を賜りました、熊本大学関係者・学生の皆様、OB・OGの皆様、地域住民の皆様、そして企業様、本当にありがとうございました。紫熊祭実行委員会を代表して厚く御礼申し上げます。
-              </p>
-              <p>
-                本日が皆様にとって素敵な日になりますように、実行委員一同心からお祈り申し上げます。
-              </p>
-              </div>
-              </div>
-              <button
-                type="button"
-                className="greeting__toggle"
-                aria-expanded={greetOpen.vice}
-                aria-controls="greet-vice"
-                onClick={() => toggleGreet('vice')}
-              >
-                {greetOpen.vice ? '閉じる ▲' : '続きを読む ▼'}
-              </button>
-            </div>
+    <div className="greeting__card" id="greet-card-chair">
+      <div className="greeting__avatar">委員長</div>
+      <div className="greeting__body">
+        <p className="greeting__name">委員長 蓮田 彪華</p>
+        <p>
+          この度は、第十五回紫熊祭公式パンフレットをご覧いただき、誠にありがとうございます。
+          熊本大学最大の祭典である紫熊祭を、本年も無事に開催できますことを心より嬉しく思います。
+        </p>
+
+        <div
+          className={`greeting__more ${greetOpen.chair ? 'open' : ''}`}
+          id="greet-chair"
+        >
+          <div>
+            <p>
+              これもひとえに、学生や教職員、OB・OG、そして地域住民やご協賛企業の皆様の温かいご支援の賜物であり、実行委員一同、深く感謝申し上げます。
+            </p>
+            <p>
+              第十五回を迎える「紫熊祭」の名には、本学のシンボルカラー「紫」と、総和を表す数学記号「Σ（シグマ）」の意味が込められています。
+            </p>
+            <p>
+              今年のテーマは<strong>「Xceed the Vision」</strong>です。
+              時代に合わせて変化を続ける中で、「これまでの紫熊祭を超えていく」という強い決意を込めました。
+              この目標に向け、約400名の実行委員が幾多の困難を乗り越え、一丸となって準備に邁進してまいりました。
+            </p>
+            <p>
+              皆様に最高の感動をお届けできるよう、野外ステージでの熱いパフォーマンス、多彩なテント出店や屋内展示、そして誰もが楽しめる特別企画など、数多くの催しをご用意しております。
+            </p>
+            <p>
+              皆様の笑顔が私たちの何よりの喜びです。
+              この3日間が皆様の記憶に永遠に刻まれる特別な思い出となるよう、共に感動あふれる祭典を創り上げられたら幸いです。
+            </p>
+            <p>
+              史上最高の紫熊祭を、どうぞ心ゆくまでお楽しみください！
+            </p>
           </div>
         </div>
-      </section>
+
+        <button
+          type="button"
+          className="greeting__toggle"
+          aria-expanded={greetOpen.chair}
+          aria-controls="greet-chair"
+          onClick={() => toggleGreet('chair')}
+        >
+          {greetOpen.chair ? '閉じる ▲' : '続きを読む ▼'}
+        </button>
+      </div>
+    </div>
+
+    <div className="greeting__card" id="greet-card-vice">
+      <div className="greeting__avatar">副委員長</div>
+      <div className="greeting__body">
+        <p className="greeting__name">副委員長 馬場 康輔・楢崎 史奈</p>
+        <p>
+          この度は、紫熊祭に足をお運びいただき、誠にありがとうございます。
+          今年度も紫熊祭を開催し、皆様をお迎えできますことを、実行委員一同、心より嬉しく思っております。
+        </p>
+
+        <div
+          className={`greeting__more ${greetOpen.vice ? 'open' : ''}`}
+          id="greet-vice"
+        >
+          <div>
+            <p>
+              第十五回紫熊祭のテーマは
+              <strong>「Xceed the Vision ―想像を超えていけ―」</strong>です。
+              開催にあたり、様々な壁にぶつかりながらも、一人一人の想いやアイデアを力に変え、思い描いたもののさらに先へ進みたいという願いを込めています。
+            </p>
+            <p>
+              私たちだけでなく、ご来場いただいた皆様にも、想像を超える出会いや発見を楽しんでいただきたいと考え、心を込めて準備してまいりました。
+            </p>
+            <p>
+              テント企画では、各部活動やサークルが心を込めて準備したグルメやドリンクを、特設ステージでは様々なパフォーマンスや超豪華ゲストによるお笑いステージをお楽しみいただけます。
+            </p>
+            <p>
+              また、屋内にもお化け屋敷やフォトスポット、各団体による企画や展示など、様々な催しをご用意しておりますので、ぜひお楽しみください。
+            </p>
+            <p>
+              最後になりましたが、本祭の開催にあたり、ご支援・ご協力を賜りました全ての皆様に、心より御礼申し上げます。
+            </p>
+            <p>
+              皆様の記憶に残る素敵な一日となりますよう、心から願っております。
+              どうぞごゆっくりお楽しみください！
+            </p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className="greeting__toggle"
+          aria-expanded={greetOpen.vice}
+          aria-controls="greet-vice"
+          onClick={() => toggleGreet('vice')}
+        >
+          {greetOpen.vice ? '閉じる ▲' : '続きを読む ▼'}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：生協
