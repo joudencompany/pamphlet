@@ -1,114 +1,173 @@
 import { Link } from 'react-router-dom'
 import '../App.css'
-import okunaimapImg2_1 from '../assetsokunai2/okunaimap2-1.png'
-import okunaimapImg2_2 from '../assetsokunai2/okunaimap2-2.png'
-import okunaimapImg2_3 from '../assetsokunai2/okunaimap2-3.png'
-import tempokunaiImg2 from '../assetsokunai2/tempokunai2.png'
+import okunaimap1F from '../assetsokunai2/okunaimap2-1.png'
+import okunaimap2F from '../assetsokunai2/okunaimap2-2.png'
+import okunaimap3F from '../assetsokunai2/okunaimap2-3.png'
+import tempokunaiImg from '../assetsokunai/tempokunai.png'
 
-/* ── 屋内企画出店データ ── */
+/* ── 番号付き画像を自動読み込み ── */
+const okunaiPhotoModules = import.meta.glob(
+  '../assetsokunai/*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}',
+  { eager: true, import: 'default' }
+)
+
+const OKUNAI_PHOTOS = Object.fromEntries(
+  Object.entries(okunaiPhotoModules).flatMap(([path, url]) => {
+    const match = path.match(/\/(\d+)\.(?:png|jpe?g|webp)$/i)
+    return match ? [[Number(match[1]), url]] : []
+  })
+)
+
+const getOkunaiPhoto = (no) => OKUNAI_PHOTOS[no] ?? tempokunaiImg
+
+/* ── 全学教育棟：No.5〜24 ── */
 const TENTS = [
   {
     no: 5,
-    name: '集え！MEZA 熊ロワイヤル 〜 RiSing Evolution 〜',
+    floor: 1,
+    name: 'MEZA 熊 Champions ～最強の MEGA 使いは誰だ～',
     item: 'ポケモンサークル めざめるパワー熊本',
-    desc: 'ポケモンサークル「めざ熊」です！ ゲーム（シングルバトルやダブルバトル）やカード、クイズでポケモン好き同士交流できます！ ポケモンの交換も行います！',
+    desc: 'ポケモンチャンピオンズ・カードの対戦会を行います！ポケモンを通じて遊びましょう！ぜひお越しください！',
   },
   {
     no: 6,
-    name: '和美咲日',
-    item: '美術部',
-    desc: '美術部です！基本、各々で好きなように描いてます。雰囲気は和気藹々としていて紫熊祭では作品展示やポストカードも販売しています。',
+    floor: 1,
+    name: '水中写真展',
+    item: 'ダイビング部',
+    desc: 'ダイビング部です！私たちが実際に海に潜って撮影した、リアルな水中世界をぜひ見に来てください！',
   },
   {
     no: 7,
-    name: '一祭限りの映画館',
+    floor: 1,
+    name: '映画研究部',
     item: '熊本大学映画研究部',
-    desc: '私たちの作った映画やおすすめ映画の紹介などを行っています！ この期間にしか開かれない映画館へぜひ一度お越しください！',
+    desc: '映画研究部です！自主制作映画の上映・小道具や機材の展示をこなっています！お気軽にお越しください♪',
   },
   {
     no: 8,
-    name: 'お笑いライブ',
-    item: '熊本大学お笑いサークル',
-    desc: '漫才やコントなど、ジャンルを問わずにお笑いに関連したライブを行います。 ぜひいらっしゃってください。',
+    floor: 2,
+    name: '建築展',
+    item: '建築展',
+    desc: '今年は「ぼくらの知らない地球展」というテーマで建築に関する展示を行います！皆さんぜひ来てください！',
   },
   {
     no: 9,
-    name: '子宮頸がんやワクチンの啓発',
-    item: 'from K',
-    desc: '子宮頸がん検診やワクチンの啓発活動を行うとともに、楽しい企画もご用意しています！',
+    floor: 2,
+    name: 'お化け屋敷',
+    item: '企画局',
+    desc: '連絡を絶った先輩の足取りを追い、都会の廃屋へ。五感を刺激する恐怖の空間で、制限時間内に「遺留品」を捜索せよ！平穏な日常をぶち壊す最恐の体験。あなたは無事に生還し、サークルの謎を解けるか？',
   },
   {
     no: 10,
-    name: '熊大ウイルス研究者の会',
-    item: '熊大ウイルス研究者の会',
-    desc: '熊本大学内で行われているウイルス学／免疫学の研究を現役の研究者が紹介します、実験体験とラボツアー情報も！',
+    floor: 2,
+    name: 'ようこそ、みんなの美術部へ！',
+    item: '美術部',
+    desc: '私達、美術部では部員が描いたイラストやグッズを展示・販売しています！是非来てください！',
   },
   {
     no: 11,
-    name: 'ボードゲーム・謎解きゲーム体験',
-    item: '熊大ボードゲーム・TRPGサークル LION',
-    desc: '様々なボードゲームや、サークル員たちによる謎解きゲームを体験できます！お一人でも大人数でも、ぜひ遊びに来てください！',
+    floor: 2,
+    name: '漫研展覧会2026 秋',
+    item: '漫画研究会こんぺいとう',
+    desc: 'C201、C202教室にて作品の販売と展示を行っています！ぜひ足を運んでください！！',
   },
   {
     no: 12,
-    name: '早押しクイズ in 紫熊祭 2026',
-    item: 'クイズ研究会',
-    desc: 'クイズ研究会です！早押しボタンを使ってクイズをしてみませんか？楽しい様々な企画があるので是非来てください！',
+    floor: 2,
+    name: 'お笑いライブ',
+    item: 'お笑いサークルザブトゥーン',
+    desc: 'お笑いサークル zabtoon です 全学教養棟C教室でライブをしています！是非来てみて！',
   },
   {
     no: 13,
-    name: 'こんぺいとう展示会',
-    item: 'こんぺいとう',
-    desc: '缶バッジやアクリルキーホルダーの販売や作品の展示を行います。ぜひ足を運んでください！！',
+    floor: 2,
+    name: 'ユースカフェ',
+    item: 'くまぴあ',
+    desc: 'くまぴあです！月経・性感染症・性同意等をテーマに若者向けの性の相談室「ユースカフェ」を開催します。',
   },
   {
     no: 14,
-    name: '屋内企画',
-    item: '書道部',
-    desc: '熊大書道部です！私たちは作品の展示と書道体験を実施しています！実際に見て、体験して書道を楽しんでみてください！',
+    floor: 2,
+    name: '紫熊クイズ杯',
+    item: '熊本大学クイズ研究会',
+    desc: '部員オリジナルの問題で大会開催！個人企画も満載です！初めての方もぜひご参加ください。',
   },
   {
     no: 15,
-    name: 'レイちゃんの怨霊 〜消エタ生徒ト廃校ノ噂〜',
-    item: '紫熊企画',
-    desc: '転校生レイちゃんが姿を消した日から彼女をいじめた生徒たちが次々と消えていった。廃校となった今もレイちゃんは宝物を探し続けている―― レイちゃんの宝物を見つけ出して、彼女を成仏させろ！',
+    floor: 2,
+    name: '書道体験・展示',
+    item: '書道部',
+    desc: '書道部です！書道体験と書道展示を行います。誰でも参加可能です！',
   },
   {
     no: 16,
-    name: 'フォトスポット',
-    item: '紫熊企画',
-    desc: '全学教育棟のC204教室で、3日間フォトスポットを展示します。友達や家族、恋人や好きな人…などなど、一緒に思い出を残したい人と、ここでしか撮れないSNS映え写真を撮りに来てみませんか？！ご来場お待ちしております！',
+    floor: 2,
+    name: 'ハンドメイド作品の販売',
+    item: 'もこもこニット部',
+    desc: '編み物サークルのもこもこニット部です！編み物をはじめとしたハンドメイド作品の販売をします！',
+  },
+  {
+    no: 17,
+    floor: 2,
+    name: '子宮頸がんやワクチンの啓発',
+    item: 'fromK',
+    desc: '子宮頸がん検診やワクチンの啓発活動を行うとともに楽しい企画もご用意しています！',
   },
   {
     no: 18,
-    name: 'エイズについて知ろう！',
-    item: 'くまぴあ',
-    desc: 'みなさんこんにちは！くまぴあです🐻 私たちと一緒に HIV/AIDSや性感染症について楽しく学びましょう✨🎗️',
+    floor: 2,
+    name: 'フォトスポット',
+    item: '企画局',
+    desc: '思い出を写真に残せるフォトスポットをご用意しました！友達や家族、大切な人と一緒に、学園祭ならではの特別な一枚を撮影しませんか？ぜひお気軽にお立ち寄りいただき、素敵な思い出をお持ち帰りください。',
   },
   {
     no: 19,
-    name: '熊大写真部写真展',
-    item: '熊大写真部',
-    desc: '写真部ではテーマに沿った作品展示を行うほか、部員が撮影した写真のポストカードなども販売します。是非お立ち寄りください。',
+    floor: 3,
+    name: '熊大ウイルス研究展示',
+    item: 'ウイルス研究者の会',
+    desc: '熊本大学内で行われているウイルス・免疫の研究を現役の研究者が紹介します、実験体験とラボツアー情報も！',
   },
   {
     no: 20,
+    floor: 3,
+    name: 'ボードゲーム体験会',
+    item: '熊本ボードゲーム・TRPG サークル',
+    desc: '私たちボードゲームサークルは、ボードゲームの体験会を行っております。ぜひ遊びにきてください。',
+  },
+  {
+    no: 21,
+    floor: 3,
+    name: '東方熊霊殿 例大祭2026',
+    item: '東方特撮部',
+    desc: 'こんにちは！東方熊霊殿です。東方Projectのボードゲーム、書籍や原作ゲームを遊べます！是非来てください！',
+  },
+  {
+    no: 22,
+    floor: 3,
     name: 'マジックショー',
     item: 'シュレディンガーの猫',
     desc: '私たちシュレディンガーの猫です！楽しいマジックをお届けします！',
   },
   {
-    no: 21,
-    name: 'プラネタリウム',
-    item: '天文部',
-    desc: '熊大天文部はグッズ販売とプラネタリウムをします。部員たちが春夏秋冬の夜空を紹介するので、ぜひ遊びに来てください！',
+    no: 23,
+    floor: 3,
+    name: '熊本大学 天文部',
+    item: '熊本大学 天文部',
+    desc: '熊本大学天文部では、季節ごとのプラネタリウム解説や物品販売を行っています。ぜひ遊びに来てください！',
   },
   {
-    no: 22,
-    name: '東方熊霊殿 例大祭',
-    item: '東方熊霊殿',
-    desc: '', // メッセージ未着 → 届き次第追記
+    no: 24,
+    floor: 3,
+    name: '写真展示',
+    item: '写真部',
+    desc: 'こんにちは！写真部です 写真部では部員が撮った写真を様々なテーマで展示します！ぜひ見に来てください！',
   },
+]
+
+const FLOORS = [
+  { floor: 1, map: okunaimap1F },
+  { floor: 2, map: okunaimap2F },
+  { floor: 3, map: okunaimap3F },
 ]
 
 export default function OkunaiInfoPage2() {
@@ -122,48 +181,50 @@ export default function OkunaiInfoPage2() {
 
       <section className="section" style={{ paddingTop: '6rem' }}>
         <div className="container">
-          <Link to="/" className="back-link">← 戻る</Link>          
+          <Link to="/" className="back-link">
+            ← 戻る
+          </Link>
 
-          <div className="section-label">Okunai Booths</div>
+          <div className="section-label">Indoor Events</div>
           <h2 className="section-title">屋内企画ー全学教育棟ー</h2>
 
-          <div className="circles__map">
-            <img
-              src={okunaimapImg2_1}
-              alt="屋内企画全学教育棟マップ"
-              className="circles__map-img"
-            />
-          </div>
-                    <div className="circles__map">
-            <img
-              src={okunaimapImg2_2}
-              alt="屋内企画全学教育棟マップ"
-              className="circles__map-img"
-            />
-          </div>
-                    <div className="circles__map">
-            <img
-              src={okunaimapImg2_3}
-              alt="屋内企画全学教育棟マップ"
-              className="circles__map-img"
-            />
-          </div>
+          {FLOORS.map(({ floor, map }) => (
+            <div key={floor} style={{ marginBottom: '3rem' }}>
+              <h3 className="circles__subtitle">
+                全学教育棟 {floor}F
+              </h3>
 
-          <div className="tent-list">
-            {TENTS.map(t => (
-              <div className="tent-item" key={t.no}>
-                <div className="tent-item__info">
-                  <span className="tent-item__no">No.{t.no}</span>
-                  <h3 className="tent-item__name">{t.name}</h3>
-                  <p className="tent-item__food">{t.item}</p>
-                  <p className="tent-item__desc">{t.desc}</p>
-                </div>
-                <div className="tent-item__photo">
-                  <img src={tempokunaiImg2} alt={t.name} />
-                </div>
+              <div className="circles__map">
+                <img
+                  src={map}
+                  alt={`屋内企画全学教育棟${floor}階マップ`}
+                  className="circles__map-img"
+                  loading="lazy"
+                />
               </div>
-            ))}
-          </div>
+
+              <div className="tent-list">
+                {TENTS.filter(t => t.floor === floor).map(t => (
+                  <div className="tent-item" key={t.no}>
+                    <div className="tent-item__info">
+                      <span className="tent-item__no">No.{t.no}</span>
+                      <h3 className="tent-item__name">{t.name}</h3>
+                      <p className="tent-item__food">{t.item}</p>
+                      <p className="tent-item__desc">{t.desc}</p>
+                    </div>
+
+                    <div className="tent-item__photo">
+                      <img
+                        src={getOkunaiPhoto(t.no)}
+                        alt={t.name}
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
 
           <div className="circles__cta">
             <Link to="/" className="circles__btn">
@@ -176,7 +237,9 @@ export default function OkunaiInfoPage2() {
       <footer className="footer">
         <div className="footer__sigma">Σ</div>
         <p className="footer__title">第15回 紫熊祭実行委員会</p>
-        <p className="footer__copy">© 2026 紫熊祭実行委員会 All rights reserved.</p>
+        <p className="footer__copy">
+          © 2026 紫熊祭実行委員会 All rights reserved.
+        </p>
       </footer>
     </div>
   )

@@ -9,9 +9,7 @@ import seikyou from '../assets/seikyou.png'
 import konntakuto from '../assets/konntakuto.png'
 import ouesu from '../assets/ouesu.png'
 import campusmap from '../assets/campusmap.jpg'
-import KMB from '../assets/KMB.png'
 import kyouseisika from '../assets/kyouseisika.png'
-import shuukatusei from '../assets/shuukatusei.png'
 import TKU1 from '../assets/TKU1.png'
 import TKU2 from '../assets/TKU2.png'
 import tentmapImg from '../assetstent/tentmap.png'
@@ -39,6 +37,15 @@ import hougaku from '../assets/hougaku.png'
 import chairImg from '../assets/chair.jpg'
 import viceBabaImg from '../assets/vice-baba.jpg'
 import viceNarasakiImg from '../assets/vice-narasaki.jpg'
+import meijikmb from '../assets/meijikmb.png'
+import pikusuraunnji from '../assets/pi-kusuraunnji.png'
+import konntesuto from '../assets/kumadaikonntesuto.png'
+import konntesuto2 from '../assets/kumadaikonntesuto2.png'
+import mainabi from '../assets/mainabi.png'
+import triumph from '../assets/triumph.png'
+import kaikatu from '../assets/kaikatu.png'
+
+
 /* ── データ ── */
 const DAYS = [
   { label: '11/1', day: '日', color: '#e03c3c' },
@@ -48,16 +55,34 @@ const DAYS = [
 const TIMETABLE = {
   '11/1': [ // 1日目
     { time: '10:00', endTime: '11:00', name: 'オープニング', stage: 'メインステージ' },
-    { time: '11:15', endTime: '12:30', name: '熊大コンテスト', stage: 'メインステージ' },
+    {
+      time: '11:20',
+      endTime: '12:30',
+      name: '熊大コンテスト',
+      stage: 'メインステージ',
+      place: 'メインステージ',
+      comment: '熊大生の外見だけではなく、内面や個性、特技などさまざまな魅力をお届けするコンテスト。あなたの一票で今年のグランプリが決まります！ぜひ会場で、出場者一人ひとりの輝きをご覧ください！',
+      imgs: [konntesuto, konntesuto2],
+    },
     { time: '13:00', endTime: '13:15', name: '大学応援団リーダー', stage: 'メインステージ' },
     { time: '13:15', endTime: '13:30', name: '応援団チアリーディング部', stage: 'メインステージ' },
     { time: '13:30', endTime: '13:45', name: '肥後真狗舞', stage: 'メインステージ' },
     { time: '14:15', endTime: '15:15', name: '熊本大学医学部軽音楽部MPB', stage: 'メインステージ' },
     { time: '15:45', endTime: '16:45', name: 'アコースティック愛好会', stage: 'メインステージ' },
     { time: '17:00', endTime: '18:00', name: 'DAP', stage: 'メインステージ' },
+
     { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
-    { time: '12:30', endTime: '13:15', name: 'シグマグランプリ', stage: 'サブステージ' },
+    { time: '12:30', endTime: '13:15', name: 'SIGMAグランプリ', stage: 'サブステージ' },
     { time: '13:45', endTime: '16:45', name: 'Higo-Pella', stage: 'サブステージ' },
+
+    {
+      time: '10:30',
+      endTime: '16:30',
+      name: '縁日＆キャンドル作り',
+      stage: 'その他の場所',
+      place: '子供広場',
+      comment: '熊大に「”おかし”な縁日」が登場！射的やジャンボ缶倒し、輪投げなどゲームが勢揃い。大人向け難易度もあり、子供だけでなく大学生も楽しめます！必ずお菓子屋景品がもらえるよ！大学生の本気を見せつけよう！！',
+    },
     {
       time: '15:00',
       endTime: '17:40',
@@ -620,15 +645,6 @@ useEffect(() => {
         </a>
       </div>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          広告：コンタクトアイシティ
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <div className="ad-banner">
-        <span className="ad-banner__label">広告</span>
-        <a href="https://www.eyecity.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={konntakuto} alt="コンタクトアイシティ" className="ad-banner__img" />
-        </a>
-      </div>
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：オーエス
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
@@ -722,7 +738,7 @@ useEffect(() => {
       <div className="ad-banner">
         <span className="ad-banner__label"></span>
         <a href="https://www.kmbiologics.com/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={KMB} alt="KMB" className="ad-banner__img" />
+          <img src={meijikmb} alt="KMB" className="ad-banner__img" />
         </a>
       </div>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -735,12 +751,12 @@ useEffect(() => {
         </a>
       </div>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          広告：就活生
+          広告：ピークスラウンジ
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
-        <span className="ad-banner__label"></span>
-        <a href="https://www.tiktok.com/@kumamoto_recruit" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={shuukatusei} alt="就活生" className="ad-banner__img" />
+        <span className="ad-banner__label">広告</span>
+        <a href="https://www.instagram.com/peacs_lounge/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={pikusuraunnji} alt="ピークスラウンジ" className="ad-banner__img" />
         </a>
       </div>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -761,6 +777,25 @@ useEffect(() => {
           <img src={TKU2} alt="TKU2" className="ad-banner__img" />
         </a>
       </div>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：マイナビ
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://job.mynavi.jp/2028/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={mainabi} alt="マイナビ" className="ad-banner__img" />
+        </a>
+      </div>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：triumph
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://www.triumph98.com/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={triumph} alt="triumph" className="ad-banner__img" />
+        </a>
+      </div>
+
 {/* ── タイムテーブル ── */}
 <section className="section timetable" id="timetable">
   <div className="container">
@@ -820,21 +855,12 @@ useEffect(() => {
   </div>
 </section>
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          広告：pokeka
+          広告：快活
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <div className="ad-banner">
         <span className="ad-banner__label">広告</span>
-        <a href="https://www.pokemon-card.com/ex/svm/index.html" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={pokeka} alt="pokeka" className="ad-banner__img" />
-        </a>
-      </div>
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          広告：五ヶ瀬
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <div className="ad-banner">
-        <span className="ad-banner__label">広告</span>
-        <a href="https://gokase.icomt.jp/kijiya/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={gokase} alt="五ヶ瀬" className="ad-banner__img" />
+        <a href="https://www.kaikatsu.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={kaikatu} alt="快活" className="ad-banner__img" />
         </a>
       </div>
       {/* ── 出店・サークル ── */}
@@ -871,24 +897,6 @@ useEffect(() => {
           </div>
         </div>
       </section>
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          広告：読書
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <div className="ad-banner">
-        <span className="ad-banner__label">広告</span>
-        <a href="https://archives.kumamoto-u.ac.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={Dokusho} alt="読書" className="ad-banner__img" />
-        </a>
-      </div>
-      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          広告：AIKASU
-      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <div className="ad-banner">
-        <span className="ad-banner__label">広告</span>
-        <a href="https://aikasu.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={Aikasu} alt="AIKASU" className="ad-banner__img" />
-        </a>
-      </div>
       {/* ── 出店・サークル ── */}
       <section className="section circles" id="circles-okunai">
         <div className="container">
