@@ -9,7 +9,6 @@ import chuoImg from '../assets/chuo.png'
 import seikyou from '../assets/seikyou.png'
 import konntakuto from '../assets/konntakuto.png'
 import ouesu from '../assets/ouesu.png'
-import thema from '../assets/thema.jpg'
 import campusmap from '../assets/campusmap.jpg'
 import KMB from '../assets/KMB.png'
 import kyouseisika from '../assets/kyouseisika.png'
@@ -541,13 +540,38 @@ useEffect(() => {
       </div>
 
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-          ワンタイムフォーエバー
+          メインテーマ
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <div className="ad-banner">
-        <a href="" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
-          <img src={thema} alt="1TIME 4EVER" className="ad-banner__img" />
-        </a>
-      </div>
+      <section className="theme" id="theme">
+        <div className="theme__inner">
+          <p className="theme__label">第15回紫熊祭 メインテーマ</p>
+
+          <h2 className="theme__title" aria-label="Xceed The Vision">
+            <span className="theme__word"><b>X</b>ceed</span>
+            <span className="theme__word theme__word--the">The</span>
+            <span className="theme__word"><b>V</b>ision</span>
+          </h2>
+
+          <p className="theme__ja">「想像を超えていけ」</p>
+
+          <div className="theme__roman" aria-label="XとVでローマ数字の15">
+            <span className="theme__roman-char">X</span>
+            <span className="theme__roman-op">+</span>
+            <span className="theme__roman-char">V</span>
+            <span className="theme__roman-op">=</span>
+            <span className="theme__roman-char theme__roman-char--result">XV<small>15</small></span>
+          </div>
+
+          <div className="theme__text">
+            <p>
+              「想像を超えていけ」という意味があり、頭文字のXとVでローマ数字の15を表しています。
+            </p>
+            <p>
+              第15回という節目の年を、ひとりひとりの理想も超えた、まだ見ぬ学祭にしたいという願いが込められています。
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* ── 諸注意 ── */}
       <section className="section notice" id="notice">
