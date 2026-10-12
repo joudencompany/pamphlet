@@ -610,7 +610,7 @@ useEffect(() => {
           <span className="nav__logo-sigma">Σ</span> 紫熊祭
         </div>
         <nav className={`nav__links ${menuOpen ? 'open' : ''}`}>
-          {[['挨拶','greeting'],['諸注意','notice'],['タイムテーブル','timetable'],['出店・サークル（テント）','circles-tent'],['出店・サークル（屋内）','circles-okunai'],['アクセス','access'],].map(([label, id]) => (
+          {[['挨拶','greeting'],['諸注意','notice'],['タイムテーブル','timetable'],['出店・サークル（テント）','circles-tent'],['出店・サークル（屋内）','circles-okunai'],['スタンプ','stamp'],['アクセス','access'],].map(([label, id]) => (
             <button key={id} onClick={() => scrollTo(id)}>{label}</button>
           ))}
         </nav>
@@ -665,13 +665,13 @@ useEffect(() => {
     <ul className="sponsors__list">
       {[
         'hair mode RITZ',
-        'JA グループ熊本くまもと売れる米づくり推進本部',
+        'JAグループ熊本くまもと売れる米づくり推進本部',
         'KM バイオロジクス 株式会社',
         'Pop Town Project',
         '居酒屋 ひゃくしょう茶屋 駕町店',
         '医療法人 熊本駅前矯正歯科クリニック',
         '医療法人社団 大塚メディカル八景水谷クリニック',
-        '医療法人 フォーチュンなかがお整形',
+        '医療法人 フォーチュンなかがわ整形',
         '医療法人 山部会 くまもと成城病院',
         '学校法人 九州測量専門学校',
         '株式会社 AIKASU',
@@ -1170,11 +1170,13 @@ useEffect(() => {
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           スタンプラリー
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="section stamp" id="stamp">
       <div className="ad-banner">
         <a href="" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
           <img src={stamp} alt="stamp" className="ad-banner__img" />
         </a>
       </div>
+      </section>
 
 {/* ── アクセス ── */}
 <section className="section access" id="access">
