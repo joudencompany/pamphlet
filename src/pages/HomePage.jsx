@@ -2,7 +2,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import '../App.css'
-
 import terrabalImg from '../assets/terrabal.jpg'
 import terrabalImg2 from '../assets/terrabal2.jpg'
 import chuoImg from '../assets/chuo.png'
@@ -40,14 +39,12 @@ import hougaku from '../assets/hougaku.png'
 import chairImg from '../assets/chair.jpg'
 import viceBabaImg from '../assets/vice-baba.jpg'
 import viceNarasakiImg from '../assets/vice-narasaki.jpg'
-
 /* ── データ ── */
 const DAYS = [
   { label: '11/1', day: '日', color: '#e03c3c' },
   { label: '11/2', day: '月', color: '#2a8c4a' },
   { label: '11/3', day: '火・祝', color: '#e03c3c' },
 ]
-
 const TIMETABLE = {
   '11/1': [ // 1日目
     { time: '10:00', endTime: '11:00', name: 'オープニング', stage: 'メインステージ' },
@@ -58,11 +55,9 @@ const TIMETABLE = {
     { time: '14:15', endTime: '15:15', name: '熊本大学医学部軽音楽部MPB', stage: 'メインステージ' },
     { time: '15:45', endTime: '16:45', name: 'アコースティック愛好会', stage: 'メインステージ' },
     { time: '17:00', endTime: '18:00', name: 'DAP', stage: 'メインステージ' },
-
     { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
     { time: '12:30', endTime: '13:15', name: 'シグマグランプリ', stage: 'サブステージ' },
     { time: '13:45', endTime: '16:45', name: 'Higo-Pella', stage: 'サブステージ' },
-
     {
       time: '15:00',
       endTime: '17:40',
@@ -73,7 +68,6 @@ const TIMETABLE = {
       imgs: [kinnniku],
     },
   ],
-
   '11/2': [ // 2日目
     {
       time: '10:00',
@@ -139,7 +133,6 @@ const TIMETABLE = {
       comment: '個性あふれる熊大生がランウェイを彩る、一日限りのファッションショー！',
       imgs: [kumakore, kumakore2],
     },
-
     { time: '11:00', endTime: '14:00', name: 'Higo-Pella', stage: 'サブステージ' },
     {
       time: '15:00',
@@ -150,7 +143,6 @@ const TIMETABLE = {
       comment: '計10バンド出演します！夕方の雰囲気にぴったりなトリとなってます！ぜひ、ご来場ください！',
       imgs: [acoLive],
     },
-
   ],
   '11/3': [ // 3日目
     { time: '10:00', endTime: '11:00', name: 'フォークソング研究会', stage: 'メインステージ' },
@@ -160,12 +152,10 @@ const TIMETABLE = {
     { time: '15:15', endTime: '16:15', name: '上瀧研究室', stage: 'メインステージ' },
     { time: '16:45', endTime: '17:45', name: 'モダンジャズ研究会', stage: 'メインステージ' },
     { time: '17:45', endTime: '19:30', name: 'フィナーレ', stage: 'メインステージ' },
-
     { time: '10:00', endTime: '13:00', name: 'Higo-Pella', stage: 'サブステージ' },
     { time: '13:30', endTime: '16:30', name: 'アコースティック愛好会', stage: 'サブステージ' },
     { time: '16:30', endTime: '17:00', name: 'キャンドルナイト準備', stage: 'サブステージ' },
     { time: '17:00', endTime: '18:00', name: 'キャンドルナイト', stage: 'サブステージ' },
-
     {
       time: '14:00',
       endTime: '15:40',
@@ -177,7 +167,6 @@ const TIMETABLE = {
     },
   ],
 }
-
 /* ── ステージごとの色分け ── */
 const STAGE_COLOR = {
   'その他の場所': '#2a8c4a',
@@ -186,78 +175,102 @@ const STAGE_COLOR = {
   'こども広場':     '#2a8c4a',
   'こども広場＋α':  '#2a8c4a',
 }
-
 /* ── アンカー広告データ（中央自動車学校のみ） ── */
 const ANCHOR_AD = { img: chuoImg, alt: '中央自動車学校', url: 'https://chuo-ds.com/' }
-
-
-
-
-
-
 export default function HomePage() {
   const [adVisible, setAdVisible] = useState(false)
   const [adShown, setAdShown] = useState(false)
-  const [surveyVisible, setSurveyVisible] = useState(
-    () => sessionStorage.getItem('surveyDone') !== 'true'
-  )
-  const [surveyDone, setSurveyDone] = useState(
-    () => sessionStorage.getItem('surveyDone') === 'true'
-  )
+  const [surveyTriggered, setSurveyTriggered] = useState(false)
+  const [surveyOpen, setSurveyOpen] = useState(false)
+  const [surveyDone, setSurveyDone] = useState(() => sessionStorage.getItem('surveyDone2') === 'true')
+  const [surveyType, setSurveyType] = useState(null)
+  const [surveyRating, setSurveyRating] = useState(0)
+  const [surveyComment, setSurveyComment] = useState('')
+  const [surveySent, setSurveySent] = useState(false)
   const [activeDay, setActiveDay] = useState('11/1')
   const [menuOpen, setMenuOpen] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
   const [greetOpen, setGreetOpen] = useState({ chair: false, vice: false }) // 挨拶の折りたたみ
-
   const heroRef = useRef(null)
-
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbw5g62IiNURRo69ArGdlHFA28ktmEWEixTV5LArZkD_cFcme8yeyxDOumO_qEmNWyio/exec'
-const handleSurvey = async (type) => {
-  setSurveyVisible(false)
-  setSurveyDone(true)
-  sessionStorage.setItem('surveyDone', 'true')
-  const params = new URLSearchParams({ type })
-  try {
-    await fetch(`${SHEET_URL}?${params}`, {
-      method: 'GET',
-      mode: 'no-cors',
-    })
-  } catch (e) {
-    console.error('送信失敗', e)
+  const [adPos, setAdPos] = useState({ right: 20, bottom: 20 })
+  const [adClosed, setAdClosed] = useState(false)
+  const [isDraggingAd, setIsDraggingAd] = useState(false)
+  const adDragRef = useRef(null)
+  const hasDraggedRef = useRef(false)
+  const onAdPointerDown = (e) => {
+    e.preventDefault()
+    hasDraggedRef.current = false
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY
+    adDragRef.current = { startX: clientX, startY: clientY, startRight: adPos.right, startBottom: adPos.bottom }
+    setIsDraggingAd(true)
   }
-}
-
+  useEffect(() => {
+    if (!isDraggingAd) return
+    const onMove = (e) => {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY
+      const dx = clientX - adDragRef.current.startX
+      const dy = clientY - adDragRef.current.startY
+      if (Math.abs(dx) > 3 || Math.abs(dy) > 3) hasDraggedRef.current = true
+      setAdPos({ right: Math.max(0, adDragRef.current.startRight - dx), bottom: Math.max(0, adDragRef.current.startBottom - dy) })
+    }
+    const onUp = () => setIsDraggingAd(false)
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseup', onUp)
+    window.addEventListener('touchmove', onMove, { passive: false })
+    window.addEventListener('touchend', onUp)
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseup', onUp)
+      window.removeEventListener('touchmove', onMove)
+      window.removeEventListener('touchend', onUp)
+    }
+  }, [isDraggingAd])
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwtIeLx5X3U_pjhTT0VL_vPQ_Radn4argjWXeVfWtQy845vXB9CHQwBL1zh4hYGAwXp/exec'
+  const handleSurvey = async () => {
+    if (!surveyType || surveySent) return
+    setSurveySent(true)
+    setSurveyDone(true)
+    sessionStorage.setItem('surveyDone2', 'true')
+    const params = new URLSearchParams({ type: surveyType, rating: surveyRating, comment: surveyComment })
+    try {
+      await fetch(`${SHEET_URL}?${params}`, { method: 'GET', mode: 'no-cors' })
+    } catch (e) {
+      console.error('送信失敗', e)
+    }
+    setTimeout(() => setSurveyOpen(false), 2500)
+  }
+  useEffect(() => {
+    if (surveyDone || surveyTriggered) return
+    const onScroll = () => { if (window.scrollY > 400) setSurveyTriggered(true) }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [surveyDone, surveyTriggered])
   useEffect(() => {
   document.title = '第15回 紫熊祭 | 熊本大学黒髪北キャンパス'
 }, [])
-
 useEffect(() => {
   if (adShown) return
-
   const sectionIds = ['greeting', 'timetable', 'circles-tent', 'access']
   const AD_TRIGGER = 2 // 何セクション通過したら表示するか
-
   const observer = new IntersectionObserver(() => {
     const passed = sectionIds.filter(id => {
       const el = document.getElementById(id)
       if (!el) return false
       return el.getBoundingClientRect().top < window.innerHeight * 0.5
     }).length
-
     if (passed >= AD_TRIGGER) {
       setAdVisible(true)
       setAdShown(true)
     }
   }, { threshold: 0.1 })
-
   sectionIds.forEach(id => {
     const el = document.getElementById(id)
     if (el) observer.observe(el)
   })
-
   return () => observer.disconnect()
 }, [adShown])
-
   /* タイムテーブル吹き出し：外側クリック・Esc・リサイズ・日付切替で閉じる */
   useEffect(() => { setBubble(null) }, [activeDay])
 useEffect(() => {
@@ -273,11 +286,9 @@ useEffect(() => {
   document.addEventListener('click', onClick)
   document.addEventListener('keydown', onKey)
   window.addEventListener('resize', onResize)
-
   // シート表示中は背面のスクロールを止める
   const prevOverflow = document.body.style.overflow
   if (bubble.mode === 'sheet') document.body.style.overflow = 'hidden'
-
   return () => {
     document.removeEventListener('click', onClick)
     document.removeEventListener('keydown', onKey)
@@ -285,7 +296,6 @@ useEffect(() => {
     document.body.style.overflow = prevOverflow
   }
 }, [bubble])
-
   const openBubble = (e, ev, stage, key) => {
     if (bubble?.key === key) { setBubble(null); return }
     // スマホ幅：画面下から出るシート（位置計算なし・画面外に出ない）
@@ -304,7 +314,6 @@ useEffect(() => {
       top: r.bottom + window.scrollY + 12,
     })
   }
-
   const toggleGreet = (key) => {
     const willClose = greetOpen[key]
     setGreetOpen(o => ({ ...o, [key]: !o[key] }))
@@ -313,45 +322,43 @@ useEffect(() => {
       document.getElementById(`greet-card-${key}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
-
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     setMenuOpen(false)
   }
-
   return (
     <div className="site">
-
-        {/* ── 来場者アンケート ── */}
-    {surveyVisible && (
-      <div className="sp-overlay">
-        <div className="sp-overlay__box">
-          <h2 style={{ marginBottom: '0.5rem', fontSize: '1.1rem' }}>来場者アンケート</h2>
-          <p style={{ fontSize: '0.85rem', color: '#888', marginBottom: '1.2rem' }}>
-            あなたはどちらですか？
-          </p>
-          {[
-            { label: ' 熊本大学の学生', value: '熊大生' },
-            { label: ' 他大学の学生',   value: '他大学生' },
-            { label: ' 一般来場者',     value: '外部来場者' },
-          ].map(({ label, value }) => (
-            <button
-              key={value}
-              onClick={() => handleSurvey(value)}
-              style={{
-                display: 'block', width: '100%', margin: '0.4rem 0',
-                padding: '0.7rem', borderRadius: '8px',
-                border: '1px solid #444', background: '#1a1a2e',
-                color: '#fff', cursor: 'pointer', fontSize: '0.95rem'
-              }}
-            >
-              {label}
-            </button>
-          ))}
+      {/* ── アンケート吹き出し ── */}
+      {surveyTriggered && (!surveyDone || (surveySent && surveyOpen)) && (
+        <div className={`survey-bubble ${surveyOpen ? 'is-open' : ''}`}>
+          <button type="button" className="survey-bubble__tab" onClick={() => setSurveyOpen(v => !v)}>
+            アンケートにご協力ください {surveyOpen ? '▲' : '▼'}
+          </button>
+          {surveyOpen && (
+            <div className="survey-bubble__panel">
+              {surveySent ? <p className="survey-bubble__thanks">ご回答ありがとうございます！</p> : (
+                <>
+                  <p className="survey-bubble__label">あなたは？</p>
+                  <div className="survey-type">
+                    {['熊大生', '他大学生', '外部来場者'].map(v => (
+                      <button type="button" key={v} className={`survey-type__btn ${surveyType === v ? 'active' : ''}`} onClick={() => setSurveyType(v)}>{v}</button>
+                    ))}
+                  </div>
+                  <p className="survey-bubble__label">満足度</p>
+                  <div className="survey-rating">
+                    {[1, 2, 3, 4, 5].map(n => (
+                      <button type="button" key={n} aria-label={`満足度${n}`} className={`survey-rating__star ${n <= surveyRating ? 'active' : ''}`} onClick={() => setSurveyRating(n)}>★</button>
+                    ))}
+                  </div>
+                  <p className="survey-bubble__label">感想（任意）</p>
+                  <textarea className="survey-textarea" placeholder="ご自由にどうぞ" value={surveyComment} onChange={e => setSurveyComment(e.target.value)} />
+                  <button type="button" className="survey-submit" onClick={handleSurvey} disabled={!surveyType}>送信する</button>
+                </>
+              )}
+            </div>
+          )}
         </div>
-      </div>
-    )}
-
+      )}
       {/* ── インタースティシャル広告 ── */}
       {adVisible && (
         <div className="ad-interstitial" onClick={() => { setAdVisible(false); setAdShown(true) }}>
@@ -363,7 +370,6 @@ useEffect(() => {
           </div>
         </div>
       )}
-
       {/* ── ナビ ── */}
       <header className="nav">
         <div className="nav__logo" onClick={() => scrollTo('hero')}>
@@ -378,7 +384,6 @@ useEffect(() => {
           <span /><span /><span />
         </button>
       </header>
-
       {/* ── ヒーロー ── */}
       <section className="hero" id="hero" ref={heroRef}>
         <div className="hero__inner">
@@ -397,8 +402,6 @@ useEffect(() => {
           </button>
         </div>
       </section>
-
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：テラバル自動車学校
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -408,7 +411,6 @@ useEffect(() => {
           <img src={terrabalImg} alt="テラバル自動車学校" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：テラバル自動車学校2
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -418,7 +420,6 @@ useEffect(() => {
           <img src={terrabalImg2} alt="テラバル自動車学校" className="ad-banner__img" />
         </a>
       </div>
-
 {/* ── ご協賛企業一覧 ── */}
 <section className="section sponsors" id="sponsors">
   <div className="container">
@@ -427,7 +428,6 @@ useEffect(() => {
     <p className="sponsors__lead">
       第十五回紫熊祭 公式パンフレット広告ご協賛企業一覧
     </p>
-
     <ul className="sponsors__list">
       {[
         'hair mode RITZ',
@@ -479,9 +479,7 @@ useEffect(() => {
         </li>
       ))}
     </ul>
-
     <p className="sponsors__note">（五十音順、敬称略）</p>
-
     <div className="sponsors__thanks">
       <h3 className="sponsors__thanks-title">御礼</h3>
       <p>
@@ -491,13 +489,11 @@ useEffect(() => {
     </div>
   </div>
 </section>
-
 {/* ── 委員長挨拶 ── */}
 <section className="section greeting" id="greeting">
   <div className="container">
     <div className="section-label">Greeting</div>
     <h2 className="section-title">委員長挨拶</h2>
-
     <div className="greeting__card" id="greet-card-chair">
       <div className="greeting__photos">
         <img
@@ -513,7 +509,6 @@ useEffect(() => {
           この度は、第十五回紫熊祭公式パンフレットをご覧いただき、誠にありがとうございます。
           熊本大学最大の祭典である紫熊祭を、本年も無事に開催できますことを心より嬉しく思います。
         </p>
-
         <div
           className={`greeting__more ${greetOpen.chair ? 'open' : ''}`}
           id="greet-chair"
@@ -542,7 +537,6 @@ useEffect(() => {
             </p>
           </div>
         </div>
-
         <button
           type="button"
           className="greeting__toggle"
@@ -554,7 +548,6 @@ useEffect(() => {
         </button>
       </div>
     </div>
-
     <div className="greeting__card" id="greet-card-vice">
       <div className="greeting__photos greeting__photos--vice">
         <img
@@ -576,7 +569,6 @@ useEffect(() => {
           この度は、紫熊祭に足をお運びいただき、誠にありがとうございます。
           今年度も紫熊祭を開催し、皆様をお迎えできますことを、実行委員一同、心より嬉しく思っております。
         </p>
-
         <div
           className={`greeting__more ${greetOpen.vice ? 'open' : ''}`}
           id="greet-vice"
@@ -605,7 +597,6 @@ useEffect(() => {
             </p>
           </div>
         </div>
-
         <button
           type="button"
           className="greeting__toggle"
@@ -619,7 +610,6 @@ useEffect(() => {
     </div>
   </div>
 </section>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：生協
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -629,7 +619,6 @@ useEffect(() => {
           <img src={seikyou} alt="生協" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：コンタクトアイシティ
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -639,7 +628,6 @@ useEffect(() => {
           <img src={konntakuto} alt="コンタクトアイシティ" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：オーエス
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -649,7 +637,6 @@ useEffect(() => {
           <img src={ouesu} alt="オーエス" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           メインテーマ
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -670,14 +657,12 @@ useEffect(() => {
           </div>
         </div>
       </section>
-
 {/* ── 諸注意 ── */}
 <section className="section notice" id="notice">
   <div className="container">
     <div className="section-label">Notice</div>
     <h2 className="section-title">諸注意</h2>
     <p className="notice__lead">～皆で紫熊祭を楽しむために～</p>
-
     <ul className="notice__list">
       <li>
         紫熊祭の開催時間は以下のとおりです。
@@ -722,7 +707,6 @@ useEffect(() => {
     </ul>
   </div>
 </section>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           黒髪キャンパス
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -732,7 +716,6 @@ useEffect(() => {
           <img src={campusmap} alt="黒髪キャンパス" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：KMB
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -742,7 +725,6 @@ useEffect(() => {
           <img src={KMB} alt="KMB" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：熊本駅矯正歯科クリニック
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -752,7 +734,6 @@ useEffect(() => {
           <img src={kyouseisika} alt="熊本駅矯正歯科クリニック" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：就活生
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -762,7 +743,6 @@ useEffect(() => {
           <img src={shuukatusei} alt="就活生" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：TKU1
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -772,7 +752,6 @@ useEffect(() => {
           <img src={TKU1} alt="TKU1" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：TKU2
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -782,7 +761,6 @@ useEffect(() => {
           <img src={TKU2} alt="TKU2" className="ad-banner__img" />
         </a>
       </div>
-
 {/* ── タイムテーブル ── */}
 <section className="section timetable" id="timetable">
   <div className="container">
@@ -801,7 +779,6 @@ useEffect(() => {
         </button>
       ))}
     </div>
-
     <div className="tt-columns">
       {Object.entries(
         TIMETABLE[activeDay].reduce((acc, ev) => {
@@ -842,7 +819,6 @@ useEffect(() => {
     </div>
   </div>
 </section>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：pokeka
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -852,7 +828,6 @@ useEffect(() => {
           <img src={pokeka} alt="pokeka" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：五ヶ瀬
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -862,7 +837,6 @@ useEffect(() => {
           <img src={gokase} alt="五ヶ瀬" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ── 出店・サークル ── */}
       <section className="section circles" id="circles-tent">
         <div className="container">
@@ -882,7 +856,6 @@ useEffect(() => {
               詳しくはこちら →
             </Link>
           </div>
-
           <p className="circles__subtitle">テント企画C・D</p>
           <div className="circles__map">
             <img
@@ -898,7 +871,6 @@ useEffect(() => {
           </div>
         </div>
       </section>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：読書
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -908,7 +880,6 @@ useEffect(() => {
           <img src={Dokusho} alt="読書" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：AIKASU
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -918,7 +889,6 @@ useEffect(() => {
           <img src={Aikasu} alt="AIKASU" className="ad-banner__img" />
         </a>
       </div>
-
       {/* ── 出店・サークル ── */}
       <section className="section circles" id="circles-okunai">
         <div className="container">
@@ -938,7 +908,6 @@ useEffect(() => {
               詳しくはこちら →
             </Link>
           </div>
-
           <p className="circles__subtitle">屋内企画ー全学教育棟ー</p>
           <div className="circles__map">
             <img
@@ -968,7 +937,6 @@ useEffect(() => {
           </div>
         </div>
       </section>
-
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           スタンプラリー
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -977,13 +945,11 @@ useEffect(() => {
           <img src={stamp} alt="stamp" className="ad-banner__img" />
         </a>
       </div>
-
 {/* ── アクセス ── */}
 <section className="section access" id="access">
   <div className="container">
     <div className="section-label">Access</div>
     <h2 className="section-title">アクセス</h2>
-
     <div className="access__grid">
       <div className="access__info">
         <div className="access__item">
@@ -995,14 +961,12 @@ useEffect(() => {
             </p>
           </div>
         </div>
-
         <div className="access__item">
           <div>
             <p className="access__label">バス</p>
             <p className="access__val">「熊本大学前」下車すぐ</p>
           </div>
         </div>
-
         <div className="access__item">
           <div>
             <p className="access__label">駐車場</p>
@@ -1014,7 +978,6 @@ useEffect(() => {
             </p>
           </div>
         </div>
-
         <div className="access__item">
           <div>
             <p className="access__label">臨時駐車場</p>
@@ -1026,7 +989,6 @@ useEffect(() => {
             </p>
           </div>
         </div>
-
         <div className="access__item">
           <div>
             <p className="access__label">
@@ -1040,7 +1002,6 @@ useEffect(() => {
             </p>
           </div>
         </div>
-
         <a
           className="map-link"
           href="https://maps.google.com/?q=熊本大学黒髪北キャンパス"
@@ -1050,7 +1011,6 @@ useEffect(() => {
           Google マップで開く →
         </a>
       </div>
-
       <div className="access__map">
         <iframe
           title="熊本大学黒髪北キャンパス"
@@ -1065,14 +1025,12 @@ useEffect(() => {
     </div>
   </div>
 </section> 
-
       {/* ── フッター ── */}
       <footer className="footer">
         <div className="footer__sigma">Σ</div>
         <p className="footer__title">第15回 紫熊祭実行委員会</p>
         <p className="footer__copy">© 2026 紫熊祭実行委員会 All rights reserved.</p>
       </footer>
-
       {/* ── タイムテーブル吹き出し ── */}
       {bubble && bubble.mode === 'sheet' && (
         <div className="tt-backdrop" onClick={() => setBubble(null)} />
@@ -1116,19 +1074,16 @@ useEffect(() => {
           <p className="tt-bubble__comment">{bubble.ev.comment || '詳細は準備中です。'}</p>
         </div>
       )}
-
-      {/* ── アンカー広告（画面右下固定） ── */}
-      <div className="anchor-ad">
-        <span className="anchor-ad__label">広告</span>
-        <a
-          href={ANCHOR_AD.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="anchor-ad__link"
-        >
-          <img src={ANCHOR_AD.img} alt={ANCHOR_AD.alt} className="anchor-ad__img" />
-        </a>
-      </div>
+      {/* ── アンカー広告（ドラッグ可能・閉じる） ── */}
+      {!adClosed && (
+        <div className={`anchor-ad ${isDraggingAd ? 'is-dragging' : ''}`} style={{ right: adPos.right, bottom: adPos.bottom }} onMouseDown={onAdPointerDown} onTouchStart={onAdPointerDown}>
+          <button type="button" className="anchor-ad__close" onClick={e => { e.stopPropagation(); setAdClosed(true) }} onMouseDown={e => e.stopPropagation()} onTouchStart={e => e.stopPropagation()} aria-label="閉じる">✕</button>
+          <span className="anchor-ad__label">広告</span>
+          <a href={ANCHOR_AD.url} target="_blank" rel="noopener noreferrer" className="anchor-ad__link" onClick={e => hasDraggedRef.current && e.preventDefault()} draggable={false}>
+            <img src={ANCHOR_AD.img} alt={ANCHOR_AD.alt} className="anchor-ad__img" draggable={false} />
+          </a>
+        </div>
+      )}
 
     </div>
   )
