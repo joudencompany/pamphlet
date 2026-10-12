@@ -990,3 +990,65 @@ body {
     width: 100%;
   }
 }
+
+@media (min-width: 641px) {
+  #greeting .greeting__card {
+    display: flow-root;
+  }
+
+  #greeting .greeting__photos {
+    float: left;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 160px;
+    margin: 0 28px 16px 0;
+  }
+
+  #greeting .greeting__photos--vice {
+    width: 260px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  #greeting .greeting__body {
+    display: block;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    text-align: left;
+  }
+
+  #greeting .greeting__body p {
+    text-align: left;
+  }
+
+  /*
+   * 展開部分も通常の文章として表示し、
+   * 写真の下へ回り込ませる
+   */
+  #greeting .greeting__more {
+    display: none;
+  }
+
+  #greeting .greeting__more.open {
+    display: block;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #greeting .greeting__more.open > div {
+    display: block;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  #greeting .greeting__toggle {
+    display: block;
+    clear: both;
+    margin-top: 16px;
+  }
+}
