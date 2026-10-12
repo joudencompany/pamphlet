@@ -937,3 +937,56 @@ body {
     columns: 1;
   }
 }
+
+.greeting__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.greeting__photos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  flex: 0 0 160px;
+}
+
+.greeting__photos--vice {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  flex-basis: 280px;
+}
+
+.greeting__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 12px;
+}
+
+.greeting__body {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .greeting__card {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .greeting__photos {
+    flex: none;
+    width: 160px;
+    align-self: center;
+  }
+
+  .greeting__photos--vice {
+    width: min(100%, 280px);
+  }
+
+  .greeting__body {
+    width: 100%;
+  }
+}

@@ -37,7 +37,9 @@ import rockLive from '../assets/rock_live.png'
 import higoPella from '../assets/higo_pella.png'
 import shodou from '../assets/shodou.png'
 import hougaku from '../assets/hougaku.png'
-import hero from '../assets/hero.jpg'
+import chairImg from '../assets/chair.jpg'
+import viceBabaImg from '../assets/vice-baba.jpg'
+import viceNarasakiImg from '../assets/vice-narasaki.jpg'
 
 /* ── データ ── */
 const DAYS = [
@@ -497,7 +499,14 @@ useEffect(() => {
     <h2 className="section-title">委員長挨拶</h2>
 
     <div className="greeting__card" id="greet-card-chair">
-      <div className="greeting__avatar">委員長</div>
+      <div className="greeting__photos">
+        <img
+          className="greeting__photo"
+          src={chairImg}
+          alt="委員長 蓮田 彪華"
+          loading="lazy"
+        />
+      </div>
       <div className="greeting__body">
         <p className="greeting__name">委員長 蓮田 彪華</p>
         <p>
@@ -547,7 +556,20 @@ useEffect(() => {
     </div>
 
     <div className="greeting__card" id="greet-card-vice">
-      <div className="greeting__avatar">副委員長</div>
+      <div className="greeting__photos greeting__photos--vice">
+        <img
+          className="greeting__photo"
+          src={viceBabaImg}
+          alt="副委員長 馬場 康輔"
+          loading="lazy"
+        />
+        <img
+          className="greeting__photo"
+          src={viceNarasakiImg}
+          alt="副委員長 楢崎 史奈"
+          loading="lazy"
+        />
+      </div>
       <div className="greeting__body">
         <p className="greeting__name">副委員長 馬場 康輔・楢崎 史奈</p>
         <p>
