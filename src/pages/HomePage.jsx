@@ -23,10 +23,6 @@ import kumakore2 from '../assets/kumakore2.png'
 import stamp from '../assets/stamp.png'
 import kinnniku from '../assets/kinnniku.png'
 import owarai from '../assets/owarai.png'
-import acoLive from '../assets/aco_Live.png'
-import philLive from '../assets/phil_Live.png'
-import folkDance from '../assets/folk_dance.png'
-import rockLive from '../assets/rock_live.png'
 import higoPella from '../assets/higo_pella.png'
 import shodou from '../assets/shodou.png'
 import hougaku from '../assets/hougaku.png'
@@ -40,7 +36,20 @@ import konntesuto2 from '../assets/kumadaikonntesuto2.png'
 import mainabi from '../assets/mainabi.png'
 import triumph from '../assets/triumph.png'
 import kaikatu from '../assets/kaikatu.png'
-
+import sigmaGrandprixImg from '../assets/sigma-grandprix.png'
+import ouendanLeaderImg from '../assets/ouendan-leader.png'
+import cheerImg from '../assets/cheer.png'
+import yosakoiImg from '../assets/yosakoi.png'
+import mpbImg from '../assets/mpb.png'
+import muscleFestivalImg from '../assets/muscle-festival.png'
+import acoDay1Img from '../assets/aco-day1.png'
+import dapImg from '../assets/dap.png'
+import folkDanceDay2Img from '../assets/folk-dance-day2.png'
+import utaumaImg from '../assets/utauma.png'
+import rockDay2Img from '../assets/rock-day2.png'
+import acoDay2Img from '../assets/aco-day2.png'
+import philDay2Img from '../assets/phil-day2.png'
+import kumakoreDay2Img from '../assets/kumakore-day2.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -49,134 +58,294 @@ const DAYS = [
   { label: '11/3', day: '火・祝', color: '#e03c3c' },
 ]
 const TIMETABLE = {
-  '11/1': [ // 1日目
-    { time: '10:00', endTime: '11:00', name: 'オープニング', stage: 'メインステージ' },
-    {
-      time: '11:20',
-      endTime: '12:30',
-      name: '熊大コンテスト',
-      stage: 'メインステージ',
-      place: 'メインステージ',
-      comment: '熊大生の外見だけではなく、内面や個性、特技などさまざまな魅力をお届けするコンテスト。あなたの一票で今年のグランプリが決まります！ぜひ会場で、出場者一人ひとりの輝きをご覧ください！',
-      imgs: [konntesuto, konntesuto2],
-    },
-    { time: '13:00', endTime: '13:15', name: '大学応援団リーダー', stage: 'メインステージ' },
-    { time: '13:15', endTime: '13:30', name: '応援団チアリーディング部', stage: 'メインステージ' },
-    { time: '13:30', endTime: '13:45', name: '肥後真狗舞', stage: 'メインステージ' },
-    { time: '14:15', endTime: '15:15', name: '熊本大学医学部軽音楽部MPB', stage: 'メインステージ' },
-    { time: '15:45', endTime: '16:45', name: 'アコースティック愛好会', stage: 'メインステージ' },
-    { time: '17:00', endTime: '18:00', name: 'DAP', stage: 'メインステージ' },
+'11/1': [ // 1日目
+  {
+    time: '10:00',
+    endTime: '11:00',
+    name: 'オープニング',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '紫熊祭のスタートを飾るオープニングです！吹奏楽部さんによる演奏や、書道部さん、BLAZESさんによるパフォーマンスで中央ステージを華やかに彩ります。最後のバルーンリリースで盛り上がること間違いなし！',
+  },
+  {
+    time: '11:20',
+    endTime: '12:30',
+    name: '熊大コンテスト',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '熊大生の外見だけではなく、内面や個性、特技などさまざまな魅力をお届けするコンテスト。あなたの一票で今年のグランプリが決まります！ぜひ会場で、出場者一人ひとりの輝きをご覧ください！',
+    imgs: [konntesuto, konntesuto2],
+  },
+  {
+    time: '13:00',
+    endTime: '13:15',
+    name: '演舞披露 壮行会形式',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '押忍！応援団リーダー部は今回、壮行会形式での演武を披露します。我々の応援を受け取りに来てください‼',
+    imgs: [ouendanLeaderImg],
+  },
+  {
+    time: '13:15',
+    endTime: '13:30',
+    name: 'チアリーディング部演技',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '熊本大学応援団チアリーディング部です！演技を通してみなさんに元気・勇気・笑顔をお届けします⭐！',
+    imgs: [cheerImg],
+  },
+  {
+    time: '13:30',
+    endTime: '13:45',
+    name: 'よさこい',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '熊本市内の学生約150人が所属し、年約100の祭りに参加。YOSAKOIで熊本を盛り上げます。',
+    imgs: [yosakoiImg],
+  },
+  {
+    time: '14:15',
+    endTime: '15:15',
+    name: 'MPB 紫熊祭Live',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: 'こんにちはMPBです！今年も紫熊祭に出演します！盛り上がる曲をお届けするのでぜひ一緒に楽しみましょう！',
+    imgs: [mpbImg],
+  },
+  {
+    time: '15:45',
+    endTime: '16:45',
+    name: 'アコ愛紫熊祭Live!!',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '今年は計3バンドが出演します！どのバンドも迫力がすごくて絶対楽しいので、ぜひ見に来てください！',
+    imgs: [acoDay1Img],
+  },
+  {
+    time: '17:00',
+    endTime: '18:00',
+    name: 'DAP',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '熊本大学ストリートダンスサークルDAPです！1日目17時からメインステで踊るので是非見に来てください！',
+    imgs: [dapImg],
+  },
+  {
+    time: '11:00',
+    endTime: '12:00',
+    name: 'イントロドン',
+    stage: 'サブステージ',
+    place: 'サブステージ',
+    comment: 'イントロを聞いて、誰よりも早く曲名を当てよう！会場の皆さんも一緒に盛り上がれる、白熱の音楽クイズ企画です♪ぜひご来場ください！',
+    imgs: [introDonImg],
+  },
+  {
+    time: '12:30',
+    endTime: '13:15',
+    name: 'SIGMAグランプリ',
+    stage: 'サブステージ',
+    place: 'サブステージ',
+    comment: '笑いの頂点を決める大喜利バトル開幕！審査員のS.I.G.M.Aが炸裂し、IPPONが飛び交う白熱のステージ。勝ち残った者だけが決勝へ進み、最多SIGMAの王者が栄冠を掴む。',
+    imgs: [sigmaGrandprixImg],
+  },
+  {
+    time: '13:45',
+    endTime: '16:45',
+    name: 'Higo-Pella',
+    stage: 'サブステージ',
+    place: 'サブステージ',
+    comment: '熊本大学アカペラサークルHigo-Pellaです！素敵な演奏をお届けします！',
+    imgs: [higoPella],
+  },
+  {
+    time: '10:30',
+    endTime: '16:30',
+    name: 'しぐまつり～おかしな縁日～',
+    stage: 'その他の場所',
+    place: '子供広場',
+    comment: '熊大に「”おかし”な縁日」が登場！射的やジャンボ缶倒し、輪投げなどゲームが勢揃い。大人向け難易度もあり、子供だけでなく大学生も楽しめます！必ずお菓子や景品がもらえるよ！大学生の本気を見せつけよう！！',
+  },
+  {
+    time: '15:00',
+    endTime: '18:00',
+    name: '第12回夜の筋肉祭り',
+    stage: 'その他の場所',
+    place: '武夫原グラウンド',
+    comment: '熊大生8名が腕相撲・ボディビル・綱引き・ローション相撲・障害物競争の5種目で競い合う競技イベントです。筋力と技を競い、総合得点で優勝者を決定します！',
+    imgs: [kinnniku, muscleFestivalImg],
+  },
+],
 
-    { time: '11:00', endTime: '12:00', name: 'イントロドン', stage: 'サブステージ' },
-    { time: '12:30', endTime: '13:15', name: 'SIGMAグランプリ', stage: 'サブステージ' },
-    { time: '13:45', endTime: '16:45', name: 'Higo-Pella', stage: 'サブステージ' },
+'11/2': [ // 2日目
+  {
+    time: '10:00',
+    endTime: '10:15',
+    name: '邦楽演奏',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '初心者多数の元気な邦楽部です！当日は三味線箏尺八で「月の旋律」「ルパン三世のテーマ」を演奏します。',
+    imgs: [hougaku],
+  },
+  {
+    time: '10:30',
+    endTime: '11:00',
+    name: '書道パフォーマンス',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '音楽に合わせた迫力の書道パフォーマンスをお届けします！文字に込めた部員の熱い想いをご覧ください。',
+    imgs: [shodou],
+  },
+  {
+    time: '11:15',
+    endTime: '11:45',
+    name: 'フォークダンス',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '私たちフォークダンス部が世界各国の民族舞踊を披露します。様々な系統の踊りをぜひお楽しみください。',
+    imgs: [folkDanceDay2Img],
+  },
+  {
+    time: '12:00',
+    endTime: '13:00',
+    name: '歌うま',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '事前選抜を勝ち抜いた参加者がステージで熱唱！DAM精密採点と審査員で「熊大歌うま王」を決定します。昨年度の大盛況から進化した2026年版の、極上の歌声をお聞き逃しなく！',
+    imgs: [utaumaImg],
+  },
+  {
+    time: '13:30',
+    endTime: '14:30',
+    name: 'ロック研究 in メインステージ2026',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: 'こんにちはロック研究会です。今回は熾烈な予選を勝ち抜いた2バンドが演奏します。目撃せよ、激音炸裂！',
+    imgs: [rockDay2Img],
+  },
+  {
+    time: '15:00',
+    endTime: '16:00',
+    name: 'Higo-Pella',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '熊本大学アカペラサークルHigo-Pellaです！素敵な演奏をお届けします！',
+    imgs: [higoPella],
+  },
+  {
+    time: '16:15',
+    endTime: '16:45',
+    name: '熊大フィル軽音部58th',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '熊大フィル軽音部です！フィルを引退したOBによるバンド演奏を行います。お楽しみに！',
+    imgs: [philDay2Img],
+  },
+  {
+    time: '17:00',
+    endTime: '18:00',
+    name: '熊大コレクション2026',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '本学の学生がモデルとなり、私服や熊本内のセレクトショップの衣装でファッションショーを行います。メインテーマ「Ribbon」に絆、結びつきという思いを込め、関わる全ての人との結びつきを大切にします。',
+    imgs: [kumakoreDay2Img, kumakore, kumakore2],
+  },
+  {
+    time: '11:00',
+    endTime: '14:00',
+    name: 'Higo-Pella',
+    stage: 'サブステージ',
+    place: 'サブステージ',
+    comment: '熊本大学アカペラサークルHigo-Pellaです！素敵な演奏をお届けします！',
+    imgs: [higoPella],
+  },
+  {
+    time: '15:00',
+    endTime: '18:00',
+    name: 'アコ愛紫熊祭Live!!',
+    stage: 'サブステージ',
+    place: 'サブステージ',
+    comment: '計10バンド出演します！夕方の雰囲気にぴったりなトリとなってます！ぜひ、ご来場ください！',
+    imgs: [acoDay2Img],
+  },
+  {
+    time: '10:30',
+    endTime: '16:30',
+    name: 'しぐまつり～おかしな縁日～',
+    stage: 'その他の場所',
+    place: '子供広場',
+    comment: '熊大に「”おかし”な縁日」が登場！射的やジャンボ缶倒し、輪投げなどゲームが勢揃い。大人向け難易度もあり、子供だけでなく大学生も楽しめます！必ずお菓子や景品がもらえるよ！大学生の本気を見せつけよう！！',
+  },
+],
 
-    {
-      time: '10:30',
-      endTime: '16:30',
-      name: '縁日＆キャンドル作り',
-      stage: 'その他の場所',
-      place: '子供広場',
-      comment: '熊大に「”おかし”な縁日」が登場！射的やジャンボ缶倒し、輪投げなどゲームが勢揃い。大人向け難易度もあり、子供だけでなく大学生も楽しめます！必ずお菓子屋景品がもらえるよ！大学生の本気を見せつけよう！！',
-    },
-    {
-      time: '15:00',
-      endTime: '17:40',
-      name: '第12回 夜の筋肉祭り',
-      stage: 'その他の場所',
-      place: '武夫原グラウンド',
-      comment: 'みせろ 筋肉漢の底力！！',
-      imgs: [kinnniku],
-    },
-  ],
-  '11/2': [ // 2日目
+  '11/3': [ // 3日目
     {
       time: '10:00',
-      endTime: '10:15',
-      name: '邦楽演奏',
-      stage: 'メインステージ',
-      place: 'メインステージ',
-      comment: '初心者多数の元気な邦楽部です！当日は三味線箏尺八で「月の旋律」「ルパン三世のテーマ」を演奏します。',
-      imgs: [hougaku],
-    },
-    {
-      time: '10:30',
       endTime: '11:00',
-      name: '書道パフォーマンス',
+      name: 'フォークソング研究会',
       stage: 'メインステージ',
-      place: 'メインステージ',
-      comment: '音楽に合わせた迫力の書道パフォーマンスをお届けします！文字に込めた部員の熱い想いをご覧ください。',
-      imgs: [shodou],
     },
     {
-      time: '11:15',
-      endTime: '11:45',
-      name: '熊本大学体育会フォークダンス部',
+      time: '11:30',
+      endTime: '12:05',
+      name: 'KUMADAI DRESS & TUXEDOSHOW',
       stage: 'メインステージ',
-      place: 'メインステージ',
-      comment: '私たちフォークダンス部が世界各国の民族舞踊を披露します。様々な系統の踊りをぜひお楽しみください。',
-      imgs: [folkDance],
-    },
-    { time: '11:45', endTime: '13:00', name: '歌うま', stage: 'メインステージ' },
-    {
-      time: '13:30',
-      endTime: '14:30',
-      name: 'ロック研究 in メインステージ2026',
-      stage: 'メインステージ',
-      place: 'メインステージ',
-      comment: 'こんにちはロック研究会です。今回は熾烈な予選を勝ち抜いた2バンドが演奏します。目撃せよ、激音炸裂！',
-      imgs: [rockLive],
     },
     {
-      time: '15:00',
-      endTime: '16:00',
-      name: 'Higo-Pella',
+      time: '12:45',
+      endTime: '13:45',
+      name: 'Cullet',
       stage: 'メインステージ',
-      place: 'メインステージ',
-      comment: '熊本大学アカペラサークルHigo-Pellaです！素敵な演奏をお届けします！',
-      imgs: [higoPella],
     },
     {
-      time: '16:15',
-      endTime: '16:45',
-      name: '熊大フィル軽音部58th',
+      time: '14:15',
+      endTime: '14:45',
+      name: '医学部アンサンブル',
       stage: 'メインステージ',
-      place: 'メインステージ',
-      comment: '熊大フィル軽音部です！フィルを引退したOBによるバンド演奏を行います。お楽しみに！',
-      imgs: [philLive],
+    },
+    {
+      time: '15:15',
+      endTime: '16:15',
+      name: '上瀧研究室',
+      stage: 'メインステージ',
     },
     {
       time: '16:45',
-      endTime: '18:00',
-      name: '熊大コレクション',
+      endTime: '17:45',
+      name: 'モダンジャズ研究会',
       stage: 'メインステージ',
-      place: 'メインステージ',
-      comment: '個性あふれる熊大生がランウェイを彩る、一日限りのファッションショー！',
-      imgs: [kumakore, kumakore2],
     },
-    { time: '11:00', endTime: '14:00', name: 'Higo-Pella', stage: 'サブステージ' },
     {
-      time: '15:00',
-      endTime: '18:00',
-      name: 'アコ愛紫熊祭Live!!',
-      stage: 'サブステージ',
-      place: 'サブステージ',
-      comment: '計10バンド出演します！夕方の雰囲気にぴったりなトリとなってます！ぜひ、ご来場ください！',
-      imgs: [acoLive],
+      time: '18:00',
+      endTime: '19:30',
+      name: 'フィナーレ',
+      stage: 'メインステージ',
     },
-  ],
-  '11/3': [ // 3日目
-    { time: '10:00', endTime: '11:00', name: 'フォークソング研究会', stage: 'メインステージ' },
-    { time: '11:15', endTime: '12:15', name: '熊大コンテスト', stage: 'メインステージ' },
-    { time: '12:45', endTime: '13:45', name: 'Cullet', stage: 'メインステージ' },
-    { time: '14:15', endTime: '14:45', name: '医学部アンサンブル', stage: 'メインステージ' },
-    { time: '15:15', endTime: '16:15', name: '上瀧研究室', stage: 'メインステージ' },
-    { time: '16:45', endTime: '17:45', name: 'モダンジャズ研究会', stage: 'メインステージ' },
-    { time: '17:45', endTime: '19:30', name: 'フィナーレ', stage: 'メインステージ' },
-    { time: '10:00', endTime: '13:00', name: 'Higo-Pella', stage: 'サブステージ' },
-    { time: '13:30', endTime: '16:30', name: 'アコースティック愛好会', stage: 'サブステージ' },
-    { time: '16:30', endTime: '17:00', name: 'キャンドルナイト準備', stage: 'サブステージ' },
-    { time: '17:00', endTime: '18:00', name: 'キャンドルナイト', stage: 'サブステージ' },
+    {
+      time: '10:00',
+      endTime: '13:00',
+      name: 'Higo-Pella',
+      stage: 'サブステージ',
+    },
+    {
+      time: '13:30',
+      endTime: '16:30',
+      name: 'アコースティック愛好会',
+      stage: 'サブステージ',
+    },
+    {
+      time: '17:00',
+      endTime: '18:00',
+      name: 'キャンドルナイト',
+      stage: 'サブステージ',
+    },
+  {
+    time: '10:30',
+    endTime: '16:30',
+    name: 'しぐまつり～おかしな縁日～',
+    stage: 'その他の場所',
+    place: '子供広場',
+    comment: '熊大に「”おかし”な縁日」が登場！射的やジャンボ缶倒し、輪投げなどゲームが勢揃い。大人向け難易度もあり、子供だけでなく大学生も楽しめます！必ずお菓子や景品がもらえるよ！大学生の本気を見せつけよう！！',
+  },
     {
       time: '14:00',
       endTime: '15:40',
@@ -188,6 +357,7 @@ const TIMETABLE = {
     },
   ],
 }
+
 /* ── ステージごとの色分け ── */
 const STAGE_COLOR = {
   'その他の場所': '#2a8c4a',
