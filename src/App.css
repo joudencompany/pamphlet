@@ -989,217 +989,39 @@ body {
   }
 }
 
-/* ── ご協賛広告 ── */
+/* ── ご協賛広告：1ページ・1/2 = 全幅、1/4 = 半分、1/8 = 4分の1 ── */
 .partner-ads {
-  padding: 64px 20px;
-  background: #f7f5fb;
-}
-
-.partner-ads__container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.partner-ads__header {
-  text-align: center;
-  margin-bottom: 36px;
-}
-
-.partner-ads__eyebrow {
-  color: var(--purple, #6c3fc7);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-}
-
-.partner-ads__header h2 {
-  margin: 10px 0 12px;
-  color: var(--navy, #1a1b3a);
-  font-family: var(--font-deco, serif);
-  font-size: clamp(24px, 4vw, 34px);
-  line-height: 1.5;
-}
-
-.partner-ads__header p {
-  margin: 0;
-  color: #6c677b;
-  font-size: 13px;
-  line-height: 1.8;
-}
-
-.partner-ads__badge {
-  display: inline-block;
-  margin-top: 16px;
-  padding: 3px 12px;
-  border: 1px solid #dcd6e9;
-  border-radius: 999px;
-  color: #777080;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-}
-
-.partner-ads__group + .partner-ads__group {
-  margin-top: 28px;
-}
-
-.partner-ads__grid {
   display: grid;
-  gap: 18px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
   align-items: start;
-}
-
-/* 1ページ：大きく1列 */
-.partner-ads__group--full .partner-ads__grid {
-  grid-template-columns: minmax(0, 1fr);
-  max-width: 660px;
+  max-width: 960px;
   margin: 0 auto;
+  padding: 0 16px;
 }
 
-/* 1/2ページ：2列 */
-.partner-ads__group--half .partner-ads__grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-/* 1/4ページ：横長広告なので1列 */
-.partner-ads__group--quarter .partner-ads__grid {
-  grid-template-columns: minmax(0, 1fr);
-  max-width: 780px;
-  margin: 0 auto;
-}
-
-/* 1/8ページ：一覧としてまとめる */
-.partner-ads__group--eighth {
-  padding: 28px;
-  border: 1px solid #e6e0ef;
-  border-radius: 20px;
-  background: #eeebf5;
-}
-
-.partner-ads__group-title {
-  margin: 0 0 24px;
-  text-align: center;
-  color: var(--navy, #1a1b3a);
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.partner-ads__group--eighth .partner-ads__grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.partner-ad {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid #e6e0ed;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 4px 14px rgba(26, 27, 58, 0.04);
-}
-
-.partner-ad__link,
-.partner-ad__content {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-}
-
-.partner-ad__link {
-  transition: background-color 0.2s ease;
-}
-
-.partner-ad__link:hover {
-  background: #faf8ff;
-}
-
-.partner-ad__link:focus-visible {
-  outline: 3px solid var(--purple, #6c3fc7);
-  outline-offset: -3px;
-}
-
-.partner-ad__image {
-  padding: 10px;
-  background: #fff;
-}
-
-.partner-ad__image img {
-  display: block;
+.partner-ads .ad-banner {
+  margin: 0;
   width: 100%;
-  height: auto;
 }
 
-.partner-ad__caption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 14px;
-  border-top: 1px solid #f0edf5;
-  color: #625b73;
-  font-size: 12px;
-  line-height: 1.6;
+.partner-ads__item {
+  min-width: 0;
 }
 
-.partner-ad__caption span:first-child {
-  overflow-wrap: anywhere;
-}
+.partner-ads__item--1,
+.partner-ads__item--1-2 { grid-column: span 4; }
+.partner-ads__item--1-4 { grid-column: span 2; }
+.partner-ads__item--1-8 { grid-column: span 1; }
 
-.partner-ad__caption span:last-child:not(:first-child) {
-  flex-shrink: 0;
-  color: var(--purple, #6c3fc7);
-  font-size: 16px;
-}
-
-.partner-ad__placeholder {
-  display: grid;
-  place-items: center;
-  min-height: 140px;
-  padding: 20px;
-  color: #625b73;
-  font-size: 14px;
-  text-align: center;
-}
-
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .partner-ads {
-    padding: 44px 14px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0 12px;
   }
-
-  .partner-ads__grid {
-    gap: 14px;
-  }
-
-  .partner-ads__group--half .partner-ads__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .partner-ads__group--eighth {
-    padding: 18px 10px;
-    border-radius: 14px;
-  }
-
-  .partner-ads__group--eighth .partner-ads__grid {
-    gap: 10px;
-  }
-
-  .partner-ads__group--eighth .partner-ad__image {
-    padding: 5px;
-  }
-
-  .partner-ads__group--eighth .partner-ad__caption {
-    padding: 8px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 380px) {
-  .partner-ads__group--eighth .partner-ads__grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .partner-ad__link {
-    transition: none;
-  }
+  .partner-ads__item--1,
+  .partner-ads__item--1-2,
+  .partner-ads__item--1-4 { grid-column: span 2; }
+  .partner-ads__item--1-8 { grid-column: span 1; }
 }
