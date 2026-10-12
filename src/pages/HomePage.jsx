@@ -545,23 +545,10 @@ useEffect(() => {
       <section className="theme" id="theme">
         <div className="theme__inner">
           <p className="theme__label">第15回紫熊祭 メインテーマ</p>
-
           <h2 className="theme__title" aria-label="Xceed The Vision">
-            <span className="theme__word"><b>X</b>ceed</span>
-            <span className="theme__word theme__word--the">The</span>
-            <span className="theme__word"><b>V</b>ision</span>
+            <b>X</b>ceed The <b>V</b>ision
           </h2>
-
-          <p className="theme__ja">「想像を超えていけ」</p>
-
-          <div className="theme__roman" aria-label="XとVでローマ数字の15">
-            <span className="theme__roman-char">X</span>
-            <span className="theme__roman-op">+</span>
-            <span className="theme__roman-char">V</span>
-            <span className="theme__roman-op">=</span>
-            <span className="theme__roman-char theme__roman-char--result">XV<small>15</small></span>
-          </div>
-
+          <div className="theme__ja">想像を超えていけ</div>
           <div className="theme__text">
             <p>
               「想像を超えていけ」という意味があり、頭文字のXとVでローマ数字の15を表しています。

@@ -581,120 +581,44 @@ body {
 
 /* ── メインテーマ ── */
 .theme {
-  position: relative;
-  overflow: hidden;
-  padding: 5rem 1.5rem;
-  text-align: center;
+  background: var(--navy);
   color: #fff;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(108,63,199,0.55) 0%, transparent 65%),
-    radial-gradient(ellipse at 50% 100%, rgba(245,200,66,0.12) 0%, transparent 60%),
-    var(--navy);
+  text-align: center;
+  padding: 5rem 1.5rem;
 }
-.theme::before,
-.theme::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, transparent, var(--yellow));
-}
-.theme::before { top: 0; }
-.theme::after  { bottom: 0; transform: rotate(180deg); }
-
 .theme__inner {
-  position: relative;
   max-width: var(--max-w);
   margin: 0 auto;
-  animation: fadeUp 0.9s ease both;
 }
 .theme__label {
-  display: inline-block;
-  padding: 0.3rem 1.2rem;
-  border: 1px solid rgba(245,200,66,0.6);
-  border-radius: 999px;
+  font-size: 1rem;
   color: var(--yellow);
-  font-size: 0.85rem;
-  font-weight: 700;
   letter-spacing: 0.2em;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
-
-/* メインの英語タイトル */
 .theme__title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-family: var(--font-deco);
+  font-size: clamp(2.2rem, 9vw, 4rem);
   font-weight: 700;
-  line-height: 1.05;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 0 40px rgba(108,63,199,0.8);
-}
-.theme__word {
-  display: block;
-  font-size: clamp(3rem, 14vw, 5.5rem);
-  letter-spacing: 0.03em;
-}
-.theme__word b {
-  color: var(--yellow);
-  font-size: 1.25em;
-  font-weight: 700;
-  text-shadow: 0 0 24px rgba(245,200,66,0.6);
-}
-.theme__word--the {
-  font-size: clamp(1.3rem, 5vw, 2rem);
-  letter-spacing: 0.5em;
-  padding-left: 0.5em; /* letter-spacingの右ズレ補正 */
-  color: rgba(255,255,255,0.65);
-  margin: 0.2rem 0;
-}
-
-.theme__ja {
-  font-size: clamp(1.2rem, 4.5vw, 1.6rem);
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  margin-bottom: 2rem;
-}
-
-/* X + V = XV(15) */
-.theme__roman {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  padding: 0.8rem 1.6rem;
-  margin-bottom: 2.2rem;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  font-family: var(--font-deco);
-}
-.theme__roman-char {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--yellow);
-  line-height: 1;
-}
-.theme__roman-op {
-  font-size: 1.3rem;
-  color: rgba(255,255,255,0.5);
-}
-.theme__roman-char--result {
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 40px rgba(108,63,199,0.6);
 }
-.theme__roman-char--result small {
-  font-family: var(--font-main);
-  font-size: 0.7rem;
+.theme__title b {
   color: var(--yellow);
-  letter-spacing: 0.1em;
-  margin-top: 4px;
+  font-weight: 700;
 }
-
+.theme__ja {
+  display: inline-block;
+  margin: 1.5rem auto 2rem;
+  padding: 0.4rem 1.5rem;
+  border: 2px solid var(--yellow);
+  color: var(--yellow);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  border-radius: 2px;
+}
 .theme__text {
   max-width: 480px;
   margin: 0 auto;
@@ -703,7 +627,7 @@ body {
 .theme__text p {
   font-size: 0.95rem;
   line-height: 2;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.8);
   margin-bottom: 0.8rem;
 }
 
