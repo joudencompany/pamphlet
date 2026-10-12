@@ -1025,3 +1025,44 @@ body {
   .partner-ads__item--1-4 { grid-column: span 2; }
   .partner-ads__item--1-8 { grid-column: span 1; }
 }
+
+/* ── タイムテーブル：PCは枠いっぱいに3列を横スクロールなしで表示 ── */
+@media (min-width: 769px) {
+  .timetable {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .timetable .container {
+    max-width: none; /* 580px制限を外して、枠いっぱいに使う */
+  }
+  .tt-columns {
+    overflow-x: visible;
+    gap: 0.6rem;
+    padding-bottom: 0;
+  }
+  .tt-column {
+    flex: 1 1 0;
+    min-width: 0; /* 最低幅をなくして、3列を均等に縮める */
+  }
+  .tt-column__header {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .tt-row {
+    gap: 0.5rem;
+    padding: 0.7rem 0;
+  }
+  .tt-time {
+    width: 48px;
+    font-size: 0.75rem;
+  }
+  .tt-dot {
+    width: 10px;
+    height: 10px;
+  }
+  .tt-link {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere; /* 長いイベント名は折り返す */
+  }
+}
