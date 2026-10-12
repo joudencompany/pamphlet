@@ -888,3 +888,52 @@ body {
     min-width: 0;
   }
 }
+
+.sponsors__lead {
+  margin-bottom: 1.5rem;
+}
+
+.sponsors__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  columns: 2;
+  column-gap: 2rem;
+}
+
+.sponsors__item {
+  break-inside: avoid;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.sponsors__note {
+  margin-top: 1rem;
+  text-align: right;
+  font-size: 0.875rem;
+}
+
+.sponsors__thanks {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f5f3ff;
+  border-radius: 12px;
+  line-height: 1.8;
+}
+
+.sponsors__thanks-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.125rem;
+}
+
+.sponsors__thanks p {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .sponsors__list {
+    columns: 1;
+  }
+}

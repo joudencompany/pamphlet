@@ -417,6 +417,79 @@ useEffect(() => {
         </a>
       </div>
 
+{/* ── ご協賛企業一覧 ── */}
+<section className="section sponsors" id="sponsors">
+  <div className="container">
+    <div className="section-label">Sponsors</div>
+    <h2 className="section-title">ご協賛企業一覧</h2>
+    <p className="sponsors__lead">
+      第十五回紫熊祭 公式パンフレット広告ご協賛企業一覧
+    </p>
+
+    <ul className="sponsors__list">
+      {[
+        'hair mode RITZ',
+        'JA グループ熊本くまもと売れる米づくり推進本部',
+        'KM バイオロジクス 株式会社',
+        'Pop Town Project',
+        '居酒屋 ひゃくしょう茶屋 駕町店',
+        '医療法人 熊本駅前矯正歯科クリニック',
+        '医療法人社団 大塚メディカル八景水谷クリニック',
+        '医療法人 フォーチュンなかがお整形',
+        '医療法人 山部会 くまもと成城病院',
+        '学校法人 九州測量専門学校',
+        '株式会社 AIKASU',
+        '株式会社 Evoliv',
+        '株式会社 KDS 熊本ドライビングスクール',
+        '株式会社 think garbage',
+        '株式会社 UNICS',
+        '株式会社 あつまるホールディングス',
+        '株式会社 快活フロンティア',
+        '株式会社 キューネット',
+        '株式会社 秀拓',
+        '株式会社 中央自動車学校',
+        '株式会社 寺原自動車学校',
+        '株式会社 テレビ熊本',
+        '株式会社 トライアンフ',
+        '株式会社 ヒライ',
+        '株式会社 ピークスキャリア',
+        '株式会社 ボウリング王国スポルト 熊本店',
+        '株式会社 マイナビ',
+        '株式会社 明和不動産',
+        '株式会社 ライブプラザパートナーズ FA 営業部',
+        '上熊本三陽自動車学校',
+        '熊本県弁護士会',
+        '熊本大学生活協同組合',
+        '熊本電気鉄道株式会社',
+        '熊本トヨペット株式会社',
+        'コンタクトのアイシティ 下通り店',
+        'しまだ内科クリニック',
+        '杉島龍市土地家屋調査士事務所',
+        'スパイスアロマ',
+        '税理士法人 近代経営',
+        '八木八',
+        '有限会社 オー・エス収集センター',
+        '有限会社 サンエンタープライズカラオ毛 花畑公民館',
+        'よしむら産婦人科皮ふ科クリニック',
+      ].map((name) => (
+        <li className="sponsors__item" key={name}>
+          {name}
+        </li>
+      ))}
+    </ul>
+
+    <p className="sponsors__note">（五十音順、敬称略）</p>
+
+    <div className="sponsors__thanks">
+      <h3 className="sponsors__thanks-title">御礼</h3>
+      <p>
+        第十五回紫熊祭を開催するにあたり、多大なご協賛を賜り誠にありがとうございました。
+        皆様のご支援によりまして円滑な運営ができますこと、厚く御礼申し上げます。
+      </p>
+    </div>
+  </div>
+</section>
+
 {/* ── 委員長挨拶 ── */}
 <section className="section greeting" id="greeting">
   <div className="container">
@@ -883,60 +956,93 @@ useEffect(() => {
         </a>
       </div>
 
-      {/* ── アクセス ── */}
-      <section className="section access" id="access">
-        <div className="container">
-          <div className="section-label">Access</div>
-          <h2 className="section-title">アクセス</h2>
-          <div className="access__grid">
-            <div className="access__info">
-              <div className="access__item">
-                <div>
-                  <p className="access__label">会場</p>
-                  <p className="access__val">熊本大学 黒髪北キャンパス</p>
-                  <p className="access__sub">〒860-8555 熊本市中央区黒髪2-39-1</p>
-                </div>
-              </div>
-              <div className="access__item">
-                <div>
-                  <p className="access__label">バス</p>
-                  <p className="access__val">市バス「熊本大学前」下車すぐ</p>
-                </div>
-              </div>
-              <div className="access__item">
-                <div>
-                  <p className="access__label">電車</p>
-                  <p className="access__val">市電「黒髪町」徒歩10分</p>
-                </div>
-              </div>
-              <div className="access__item">
-                <div>
-                  <p className="access__label">駐車場</p>
-                  <p className="access__val">当日は駐車場のご用意がございません</p>
-                  <p className="access__sub">公共交通機関をご利用ください</p>
-                </div>
-              </div>
+{/* ── アクセス ── */}
+<section className="section access" id="access">
+  <div className="container">
+    <div className="section-label">Access</div>
+    <h2 className="section-title">アクセス</h2>
 
-              <a
-                className="map-link"
-                href="https://maps.google.com/?q=熊本大学黒髪北キャンパス"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Google マップで開く →
-              </a>
-            </div>
-            <div className="access__map">
-              <iframe
-                title="熊本大学黒髪北キャンパス"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.4!2d130.7408!3d32.8115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3540f4027b1a0001%3A0x1!2z54aK5pys5aSn5a2m6buS6aaZ5YyWOuWMl-aKiw!5e0!3m2!1sja!2sjp!4v1"
-                width="100%" height="100%" style={{ border: 0 }}
-                allowFullScreen loading="lazy"
-              />
-            </div>
+    <div className="access__grid">
+      <div className="access__info">
+        <div className="access__item">
+          <div>
+            <p className="access__label">会場</p>
+            <p className="access__val">熊本大学 黒髪北キャンパス</p>
+            <p className="access__sub">
+              〒860-8555 熊本市中央区黒髪2-39-1
+            </p>
           </div>
         </div>
-      </section>
+
+        <div className="access__item">
+          <div>
+            <p className="access__label">バス</p>
+            <p className="access__val">「熊本大学前」下車すぐ</p>
+          </div>
+        </div>
+
+        <div className="access__item">
+          <div>
+            <p className="access__label">駐車場</p>
+            <p className="access__val">
+              付近のコインパーキングをご利用ください
+            </p>
+            <p className="access__sub">
+              近隣の店舗や住民の方々の迷惑にならないよう、交通ルールをお守りください。
+            </p>
+          </div>
+        </div>
+
+        <div className="access__item">
+          <div>
+            <p className="access__label">臨時駐車場</p>
+            <p className="access__val">
+              黒髪小学校（1日目：11/1のみ開放）
+            </p>
+            <p className="access__sub">
+              11/2・11/3は、黒髪小学校の臨時駐車場は開放しません。
+            </p>
+          </div>
+        </div>
+
+        <div className="access__item">
+          <div>
+            <p className="access__label">
+              身体障がい者・高齢者の方専用の臨時駐車場
+            </p>
+            <p className="access__val">
+              桜山中学校（3日目：11/3のみ開放）
+            </p>
+            <p className="access__sub">
+              身体障がい者・高齢者の方専用です。
+            </p>
+          </div>
+        </div>
+
+        <a
+          className="map-link"
+          href="https://maps.google.com/?q=熊本大学黒髪北キャンパス"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Google マップで開く →
+        </a>
+      </div>
+
+      <div className="access__map">
+        <iframe
+          title="熊本大学黒髪北キャンパス"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.4!2d130.7408!3d32.8115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3540f4027b1a0001%3A0x1!2z54aK5pys5aSn5a2m6buS6aaZ5YyWOuWMl-aKiw!5e0!3m2!1sja!2sjp!4v1"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section> 
 
       {/* ── フッター ── */}
       <footer className="footer">
