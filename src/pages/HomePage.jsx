@@ -51,6 +51,16 @@ import acoDay2Img from '../assets/aco-day2.png'
 import philDay2Img from '../assets/phil-day2.png'
 import kumakoreDay2Img from '../assets/kumakore-day2.png'
 import introDonImg from '../assets/intro-don.png'
+import folkDay3Img from '../assets/folk-day3.png'
+import higoDay3Img from '../assets/higo-day3.png'
+import dressDay3Img from '../assets/dress-day3.png'
+import culletDay3Img from '../assets/cullet-day3.png'
+import acoDay3Img from '../assets/aco-day3.png'
+import ensembleDay3Img from '../assets/ensemble-day3.png'
+import kotakiDay3Img from '../assets/kotaki-day3.png'
+import jazzDay3Img from '../assets/jazz-day3.png'
+import candleDay3Img from '../assets/candle-day3.png'
+import finaleDay3Img from '../assets/finale-day3.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -278,67 +288,97 @@ const TIMETABLE = {
   },
 ],
 
-  '11/3': [ // 3日目
-    {
-      time: '10:00',
-      endTime: '11:00',
-      name: 'フォークソング研究会',
-      stage: 'メインステージ',
-    },
-    {
-      time: '11:30',
-      endTime: '12:05',
-      name: 'KUMADAI DRESS & TUXEDOSHOW',
-      stage: 'メインステージ',
-    },
-    {
-      time: '12:45',
-      endTime: '13:45',
-      name: 'Cullet',
-      stage: 'メインステージ',
-    },
-    {
-      time: '14:15',
-      endTime: '14:45',
-      name: '医学部アンサンブル',
-      stage: 'メインステージ',
-    },
-    {
-      time: '15:15',
-      endTime: '16:15',
-      name: '上瀧研究室',
-      stage: 'メインステージ',
-    },
-    {
-      time: '16:45',
-      endTime: '17:45',
-      name: 'モダンジャズ研究会',
-      stage: 'メインステージ',
-    },
-    {
-      time: '18:00',
-      endTime: '19:30',
-      name: 'フィナーレ',
-      stage: 'メインステージ',
-    },
-    {
-      time: '10:00',
-      endTime: '13:00',
-      name: 'Higo-Pella',
-      stage: 'サブステージ',
-    },
-    {
-      time: '13:30',
-      endTime: '16:30',
-      name: 'アコースティック愛好会',
-      stage: 'サブステージ',
-    },
-    {
-      time: '17:00',
-      endTime: '18:00',
-      name: 'キャンドルナイト',
-      stage: 'サブステージ',
-    },
+'11/3': [ // 3日目
+  {
+    time: '10:00',
+    endTime: '11:00',
+    name: 'フォークソング研究会',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: 'F研の『マカロニえんぴつ』『04 Limited Sazabys』のアツい演奏をぜひ観に来てくれー！',
+    imgs: [folkDay3Img],
+  },
+  {
+    time: '11:30',
+    endTime: '12:05',
+    name: 'KUMADAI DRESS & TUXEDOSHOW',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '「GLOW」をテーマに、ドレスとタキシードに身を包んだ熊大生が登場！一人ひとりの個性と魅力が輝くステージを、華やかなランウェイとともにお届けします。ぜひ会場でご覧ください！',
+    imgs: [dressDay3Img],
+  },
+  {
+    time: '12:45',
+    endTime: '13:45',
+    name: 'Cullet',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: 'こんにちは！KPOPダンスカバーサークルのCulletです！✨💜私たちCulletは、現在100名以上の部員で活動しています！今回は例年より短い出演時間になりますが、その分いつも以上に可愛くパワフルに踊り、皆様に楽しんでいただけるよう頑張ります！✨',
+    imgs: [culletDay3Img],
+  },
+  {
+    time: '14:15',
+    endTime: '14:45',
+    name: '医学部アンサンブル',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '吹奏楽やオーケストラとはまた違った、アンサンブルを披露します！様々な楽器の音色をお楽しみください。',
+    imgs: [ensembleDay3Img],
+  },
+  {
+    time: '15:15',
+    endTime: '16:15',
+    name: '上瀧研究室',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '工学部の上瀧研究室が半自動ロボバンドで魅せます！世界にここだけの技術を、見逃すな。',
+    imgs: [kotakiDay3Img],
+  },
+  {
+    time: '16:45',
+    endTime: '17:45',
+    name: 'モダンジャズ研究会',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: 'こんにちは、モダンジャズ研究会です。今回のステージはのれる音楽を演奏します。どうぞお楽しみください。',
+    imgs: [jazzDay3Img],
+  },
+  {
+    time: '18:00',
+    endTime: '19:30',
+    name: 'フィナーレ',
+    stage: 'メインステージ',
+    place: 'メインステージ',
+    comment: '表彰式、豪華景品が当たる大抽選会や幻想的なランタンの打ち上げなどなど…紫熊祭の最後を締めくくる企画が盛りだくさん♪ぜひフィナーレまでお楽しみください！',
+    imgs: [finaleDay3Img],
+  },
+  {
+    time: '10:00',
+    endTime: '13:00',
+    name: 'Higo-Pella',
+    stage: 'サブステージ',
+    place: 'サブステージ',
+    comment: '熊本大学アカペラサークルHigo-Pellaです！素敵な演奏をお届けします！',
+    imgs: [higoDay3Img],
+  },
+  {
+    time: '13:30',
+    endTime: '16:30',
+    name: 'アコースティック愛好会',
+    stage: 'サブステージ',
+    place: 'サブステージ',
+    comment: '計10バンド出演します！弾き語りからバンドまで、幅広いバンド編成で音楽をお届けします！',
+    imgs: [acoDay3Img],
+  },
+  {
+    time: '17:00',
+    endTime: '18:00',
+    name: 'キャンドルナイト',
+    stage: 'サブステージ',
+    place: 'サブステージ',
+    comment: 'キャンドルナイトでは、一人一人がオリジナルのキャンドルを作ることができ、夜には作ったキャンドルに火を灯し、幻想的な空間を楽しめます！ぜひ、キャンドルナイトで楽しい思い出を作ってください！ ※キャンドル作りは、11/1（1日目）10:30～16:30の間に子供広場にて行っております。',
+    imgs: [candleDay3Img],
+  },
   {
     time: '10:30',
     endTime: '16:30',
@@ -347,16 +387,16 @@ const TIMETABLE = {
     place: '子供広場',
     comment: '熊大に「”おかし”な縁日」が登場！射的やジャンボ缶倒し、輪投げなどゲームが勢揃い。大人向け難易度もあり、子供だけでなく大学生も楽しめます！必ずお菓子や景品がもらえるよ！大学生の本気を見せつけよう！！',
   },
-    {
-      time: '14:00',
-      endTime: '15:40',
-      name: 'お笑いステージ2026',
-      stage: 'その他の場所',
-      place: '新体育館',
-      comment: '今年の紫熊祭に、サンシャイン池崎とぱーてぃーちゃんが登場！じゃんけん大会や質問コーナーに加え、サインや写真撮影が景品として当たる抽選会も開催します。最高に盛り上がる爆笑ステージをお見逃しなく！',
-      imgs: [owarai],
-    },
-  ],
+  {
+    time: '14:00',
+    endTime: '15:40',
+    name: 'お笑いステージ2026',
+    stage: 'その他の場所',
+    place: '新体育館',
+    comment: '今年の紫熊祭に、サンシャイン池崎とぱーてぃーちゃんが登場！じゃんけん大会や質問コーナーに加え、サインや写真撮影が景品として当たる抽選会も開催します。最高に盛り上がる爆笑ステージをお見逃しなく！',
+    imgs: [owarai],
+  },
+],
 }
 
 /* ── ステージごとの色分け ── */
