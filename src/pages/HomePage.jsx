@@ -61,6 +61,7 @@ import kotakiDay3Img from '../assets/kotaki-day3.png'
 import jazzDay3Img from '../assets/jazz-day3.png'
 import candleDay3Img from '../assets/candle-day3.png'
 import finaleDay3Img from '../assets/finale-day3.png'
+import benngosi from '../assets/benngosi.png'
 
 /* ── データ ── */
 const DAYS = [
@@ -1068,6 +1069,15 @@ useEffect(() => {
         <span className="ad-banner__label">広告</span>
         <a href="https://www.kaikatsu.jp/" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
           <img src={kaikatu} alt="快活" className="ad-banner__img" />
+        </a>
+      </div>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          広告：弁護士
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <div className="ad-banner">
+        <span className="ad-banner__label">広告</span>
+        <a href="https://yoyaku.kumaben.or.jp/guide" target="_blank" rel="noopener noreferrer" className="ad-banner__link">
+          <img src={benngosi} alt="弁護士" className="ad-banner__img" />
         </a>
       </div>
       {/* ── 出店・サークル ── */}
