@@ -63,6 +63,8 @@ import candleDay3Img from '../assets/candle-day3.png'
 import finaleDay3Img from '../assets/finale-day3.png'
 import benngosi from '../assets/benngosi.png'
 import AdvertisementSection from '../components/AdvertisementSection'
+import SponsorSection from '../components/SponsorSection'
+
 
 /* ── データ ── */
 const DAYS = [
@@ -1191,8 +1193,13 @@ useEffect(() => {
   </div>
 </section> 
 
+      {/* ── ご協賛企業ロゴ一覧 ── */}
+      <section id="sponsorss"></section>
+      <SponsorSection />
+
+
 {/* ── ご協賛企業一覧 ── */}
-<section className="section sponsors" id="sponsorss">
+<section className="section sponsors" id="sponsors">
   <div className="container">
     <div className="section-label">Sponsors</div>
     <h2 className="section-title">ご協賛企業一覧</h2>
@@ -1229,7 +1236,7 @@ useEffect(() => {
         '株式会社 ボウリング王国スポルト 熊本店',
         '株式会社 マイナビ',
         '株式会社 明和不動産',
-        '株式会社 ライブプラザパートナーズ FA 営業部',
+        '株式会社 ライブプラザパートナーズ熊本FA営業部',
         '上熊本三陽自動車学校',
         '熊本県弁護士会',
         '熊本大学生活協同組合',
