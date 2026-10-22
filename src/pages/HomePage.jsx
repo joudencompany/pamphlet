@@ -418,7 +418,7 @@ export default function HomePage() {
   const [adShown, setAdShown] = useState(false)
   const [surveyTriggered, setSurveyTriggered] = useState(false)
   const [surveyOpen, setSurveyOpen] = useState(false)
-  const [surveyDone, setSurveyDone] = useState(() => sessionStorage.getItem('surveyDone2') === 'true')
+  const [surveyDone, setSurveyDone] = useState(() => localStorage.getItem('surveyDone2') === 'true')
   const [surveyType, setSurveyType] = useState(null)
   const [surveyRating, setSurveyRating] = useState(0)
   const [surveyComment, setSurveyComment] = useState('')
@@ -464,12 +464,13 @@ export default function HomePage() {
     }
   }, [isDraggingAd])
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwtIeLx5X3U_pjhTT0VL_vPQ_Radn4argjWXeVfWtQy845vXB9CHQwBL1zh4hYGAwXp/exec'
+  const SURVEY_SECRET = 'shigumasai15_survey_2026'
   const handleSurvey = async () => {
     if (!surveyType || surveySent) return
     setSurveySent(true)
     setSurveyDone(true)
-    sessionStorage.setItem('surveyDone2', 'true')
-    const params = new URLSearchParams({ type: surveyType, rating: surveyRating, comment: surveyComment })
+    localStorage.setItem('surveyDone2', 'true')
+    const params = new URLSearchParams({ type: surveyType, rating: surveyRating, comment: surveyComment, secret: SURVEY_SECRET })
     try {
       await fetch(`${SHEET_URL}?${params}`, { method: 'GET', mode: 'no-cors' })
     } catch (e) {
