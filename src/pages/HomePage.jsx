@@ -393,7 +393,7 @@ const TIMETABLE = {
   },
   {
     time: '14:00',
-    endTime: '15:40',
+    endTime: '15:00',
     name: 'お笑いステージ2026',
     stage: 'その他の場所',
     place: '新体育館',
