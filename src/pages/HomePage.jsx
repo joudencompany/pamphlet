@@ -418,11 +418,23 @@ export default function HomePage() {
   const [adShown, setAdShown] = useState(false)
   const [surveyTriggered, setSurveyTriggered] = useState(false)
   const [surveyOpen, setSurveyOpen] = useState(false)
-  const [surveyDone, setSurveyDone] = useState(() => localStorage.getItem('surveyDone2') === 'true')
+  const [surveyDone, setSurveyDone] = useState(() => {
+    try {
+      return sessionStorage.getItem('surveyDone2') === 'true'
+    } catch {
+      return false
+    }
+  })
   const [surveyType, setSurveyType] = useState(null)
   const [surveyRating, setSurveyRating] = useState(0)
   const [surveyComment, setSurveyComment] = useState('')
   const [surveySent, setSurveySent] = useState(false)
+  const [surveySending, setSurveySending] = useState(false)
+  const surveySendingRef = useRef(false)
+  const surveyRequestIdRef = useRef(null)
+  const surveyCloseTimerRef = useRef(null)
+
+  useEffect(() => () => clearTimeout(surveyCloseTimerRef.current), [])
   const [activeDay, setActiveDay] = useState('11/1')
   const [menuOpen, setMenuOpen] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
@@ -465,18 +477,79 @@ export default function HomePage() {
   }, [isDraggingAd])
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwtIeLx5X3U_pjhTT0VL_vPQ_Radn4argjWXeVfWtQy845vXB9CHQwBL1zh4hYGAwXp/exec'
   const SURVEY_SECRET = 'shigumasai15_survey_2026'
+
   const handleSurvey = async () => {
-    if (!surveyType || surveySent) return
-    setSurveySent(true)
-    setSurveyDone(true)
-    localStorage.setItem('surveyDone2', 'true')
-    const params = new URLSearchParams({ type: surveyType, rating: surveyRating, comment: surveyComment, secret: SURVEY_SECRET })
-    try {
-      await fetch(`${SHEET_URL}?${params}`, { method: 'GET', mode: 'no-cors' })
-    } catch (e) {
-      console.error('送信失敗', e)
+    if (!surveyType || surveySent || surveyDone || surveySendingRef.current) return
+
+    const comment = surveyComment.trim()
+    if (comment.length > 1000) {
+      alert('感想は1000文字以内で入力してください。')
+      return
     }
-    setTimeout(() => setSurveyOpen(false), 2500)
+
+    // Reactの描画を待たずに連続クリックを防止
+    surveySendingRef.current = true
+    setSurveySending(true)
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 25000)
+
+    try {
+      // 再送時は同じIDを使い、GAS側で二重登録を防ぐ
+      let requestId = surveyRequestIdRef.current
+      if (!requestId) {
+        try {
+          requestId = sessionStorage.getItem('surveyRequestId2')
+        } catch {
+          // 保存機能を利用できない場合は、この画面内でIDを保持する
+        }
+        if (!requestId || !/^[a-zA-Z0-9_-]{16,100}$/.test(requestId)) {
+          requestId = Array.from(crypto.getRandomValues(new Uint8Array(16)))
+            .map(value => value.toString(16).padStart(2, '0'))
+            .join('')
+        }
+        surveyRequestIdRef.current = requestId
+        try {
+          sessionStorage.setItem('surveyRequestId2', requestId)
+        } catch {
+          // メモリ上のIDで送信を続ける
+        }
+      }
+
+      const params = new URLSearchParams({
+        secret: SURVEY_SECRET,
+        requestId,
+        type: surveyType,
+        // 未選択の0は空欄にし、平均点の計算から除外する
+        rating: surveyRating === 0 ? '' : String(surveyRating),
+        comment
+      })
+
+      await fetch(`${SHEET_URL}?${params.toString()}`, {
+        method: 'GET',
+        mode: 'no-cors',
+        cache: 'no-store',
+        signal: controller.signal
+      })
+
+      // no-corsではGASの応答を読めないため、保存成功の確認ではない
+      setSurveySent(true)
+      setSurveyDone(true)
+      try {
+        sessionStorage.setItem('surveyDone2', 'true')
+      } catch {
+        // 保存できない場合も現在の画面では回答済みとして扱う
+      }
+      surveyCloseTimerRef.current = setTimeout(() => setSurveyOpen(false), 2500)
+    } catch (error) {
+      console.error('アンケート送信失敗', error)
+      alert(error.name === 'AbortError'
+        ? '通信がタイムアウトしました。通信環境を確認して、もう一度送信してください。'
+        : '通信に失敗しました。通信環境を確認して、もう一度送信してください。')
+    } finally {
+      clearTimeout(timeoutId)
+      surveySendingRef.current = false
+      setSurveySending(false)
+    }
   }
   useEffect(() => {
     if (surveyDone || surveyTriggered) return
@@ -573,7 +646,9 @@ useEffect(() => {
           </button>
           {surveyOpen && (
             <div className="survey-bubble__panel">
-              {surveySent ? <p className="survey-bubble__thanks">ご回答ありがとうございます！</p> : (
+              {surveySent ? <p className="survey-bubble__thanks">ご協力ありがとうございます！</p> : surveySending ? (
+                <p className="survey-bubble__thanks" role="status">送信中…</p>
+              ) : (
                 <>
                   <p className="survey-bubble__label">あなたは？</p>
                   <div className="survey-type">
@@ -581,15 +656,15 @@ useEffect(() => {
                       <button type="button" key={v} className={`survey-type__btn ${surveyType === v ? 'active' : ''}`} onClick={() => setSurveyType(v)}>{v}</button>
                     ))}
                   </div>
-                  <p className="survey-bubble__label">満足度</p>
+                  <p className="survey-bubble__label">満足度（任意）</p>
                   <div className="survey-rating">
                     {[1, 2, 3, 4, 5].map(n => (
                       <button type="button" key={n} aria-label={`満足度${n}`} className={`survey-rating__star ${n <= surveyRating ? 'active' : ''}`} onClick={() => setSurveyRating(n)}>★</button>
                     ))}
                   </div>
                   <p className="survey-bubble__label">感想（任意）</p>
-                  <textarea className="survey-textarea" placeholder="ご自由にどうぞ" value={surveyComment} onChange={e => setSurveyComment(e.target.value)} />
-                  <button type="button" className="survey-submit" onClick={handleSurvey} disabled={!surveyType}>送信する</button>
+                  <textarea className="survey-textarea" placeholder="ご自由にどうぞ（1000文字以内）" maxLength={1000} value={surveyComment} onChange={e => setSurveyComment(e.target.value)} />
+                  <button type="button" className="survey-submit" onClick={handleSurvey} disabled={!surveyType || surveySending}>送信する</button>
                 </>
               )}
             </div>
