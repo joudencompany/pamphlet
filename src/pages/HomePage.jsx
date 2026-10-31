@@ -558,8 +558,7 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [surveyDone, surveyTriggered])
   useEffect(() => {
-  document.title = '第15回 紫熊祭 | 熊本大学黒髪北キャンパス'
-}, [])
+document.title = '熊本大学の大学祭「第15回紫熊祭」2026｜電子パンフレット'}, [])
 useEffect(() => {
   if (adShown) return
   const sectionIds = ['greeting', 'timetable', 'circles-tent', 'access']
@@ -714,6 +713,33 @@ useEffect(() => {
           </button>
         </div>
       </section>
+
+
+      {/* ── 電子パンフレットの紹介 ── */}
+      <section
+        aria-label="紫熊祭の開催概要"
+        style={{
+          padding: '28px 20px',
+          backgroundColor: '#fff',
+          color: '#333'
+        }}
+      >
+        <p
+          style={{
+            maxWidth: '760px',
+            margin: '0 auto',
+            fontSize: '15px',
+            lineHeight: 1.9
+          }}
+        >
+          熊本大学の大学祭（学園祭）「第15回紫熊祭」は、
+          2026年11月1日〜3日に黒髪北キャンパスで開催！
+          この電子パンフレットでは、出店・ステージ企画・
+          タイムテーブル・会場マップ・アクセスをご案内します。
+          ご来場前のチェックや、当日の会場巡りにご活用ください。
+        </p>
+      </section>
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           広告：テラバル自動車学校
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
