@@ -1152,9 +1152,6 @@ useEffect(() => {
         </div>
       </section>
 
-{/* ── ご協賛広告一覧 ── */}
-<AdvertisementSection />
-
       {/* ── 出店・サークル ── */}
       <section className="section circles" id="circles-okunai">
         <div className="container">
@@ -1203,6 +1200,9 @@ useEffect(() => {
           </div>
         </div>
       </section>
+
+
+
       {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
           スタンプラリー
       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
@@ -1213,6 +1213,9 @@ useEffect(() => {
         </a>
       </div>
       </section>
+
+{/* ── ご協賛広告一覧 ── */}
+<AdvertisementSection />
 
 {/* ── アクセス ── */}
 <section className="section access" id="access">
