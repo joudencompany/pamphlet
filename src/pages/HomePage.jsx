@@ -558,7 +558,7 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [surveyDone, surveyTriggered])
   useEffect(() => {
-document.title = '熊本大学の大学祭「第15回紫熊祭」2026｜電子パンフレット'}, [])
+document.title = '熊本大学大学祭「第15回紫熊祭」2026｜電子パンフレット'}, [])
 useEffect(() => {
   if (adShown) return
   const sectionIds = ['greeting', 'timetable', 'circles-tent', 'access']
@@ -733,7 +733,7 @@ useEffect(() => {
           }}
         >
           熊本大学の大学祭（学園祭）「第15回紫熊祭」は、
-          2026年11月1日〜3日に黒髪北キャンパスで開催！
+          開催期間2026年11月1日〜3日に黒髪北キャンパスで開催！
           この電子パンフレットでは、出店・ステージ企画・
           タイムテーブル・会場マップ・アクセスをご案内します。
           ご来場前のチェックや、当日の会場巡りにご活用ください。
