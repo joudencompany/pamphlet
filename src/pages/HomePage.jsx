@@ -1158,6 +1158,11 @@ useEffect(() => {
           <div className="section-label">Okunai Booths</div>
           <h2 className="section-title">出店・サークル</h2
           >
+          <div>
+            <p>紫熊祭期間中に毎日開催される屋内での企画をご紹介します。
+                LIVEや展示、参加型企画もございます。お楽しみください！
+            </p>
+          </div>
           <p className="circles__subtitle">屋内企画ー学生会館ー</p>
           <div className="circles__map">
             <img
