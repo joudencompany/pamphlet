@@ -62,7 +62,8 @@ import finaleDay3Img from '../assets/finale-day3.png'
 import benngosi from '../assets/benngosi.png'
 import AdvertisementSection from '../components/AdvertisementSection'
 import SponsorSection from '../components/SponsorSection'
-
+import bymapImg from '../assets/bymap.jpg'
+import aedmapImg from '../assets/aedmap.jpg'
 
 /* ── データ ── */
 const DAYS = [
