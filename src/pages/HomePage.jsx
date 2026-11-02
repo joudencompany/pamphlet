@@ -419,9 +419,9 @@ const NOTICE_FALLBACK = [
 ]
 // 日別お知らせ：取得前・取得失敗時に表示する文面
 const DAY_NOTICE_FALLBACK = {
-  '11/2': [
-    '',
-  ],
+  '11/1': ['',],
+  '11/2': ['',],
+  '11/3': ['',],
 }
 
 export default function HomePage() {
