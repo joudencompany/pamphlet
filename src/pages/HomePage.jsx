@@ -415,6 +415,17 @@ const STAGE_COLOR = {
 }
 /* ── アンカー広告データ（中央自動車学校のみ） ── */
 const ANCHOR_AD = { img: chuoImg, alt: '中央自動車学校', url: 'https://chuo-ds.com/' }
+
+/* ── お知らせ（Googleスプレッドシートから取得）★変更 ── */
+const NOTICE_URL = 'https://script.google.com/macros/s/AKfycby0I4KW80DOxX8k4FXiapUfAdJEjTNAL-pc2F2GIAs1P7nmJTzDTFPitFWYv3b_NHCfzw/exec'
+// 取得前・取得失敗時に表示する文面
+const NOTICE_FALLBACK = [
+  '雨天時対応より、メインステージが大集会室へ変更となります',
+  '縁日・ランタン作りの開催時間が12:30〜16:30に変更となります',
+  'しぐまくんスタンプラリーは午前中の開催を中止します',
+  '大集会室の企画は15分前倒しになっております',
+]
+
 export default function HomePage() {
   const [adVisible, setAdVisible] = useState(false)
   const [adShown, setAdShown] = useState(false)
@@ -438,6 +449,7 @@ export default function HomePage() {
 
   useEffect(() => () => clearTimeout(surveyCloseTimerRef.current), [])
   const [activeDay, setActiveDay] = useState('11/2')
+  const [notices, setNotices] = useState(NOTICE_FALLBACK) // ★変更
 
   const [menuOpen, setMenuOpen] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
@@ -562,6 +574,23 @@ export default function HomePage() {
   }, [surveyDone, surveyTriggered])
   useEffect(() => {
 document.title = '熊本大学大学祭「第15回紫熊祭」2026｜電子パンフレット'}, [])
+
+  /* ── お知らせをスプレッドシートから取得（失敗時はフォールバックのまま）★変更 ── */
+  useEffect(() => {
+    const controller = new AbortController()
+    fetch(NOTICE_URL, { signal: controller.signal, cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.ok && Array.isArray(data.notices)) {
+          setNotices(data.notices.map(n => n.text).filter(Boolean))
+        }
+      })
+      .catch(() => {
+        // 失敗時は NOTICE_FALLBACK のまま表示する
+      })
+    return () => controller.abort()
+  }, [])
+
 useEffect(() => {
   if (adShown) return
   const sectionIds = ['greeting', 'timetable', 'circles-tent', 'access']
@@ -715,18 +744,17 @@ useEffect(() => {
             スケジュールを見る →
           </button>
 
-          {/* ── お知らせ ── */}
-          <aside className="hero__notice" aria-label="お知らせ">
-            <h2 className="hero__notice-title">お知らせ</h2>
-            <ul className="hero__notice-list">
-              <div className="hero__notice__content">
-              <li>雨天時対応より、メインステージが大集会室へ変更となります</li>
-              <li>縁日・ランタン作りの開催時間が12:30～16:30に変更となります</li>
-              <li>しぐまくんスタンプラリーは午前中の開催を中止いたします</li>
-              <li>大集会室の企画は15分前倒しになっております</li>
-              </div>
-            </ul>
-          </aside>
+          {/* ── お知らせ（スプレッドシート連動）★変更 ── */}
+          {notices.length > 0 && (
+            <aside className="hero__notice" aria-label="お知らせ">
+              <h2 className="hero__notice-title">お知らせ</h2>
+              <ul className="hero__notice-list">
+                {notices.map((text, i) => (
+                  <li key={i}>{text}</li>
+                ))}
+              </ul>
+            </aside>
+          )}
         </div>
       </section>        
 
