@@ -414,15 +414,9 @@ const ANCHOR_AD = { img: chuoImg, alt: '中央自動車学校', url: 'https://ch
 /* ── お知らせ（Googleスプレッドシートから取得）★変更 ── */
 const NOTICE_URL = 'https://script.google.com/macros/s/AKfycby0I4KW80DOxX8k4FXiapUfAdJEjTNAL-pc2F2GIAs1P7nmJTzDTFPitFWYv3b_NHCfzw/exec'
 // 取得前・取得失敗時に表示する文面
-const NOTICE_FALLBACK = [
-  '',
-]
 // 日別お知らせ：取得前・取得失敗時に表示する文面
-const DAY_NOTICE_FALLBACK = {
-  '11/1': ['',],
-  '11/2': ['',],
-  '11/3': ['',],
-}
+const NOTICE_FALLBACK = []
+const DAY_NOTICE_FALLBACK = {}
 
 export default function HomePage() {
   const [adVisible, setAdVisible] = useState(false)
