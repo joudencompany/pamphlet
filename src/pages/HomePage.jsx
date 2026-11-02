@@ -69,7 +69,10 @@ import SponsorSection from '../components/SponsorSection'
 /* ── データ ── */
 const DAYS = [
   { label: '11/1', day: '日', color: '#e03c3c' },
-  { label: '11/2', day: '月', color: '#2a8c4a' },
+  {
+    label: '11/2', day: '月', color: '#2a8c4a',
+    notice: '本日(11/2)メインステージ企画は学生会館2階大集会室で行います',
+  },
   { label: '11/3', day: '火・祝', color: '#e03c3c' },
 ]
 const TIMETABLE = {
@@ -197,7 +200,7 @@ const TIMETABLE = {
     endTime: '10:15',
     name: '邦楽演奏',
     stage: 'メインステージ',
-    place: 'メインステージ',
+    place: '学生会館2階大集会室',
     comment: '初心者多数の元気な邦楽部です！当日は三味線箏尺八で「月の旋律」「ルパン三世のテーマ」を演奏します。',
     imgs: [hougaku],
   },
@@ -206,7 +209,7 @@ const TIMETABLE = {
     endTime: '11:00',
     name: '書道パフォーマンス',
     stage: 'メインステージ',
-    place: 'メインステージ',
+    place: '学生会館2階大集会室',
     comment: '音楽に合わせた迫力の書道パフォーマンスをお届けします！文字に込めた部員の熱い想いをご覧ください。',
     imgs: [shodou],
   },
@@ -215,7 +218,7 @@ const TIMETABLE = {
     endTime: '11:45',
     name: 'フォークダンス',
     stage: 'メインステージ',
-    place: 'メインステージ',
+    place: '学生会館2階大集会室',
     comment: '私たちフォークダンス部が世界各国の民族舞踊を披露します。様々な系統の踊りをぜひお楽しみください。',
     imgs: [folkDanceDay2Img],
   },
@@ -224,7 +227,7 @@ const TIMETABLE = {
     endTime: '13:00',
     name: '歌うま',
     stage: 'メインステージ',
-    place: 'メインステージ',
+    place: '学生会館2階大集会室',
     comment: '事前選抜を勝ち抜いた参加者がステージで熱唱！DAM精密採点と審査員で「熊大歌うま王」を決定します。昨年度の大盛況から進化した2026年版の、極上の歌声をお聞き逃しなく！',
     imgs: [utaumaImg],
   },
@@ -233,7 +236,7 @@ const TIMETABLE = {
     endTime: '14:30',
     name: 'ロック研究 in メインステージ2026',
     stage: 'メインステージ',
-    place: 'メインステージ',
+    place: '学生会館2階大集会室',
     comment: 'こんにちはロック研究会です。今回は熾烈な予選を勝ち抜いた2バンドが演奏します。目撃せよ、激音炸裂！',
     imgs: [rockDay2Img],
   },
@@ -242,7 +245,7 @@ const TIMETABLE = {
     endTime: '16:00',
     name: 'Higo-Pella',
     stage: 'メインステージ',
-    place: 'メインステージ',
+    place: '学生会館2階大集会室',
     comment: '熊本大学アカペラサークルHigo-Pellaです！素敵な演奏をお届けします！',
     imgs: [higoPella],
   },
@@ -251,7 +254,7 @@ const TIMETABLE = {
     endTime: '16:45',
     name: '熊大フィル軽音部58th',
     stage: 'メインステージ',
-    place: 'メインステージ',
+    place: '学生会館2階大集会室',
     comment: '熊大フィル軽音部です！フィルを引退したOBによるバンド演奏を行います。お楽しみに！',
     imgs: [philDay2Img],
   },
@@ -260,8 +263,8 @@ const TIMETABLE = {
     endTime: '18:00',
     name: '熊大コレクション2026',
     stage: 'メインステージ',
-    place: 'メインステージ',
-    comment: '本学の学生がモデルとなり、私服や熊本内のセレクトショップの衣装でファッションショーを行います。メインテーマ「Ribbon」に絆、結びつきという思いを込め、関わる全ての人との結びつきを大切にします。',
+    place: '学生会館2階大集会室',
+    comment: '本学の学生がモデルとなり、私服や熊本内のセレクトショップの衣装でファッションショーを行います。メインテーマ「Ribbon」に絆、結びつきという思いを込め、関わる全ての人との結びつきを大切にします。
     imgs: [kumakoreDay2Img, kumakore, kumakore2],
   },
   {
@@ -384,7 +387,7 @@ const TIMETABLE = {
     imgs: [candleDay3Img],
   },
   {
-    time: '10:30',
+    time: '12:30',
     endTime: '16:30',
     name: 'しぐまつり～おかしな縁日～',
     stage: 'その他の場所',
@@ -435,6 +438,7 @@ export default function HomePage() {
   const surveyCloseTimerRef = useRef(null)
 
   useEffect(() => () => clearTimeout(surveyCloseTimerRef.current), [])
+  const [activeDay, setActiveDay] = useState('11/2')
   const [activeDay, setActiveDay] = useState('11/1')
   const [menuOpen, setMenuOpen] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
@@ -712,24 +716,19 @@ useEffect(() => {
             スケジュールを見る →
           </button>
 
-          <button className="hero__cta" onClick={() => scrollTo('timetable')}>
-            スケジュールを見る →
-          </button>
-
           {/* ── お知らせ ── */}
           <aside className="hero__notice" aria-label="お知らせ">
             <h2 className="hero__notice-title">お知らせ</h2>
             <ul className="hero__notice-list">
+              <div className="hero__notice__content">
               <li>雨天時対応より、メインステージが大集会室へ変更となります</li>
               <li>縁日・ランタン作りの開催時間が12:30～16:30に変更となります</li>
               <li>しぐまくんスタンプラリーは午前中の開催を中止いたします</li>
+              </div>
             </ul>
           </aside>
         </div>
       </section>        
-
-        </div>
-      </section>
 
 
       {/* ── 電子パンフレットの紹介 ── */}
@@ -1076,6 +1075,13 @@ useEffect(() => {
         </button>
       ))}
     </div>
+
+    {DAYS.find(d => d.label === activeDay)?.notice && (
+      <p className="tt-notice" role="note">
+        {DAYS.find(d => d.label === activeDay).notice}
+      </p>
+    )}
+
     <div className="tt-columns">
       {Object.entries(
         TIMETABLE[activeDay].reduce((acc, ev) => {
