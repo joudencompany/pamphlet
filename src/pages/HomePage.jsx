@@ -6,7 +6,6 @@ import terrabalImg from '../assets/terrabal.jpg'
 import terrabalImg2 from '../assets/terrabal2.jpg'
 import chuoImg from '../assets/chuo.png'
 import seikyou from '../assets/seikyou.png'
-import konntakuto from '../assets/konntakuto.png'
 import ouesu from '../assets/ouesu.png'
 import campusmap from '../assets/campusmap.png'
 import kyouseisika from '../assets/kyouseisika.png'
@@ -40,7 +39,6 @@ import ouendanLeaderImg from '../assets/ouendan-leader.png'
 import cheerImg from '../assets/cheer.png'
 import yosakoiImg from '../assets/yosakoi.png'
 import mpbImg from '../assets/mpb.png'
-import muscleFestivalImg from '../assets/muscle-festival.png'
 import acoDay1Img from '../assets/aco-day1.png'
 import dapImg from '../assets/dap.png'
 import folkDanceDay2Img from '../assets/folk-dance-day2.png'
@@ -68,10 +66,7 @@ import aedmapImg from '../assets/aedmap.jpg'
 /* ── データ ── */
 const DAYS = [
   { label: '11/1', day: '日', color: '#e03c3c' },
-  {
-    label: '11/2', day: '月', color: '#2a8c4a',
-    notice: '本日(11/2)メインステージ企画は学生会館2階大集会室で行います。現在、大集会室の企画は15分前倒しになっております。',
-  },
+  { label: '11/2', day: '月', color: '#2a8c4a' },
   { label: '11/3', day: '火・祝', color: '#e03c3c' },
 ]
 const TIMETABLE = {
@@ -420,11 +415,14 @@ const ANCHOR_AD = { img: chuoImg, alt: '中央自動車学校', url: 'https://ch
 const NOTICE_URL = 'https://script.google.com/macros/s/AKfycby0I4KW80DOxX8k4FXiapUfAdJEjTNAL-pc2F2GIAs1P7nmJTzDTFPitFWYv3b_NHCfzw/exec'
 // 取得前・取得失敗時に表示する文面
 const NOTICE_FALLBACK = [
-  '雨天時対応より、メインステージが大集会室へ変更となります',
-  '縁日・ランタン作りの開催時間が12:30〜16:30に変更となります',
-  'しぐまくんスタンプラリーは午前中の開催を中止します',
-  '大集会室の企画は15分前倒しになっております',
+  '',
 ]
+// 日別お知らせ：取得前・取得失敗時に表示する文面
+const DAY_NOTICE_FALLBACK = {
+  '11/2': [
+    '',
+  ],
+}
 
 export default function HomePage() {
   const [adVisible, setAdVisible] = useState(false)
@@ -448,8 +446,9 @@ export default function HomePage() {
   const surveyCloseTimerRef = useRef(null)
 
   useEffect(() => () => clearTimeout(surveyCloseTimerRef.current), [])
-  const [activeDay, setActiveDay] = useState('11/2')
-  const [notices, setNotices] = useState(NOTICE_FALLBACK) // ★変更
+  const [activeDay, setActiveDay] = useState('11/3')
+  const [notices, setNotices] = useState(NOTICE_FALLBACK) 
+  const [dayNotices, setDayNotices] = useState(DAY_NOTICE_FALLBACK)
 
   const [menuOpen, setMenuOpen] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
@@ -581,12 +580,16 @@ document.title = '熊本大学大学祭「第15回紫熊祭」2026｜電子パ�
     fetch(NOTICE_URL, { signal: controller.signal, cache: 'no-store' })
       .then(res => res.json())
       .then(data => {
-        if (data && data.ok && Array.isArray(data.notices)) {
+        if (!data || !data.ok) return
+        if (Array.isArray(data.notices)) {
           setNotices(data.notices.map(n => n.text).filter(Boolean))
+        }
+        if (data.dayNotices && typeof data.dayNotices === 'object') {
+          setDayNotices(data.dayNotices)
         }
       })
       .catch(() => {
-        // 失敗時は NOTICE_FALLBACK のまま表示する
+        // 失敗時は NOTICE_FALLBACK / DAY_NOTICE_FALLBACK のまま表示する
       })
     return () => controller.abort()
   }, [])
@@ -1104,11 +1107,9 @@ useEffect(() => {
       ))}
     </div>
 
-    {DAYS.find(d => d.label === activeDay)?.notice && (
-      <p className="tt-notice" role="note">
-        {DAYS.find(d => d.label === activeDay).notice}
-      </p>
-    )}
+    {(dayNotices[activeDay] || []).map((text, i) => (
+      <p className="tt-notice" role="note" key={i}>{text}</p>
+    ))}
 
     <div className="tt-columns">
       {Object.entries(
