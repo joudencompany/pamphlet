@@ -285,7 +285,7 @@ const TIMETABLE = {
     imgs: [acoDay2Img],
   },
   {
-    time: '10:30',
+    time: '12:30',
     endTime: '16:30',
     name: 'しぐまつり～おかしな縁日～',
     stage: 'その他の場所',
@@ -386,7 +386,7 @@ const TIMETABLE = {
     imgs: [candleDay3Img],
   },
   {
-    time: '12:30',
+    time: '10:30',
     endTime: '16:30',
     name: 'しぐまつり～おかしな縁日～',
     stage: 'その他の場所',
