@@ -690,7 +690,7 @@ useEffect(() => {
           <span className="nav__logo-sigma">Σ</span> 紫熊祭
         </div>
         <nav className={`nav__links ${menuOpen ? 'open' : ''}`}>
-          {[['挨拶','greeting'],['諸注意','notice'],['タイムテーブル','timetable'],['出店・サークル（テント）','circles-tent'],['出店・サークル（屋内）','circles-okunai'],['スタンプ','stamp'],['ご協賛企業','sponsorss'],['アクセス','access'],].map(([label, id]) => (
+          {[['挨拶','greeting'],['諸注意','notice'],['タイムテーブル','timetable'],['出店・サークル（テント）','circles-tent'],['出店・サークル（屋内）','circles-okunai'],['スタンプ','stamp'],['ご協賛企業','sponsorss'],['アクセス/駐輪/駐車/AED','access'],].map(([label, id]) => (
             <button key={id} onClick={() => scrollTo(id)}>{label}</button>
           ))}
         </nav>
@@ -1248,7 +1248,7 @@ useEffect(() => {
 <section className="section access" id="access">
   <div className="container">
     <div className="section-label">Access</div>
-    <h2 className="section-title">アクセス・駐輪/駐車/AED</h2>
+    <h2 className="section-title">アクセス/駐輪/駐車/AED</h2>
     <div className="access__grid">
       <div className="access__info">
         <div className="access__item">
