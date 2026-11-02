@@ -265,7 +265,7 @@ const TIMETABLE = {
     stage: 'メインステージ',
     place: '学生会館2階大集会室',
     comment: '本学の学生がモデルとなり、私服や熊本内のセレクトショップの衣装でファッションショーを行います。メインテーマ「Ribbon」に絆、結びつきという思いを込め、関わる全ての人との結びつきを大切にします。',
-    imgs: [kumakoreDay2Img, kumakore, kumakore2],
+    imgs: [kumakore],
   },
   {
     time: '11:00',
@@ -439,7 +439,7 @@ export default function HomePage() {
 
   useEffect(() => () => clearTimeout(surveyCloseTimerRef.current), [])
   const [activeDay, setActiveDay] = useState('11/2')
-  
+
   const [menuOpen, setMenuOpen] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
   const [greetOpen, setGreetOpen] = useState({ chair: false, vice: false }) // 挨拶の折りたたみ
