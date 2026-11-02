@@ -1092,6 +1092,7 @@ body {
   padding-left: 1.1em;
   font-size: 0.85rem;
   line-height: 1.7;
+  color: #fff;
 }
 
 .hero__notice-list li + li {
@@ -1103,10 +1104,6 @@ body {
     margin-inline: 1rem;
     font-size: 0.8rem;
   }
-}
-
-.hero__notice__content {
-color: #fff;
 }
 
 .tt-notice {
