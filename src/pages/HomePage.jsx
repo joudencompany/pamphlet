@@ -711,6 +711,23 @@ useEffect(() => {
           <button className="hero__cta" onClick={() => scrollTo('timetable')}>
             スケジュールを見る →
           </button>
+
+          <button className="hero__cta" onClick={() => scrollTo('timetable')}>
+            スケジュールを見る →
+          </button>
+
+          {/* ── お知らせ ── */}
+          <aside className="hero__notice" aria-label="お知らせ">
+            <h2 className="hero__notice-title">お知らせ</h2>
+            <ul className="hero__notice-list">
+              <li>雨天時対応より、メインステージが大集会室へ変更となります</li>
+              <li>縁日・ランタン作りの開催時間が12:30～16:30に変更となります</li>
+              <li>しぐまくんスタンプラリーは午前中の開催を中止いたします</li>
+            </ul>
+          </aside>
+        </div>
+      </section>        
+
         </div>
       </section>
 

@@ -1066,3 +1066,41 @@ body {
     overflow-wrap: anywhere; /* 長いイベント名は折り返す */
   }
 }
+
+.hero__notice {
+  margin: 1.5rem auto 0;
+  max-width: 480px;
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-left: 4px solid #ffd54a; /* 注意を引くアクセント色 */
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+}
+
+.hero__notice-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #ffd54a;
+}
+
+.hero__notice-list {
+  margin: 0;
+  padding-left: 1.1em;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.hero__notice-list li + li {
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 480px) {
+  .hero__notice {
+    margin-inline: 1rem;
+    font-size: 0.8rem;
+  }
+}
