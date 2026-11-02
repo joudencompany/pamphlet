@@ -439,7 +439,7 @@ export default function HomePage() {
 
   useEffect(() => () => clearTimeout(surveyCloseTimerRef.current), [])
   const [activeDay, setActiveDay] = useState('11/2')
-  const [activeDay, setActiveDay] = useState('11/1')
+  
   const [menuOpen, setMenuOpen] = useState(false)
   const [bubble, setBubble] = useState(null) // タイムテーブルの吹き出し
   const [greetOpen, setGreetOpen] = useState({ chair: false, vice: false }) // 挨拶の折りたたみ
