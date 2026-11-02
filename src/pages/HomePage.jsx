@@ -1247,7 +1247,7 @@ useEffect(() => {
 <section className="section access" id="access">
   <div className="container">
     <div className="section-label">Access</div>
-    <h2 className="section-title">アクセス</h2>
+    <h2 className="section-title">アクセス・駐輪/駐車/AED</h2>
     <div className="access__grid">
       <div className="access__info">
         <div className="access__item">
@@ -1321,8 +1321,36 @@ useEffect(() => {
         />
       </div>
     </div>
+
+{/* ── 駐輪・駐車マップ / AEDマップ ── */}
+    <div className="access__maps">
+      <figure className="access__figure">
+        <figcaption className="access__figcaption">駐輪・駐車マップ</figcaption>
+        <a href={bymapImg} target="_blank" rel="noopener noreferrer">
+          <img
+            src={bymapImg}
+            alt="駐輪・駐車マップ（タップで拡大）"
+            className="access__figure-img"
+            loading="lazy"
+          />
+        </a>
+        <p className="access__figure-hint">タップで拡大</p>
+      </figure>
+      <figure className="access__figure">
+        <figcaption className="access__figcaption">AEDマップ</figcaption>
+        <a href={aedmapImg} target="_blank" rel="noopener noreferrer">
+          <img
+            src={aedmapImg}
+            alt="AEDマップ（タップで拡大）"
+            className="access__figure-img"
+            loading="lazy"
+          />
+        </a>
+        <p className="access__figure-hint">タップで拡大</p>
+      </figure>
+    </div>
   </div>
-</section> 
+</section>
 
       {/* ── ご協賛企業ロゴ一覧 ── */}
       <section id="sponsorss"></section>

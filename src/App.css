@@ -1120,3 +1120,42 @@ color: #fff;
   border-left: 4px solid #e07c00;
   border-radius: 6px;
 }
+
+.access__maps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.access__figure {
+  margin: 0;
+}
+
+.access__figcaption {
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.access__figure-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .access__maps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.access__figure-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #777;
+}
